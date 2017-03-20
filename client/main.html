@@ -1,25 +1,90 @@
 <head>
+  <script src="bower_components/webcomponentsjs/webcomponents-lite.js"></script>
+  <link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700" rel="stylesheet">
+  <link rel="import" href="bower_components/paper-input/paper-input.html">
+  <link rel="import" href="bower_components/paper-checkbox/paper-checkbox.html">
   <title>CalorieIntakeApp</title>
+  <style is="custom-style"></style>
 </head>
 
 <body>
-  <h1>Welcome to Meteor!</h1>
-
-  {{> hello}}
-  {{> info}}
+  <div class="main-container">
+    {{> controls}}
+    {{> products}}
+  </div>
 </body>
 
-<template name="hello">
-  <button>Click Me</button>
-  <p>You've pressed the button {{counter}} times.</p>
+<template name="products">
+  <div class="product-container">
+    <div class="product">
+      <paper-checkbox class="styled"></paper-checkbox>
+      <div  class="description">
+        <span class="name">Fruit Candies</span>
+        <div  class="calories">500<span>cal</span></div>
+      </div>
+    </div>
+    <div class="product">
+      <paper-checkbox class="styled"></paper-checkbox>
+      <div  class="description">
+        <span class="name">Soda Pop</span>
+        <div  class="calories">300<span>cal</span></div>
+      </div>
+    </div>
+    <div class="product">
+      <paper-checkbox class="styled"></paper-checkbox>
+      <div  class="description">
+        <span class="name">Chocolate Bar</span>
+        <div  class="calories">600<span>cal</span></div>
+      </div>
+    </div>
+    <div class="product">
+      <paper-checkbox class="styled"></paper-checkbox>
+      <div  class="description">
+        <span class="name">Chicken Sandwich</span>
+        <div  class="calories">200<span>cal</span></div>
+      </div>
+    </div>
+    <div class="product">
+      <paper-checkbox class="styled"></paper-checkbox>
+      <div  class="description">
+        <span class="name">Watermelon Slice</span>
+        <div  class="calories">120<span>cal</span></div>
+      </div>
+    </div>
+  </div>
 </template>
 
-<template name="info">
-  <h2>Learn Meteor!</h2>
-  <ul>
-    <li><a href="https://www.meteor.com/try" target="_blank">Do the Tutorial</a></li>
-    <li><a href="http://guide.meteor.com" target="_blank">Follow the Guide</a></li>
-    <li><a href="https://docs.meteor.com" target="_blank">Read the Docs</a></li>
-    <li><a href="https://forums.meteor.com" target="_blank">Discussions</a></li>
-  </ul>
+<template name="controls">
+  <div class="user-profile">
+    <div class="age">
+      <paper-input label="Age" type="number"></paper-input>
+    </div>
+    <div class="weight">
+      <paper-input label="Weight (kg)" type="number"></paper-input>
+    </div>
+    <div class="height">
+      <paper-input label="Height (cm)" type="number"></paper-input>
+    </div>
+    <div class="gender">
+      <paper-dropdown-menu label="gender">
+        <paper-listbox class="dropdown-content" selected="1">
+          <paper-item>Male</paper-item>
+          <paper-item>Female</paper-item>
+        </paper-listbox>
+      </paper-dropdown-menu>
+    </div>
+    <div class="activity">
+      <paper-dropdown-menu label="activity">
+        <paper-listbox class="dropdown-content" selected="1">
+          <paper-item>Sedentary</paper-item>
+          <paper-item>A bit of exercise</paper-item>
+        </paper-listbox>
+      </paper-dropdown-menu>
+    </div>
+  </div>
+</template>
+
+<template name="visualisation">
+  <div class="name">{{name}}</div>
+  <div class="calories">{{calorie}}</div>
 </template>

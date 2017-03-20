@@ -1,0 +1,26 @@
+{
+  "name": "CalorieIntakeApp",
+  "description": "",
+  "authors": [
+    "Francisco Gutiérrez <francisco.gutierrez@cs.kuleuven.be>"
+  ],
+  "license": "MIT",
+  "homepage": "https://github.com/FranciscoGutierrez/CalorieIntakeApp",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "public/bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "polymer": "Polymer/polymer#2.0.0-rc.2",
+    "paper-input": "PolymerElements/paper-input#^1.1.23",
+    "paper-button": "PolymerElements/paper-button#^1.0.14",
+    "paper-checkbox": "PolymerElements/paper-checkbox#^1.4.2",
+    "paper-dropdown-menu": "PolymerElements/paper-dropdown-menu#^1.5.0",
+    "iron-icons": "PolymerElements/iron-icons#^1.2.0"
+  }
+}

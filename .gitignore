@@ -1,5 +1,5 @@
 node_modules/
-
+public/bower_components
 # Created by https://www.gitignore.io/api/osx,meteorjs
 
 ### MeteorJS ###
