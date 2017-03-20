@@ -1,5 +1,8 @@
 <head>
   <script src="bower_components/webcomponentsjs/webcomponents-lite.js"></script>
+  <link rel="import" href="bower_components/paper-listbox/paper-listbox.html">
+  <link rel="import" href="bower_components/paper-item/paper-item.html">
+  <link rel="import" href="bower_components/paper-dropdown-menu/paper-dropdown-menu.html">
   <link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700" rel="stylesheet">
   <link rel="import" href="bower_components/paper-input/paper-input.html">
   <link rel="import" href="bower_components/paper-checkbox/paper-checkbox.html">
@@ -16,6 +19,7 @@
 
 <template name="products">
   <div class="product-container">
+    <h1>What are you eating?</h1>
     <div class="product">
       <paper-checkbox class="styled"></paper-checkbox>
       <div  class="description">
@@ -56,6 +60,7 @@
 
 <template name="controls">
   <div class="user-profile">
+    <h1>Your Profile</h1>
     <div class="age">
       <paper-input label="Age" type="number"></paper-input>
     </div>
@@ -66,25 +71,28 @@
       <paper-input label="Height (cm)" type="number"></paper-input>
     </div>
     <div class="gender">
-      <paper-dropdown-menu label="gender">
-        <paper-listbox class="dropdown-content" selected="1">
-          <paper-item>Male</paper-item>
-          <paper-item>Female</paper-item>
-        </paper-listbox>
-      </paper-dropdown-menu>
+      <select>
+        <option value="" disabled selected>Gender</option>
+        <option value="male">Male</option>
+        <option value="female">Female</option>
+      </select>
     </div>
     <div class="activity">
-      <paper-dropdown-menu label="activity">
-        <paper-listbox class="dropdown-content" selected="1">
-          <paper-item>Sedentary</paper-item>
-          <paper-item>A bit of exercise</paper-item>
-        </paper-listbox>
-      </paper-dropdown-menu>
+      <select>
+        <option value="" disabled selected>Level of Activity</option>
+        <option value="a0">Activity 0</option>
+        <option value="a1">Activity 1</option>
+        <option value="a2">Activity 2</option>
+        <option value="a3">Activity 3</option>
+        <option value="a4">Activity 4</option>
+        <option value="a5">Activity 5</option>
+      </select>
     </div>
   </div>
 </template>
 
 <template name="visualisation">
+  <div class="calories">{{calories}}</div>
   <div class="name">{{name}}</div>
   <div class="calories">{{calorie}}</div>
 </template>
