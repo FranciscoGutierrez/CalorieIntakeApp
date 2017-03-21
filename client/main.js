@@ -1,4 +1,4 @@
-
+import noUiSlider from 'noUiSlider';
 import { Template } from 'meteor/templating';
 import { ReactiveVar } from 'meteor/reactive-var';
 
@@ -45,3 +45,36 @@ Template.controls.events({
 
   },
 });
+
+Template.product.events({
+  'mouseenter .product'(event, instance) {
+    instance.$(".delete").fadeIn(0);
+  },
+  'mouseleave .product'(event, instance) {
+    instance.$(".delete").fadeOut(0);
+  },
+});
+
+
+
+Template.controls.rendered = function () {
+  var slider = document.getElementById('slider');
+  noUiSlider.create(slider, {
+    start: 0,
+    connect: "lower",
+    range: {
+      'min': 0,
+      '20%': 20,
+      '40%': 40,
+      '60%': 60,
+      '80%': 80,
+      'max': 100
+    },
+    snap: true,
+    pips: {
+      mode: 'values',
+      values: [20, 80],
+      density: 4
+    }
+  });
+};

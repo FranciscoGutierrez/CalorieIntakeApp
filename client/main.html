@@ -8,103 +8,81 @@
   <link rel="import" href="bower_components/paper-checkbox/paper-checkbox.html">
   <link rel="import" href="bower_components/paper-button/paper-button.html">
   <link rel="import" href="bower_components/paper-ripple/paper-ripple.html">
+  <link rel="import" href="bower_components/paper-fab/paper-fab.html">
+  <link rel="import" href="bower_components/iron-icons/iron-icons.html">
   <title>CalorieIntakeApp</title>
   <style is="custom-style">
   paper-button.indigo { background-color: var(--paper-indigo-500);  color: white;  }
   paper-button.indigo:hover { background-color: var(--paper-indigo-400);  }
+  paper-fab[mini] {  --paper-fab-background: #e74c3c;}
   </style>
 </head>
 
 <body>
   <div class="main-container">
-    {{> controls}}
-    {{> products}}
-    {{> output}}
+    <div class="top">
+      {{> controls}}
+    </div>
+    <div class="bottom">
+      {{> products}}
+      {{> output}}
+    </div>
   </div>
 </body>
+
+<template name="product">
+  <div class="product">
+    <div  class="description">
+      <img src="http://placehold.it/75">
+      <div class="text">
+        <span class="name">Gummy Bears (Pack)</span>
+        <div  class="calories">500<span>cal</span></div>
+      </div>
+    </div>
+    <paper-fab mini icon="icons:close" class="delete"></paper-fab>
+    <!-- <paper-ripple></paper-ripple> -->
+  </div>
+</template>
 
 <template name="products">
   <div class="product-container">
     <h1>What are you eating today?</h1>
     <paper-input label="Search for products..." type="text" class="searchProduct"></paper-input>
-    <div class="product">
-      <img src="http://placehold.it/75">
-      <div  class="description">
-        <span class="name">Fruit Candies</span>
-        <div  class="calories">500<span>cal</span></div>
-      </div>
-      <div class="delete"></div>
-      <paper-ripple></paper-ripple>
-    </div>
-    <div class="product">
-      <img src="http://placehold.it/75">
-      <div  class="description">
-        <span class="name">Soda Pop</span>
-        <div  class="calories">300<span>cal</span></div>
-      </div>
-      <div class="delete"></div>
-      <paper-ripple></paper-ripple>
-    </div>
-    <div class="product">
-      <img src="http://placehold.it/75">
-      <div  class="description">
-        <span class="name">Chocolate Bar</span>
-        <div  class="calories">600<span>cal</span></div>
-      </div>
-      <div class="delete"></div>
-      <paper-ripple></paper-ripple>
-    </div>
-    <div class="product">
-      <img src="http://placehold.it/75">
-      <div  class="description">
-        <span class="name">Chicken Sandwich</span>
-        <div  class="calories">200<span>cal</span></div>
-      </div>
-      <paper-ripple></paper-ripple>
-    </div>
-    <div class="product">
-      <img src="http://placehold.it/75">
-      <div  class="description">
-        <span class="name">Watermelon Slice</span>
-        <div  class="calories">120<span>cal</span></div>
-      </div>
-      <div class="delete"></div>
-      <paper-ripple></paper-ripple>
-    </div>
+    {{> product}}
   </div>
 </template>
 
 <template name="controls">
   <div class="user-profile">
     <h1>Your Profile</h1>
-    <div class="age">
-      <paper-input label="Age" type="number" class="ageVal"></paper-input>
+    <div class="row">
+      <div class="column">
+        <div class="age input">
+          <paper-input label="Age" type="number" class="ageVal"></paper-input>
+        </div>
+        <div class="gender input">
+          <select class="genderVal">
+            <option value="" disabled selected>Gender</option>
+            <option value="male">Male</option>
+            <option value="female">Female</option>
+          </select>
+        </div>
+      </div>
+      <div class="column">
+        <div class="weight input">
+          <paper-input label="Weight (kg)" type="number" class="weightVal"></paper-input>
+        </div>
+        <div class="height input">
+          <paper-input label="Height (cm)" type="number" class="heightVal"></paper-input>
+        </div>
+      </div>
+      <div class="column">
+        <div class="activity input">
+          <div id="slider"></div>
+        </div>
+        <paper-button raised class="indigo update">Update</paper-button>
+      </div>
     </div>
-    <div class="weight">
-      <paper-input label="Weight (kg)" type="number" class="weightVal"></paper-input>
-    </div>
-    <div class="height">
-      <paper-input label="Height (cm)" type="number" class="heightVal"></paper-input>
-    </div>
-    <div class="gender">
-      <select class="genderVal">
-        <option value="" disabled selected>Gender</option>
-        <option value="male">Male</option>
-        <option value="female">Female</option>
-      </select>
-    </div>
-    <div class="activity">
-      <select class="activityVal">
-        <option value="" disabled selected>Level of Activity</option>
-        <option value="a0">Activity 0</option>
-        <option value="a1">Activity 1</option>
-        <option value="a2">Activity 2</option>
-        <option value="a3">Activity 3</option>
-        <option value="a4">Activity 4</option>
-        <option value="a5">Activity 5</option>
-      </select>
-    </div>
-    <paper-button raised class="indigo update">Update</paper-button>
   </div>
 </template>
 
