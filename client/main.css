@@ -15,11 +15,17 @@
   flex-direction: column;
 }
 
-.product { display: flex; align-items: center; margin-top: 20px; cursor:default;}
-.product .description { display: flex; flex-direction: column;}
+.product { display: flex; align-items: center; margin-top: 20px; cursor:default; position: relative;}
+.product:hover {background: #ECEFF1; cursor: pointer;}
+.product .description { display: flex; flex-direction: column; margin-left: 20px;}
 .product .name{font-size: 16px; font-weight: 300;}
 .product .calories{font-size:12px;}
 .product .calories span{font-size:10px;}
+
+.product-container paper-input {
+  width: 100%;
+}
+
 
 paper-input {
   width: 200px;
@@ -75,7 +81,7 @@ h1{
 .user-profile {
   /*background: red;*/
   padding: 30px;
-  width: 300px;
+  width: 200px;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
@@ -84,4 +90,28 @@ h1{
 
 .product-container {
   padding: 30px;
+}
+
+.output {
+  display: flex;
+  flex-direction: column;
+  padding: 30px;
+  width: 300px;
+  font-family: Roboto, sans-serif;
+  font-weight: 300;
+  cursor: default;
+}
+
+.output .text {
+  margin-top: 20px;
+}
+
+.output span {
+  color: #5c6bc0;
+  font-weight: 500;
+}
+
+paper-button {
+  align-self: flex-end;
+  margin-top: 20px !important;
 }

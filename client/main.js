@@ -1,24 +1,47 @@
-/*
+
 import { Template } from 'meteor/templating';
 import { ReactiveVar } from 'meteor/reactive-var';
 
 import './main.html';
 
-Template.hello.onCreated(function helloOnCreated() {
+Template.controls.onCreated(function helloOnCreated() {
   // counter starts at 0
-  this.counter = new ReactiveVar(0);
+  Session.setDefault("bmr",0)
 });
 
-Template.hello.helpers({
+Template.controls.helpers({
   counter() {
     return Template.instance().counter.get();
   },
 });
 
-Template.hello.events({
-  'click button'(event, instance) {
-    // increment the counter when button is clicked
-    instance.counter.set(instance.counter.get() + 1);
+Template.output.helpers({
+  bmr() {
+    return Session.get("bmr");
   },
 });
-*/
+
+Template.controls.events({
+  'click .update'(event, instance) {
+    var age    = $(".ageVal").val();
+    var weight = $(".weightVal").val();
+    var height = $(".heightVal").val();
+    var gender = $(".genderVal").val();
+    var activity = $(".activityVal").val();
+    var bmr = 0;
+    if(gender == "male") {
+      bmr = 10 * weight + 6.25 * height - 5 * age + 5;
+    } else if(gender == "female"){
+      bmr = 10 * weight + 6.25 * height - 5 * age - 161;
+    }
+    if(activity == "a0") bmr = bmr * 1;
+    if(activity == "a1") bmr = bmr * 1.2;
+    if(activity == "a2") bmr = bmr * 1.375;
+    if(activity == "a3") bmr = bmr * 1.55;
+    if(activity == "a4") bmr = bmr * 1.725;
+    if(activity == "a5") bmr = bmr * 1.95;
+    console.log(bmr);
+    Session.set("bmr", bmr.toFixed(2));
+
+  },
+});

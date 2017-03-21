@@ -6,54 +6,70 @@
   <link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700" rel="stylesheet">
   <link rel="import" href="bower_components/paper-input/paper-input.html">
   <link rel="import" href="bower_components/paper-checkbox/paper-checkbox.html">
+  <link rel="import" href="bower_components/paper-button/paper-button.html">
+  <link rel="import" href="bower_components/paper-ripple/paper-ripple.html">
   <title>CalorieIntakeApp</title>
-  <style is="custom-style"></style>
+  <style is="custom-style">
+  paper-button.indigo { background-color: var(--paper-indigo-500);  color: white;  }
+  paper-button.indigo:hover { background-color: var(--paper-indigo-400);  }
+  </style>
 </head>
 
 <body>
   <div class="main-container">
     {{> controls}}
     {{> products}}
+    {{> output}}
   </div>
 </body>
 
 <template name="products">
   <div class="product-container">
-    <h1>What are you eating?</h1>
+    <h1>What are you eating today?</h1>
+    <paper-input label="Search for products..." type="text" class="searchProduct"></paper-input>
     <div class="product">
-      <paper-checkbox class="styled"></paper-checkbox>
+      <img src="http://placehold.it/75">
       <div  class="description">
         <span class="name">Fruit Candies</span>
         <div  class="calories">500<span>cal</span></div>
       </div>
+      <div class="delete"></div>
+      <paper-ripple></paper-ripple>
     </div>
     <div class="product">
-      <paper-checkbox class="styled"></paper-checkbox>
+      <img src="http://placehold.it/75">
       <div  class="description">
         <span class="name">Soda Pop</span>
         <div  class="calories">300<span>cal</span></div>
       </div>
+      <div class="delete"></div>
+      <paper-ripple></paper-ripple>
     </div>
     <div class="product">
-      <paper-checkbox class="styled"></paper-checkbox>
+      <img src="http://placehold.it/75">
       <div  class="description">
         <span class="name">Chocolate Bar</span>
         <div  class="calories">600<span>cal</span></div>
       </div>
+      <div class="delete"></div>
+      <paper-ripple></paper-ripple>
     </div>
     <div class="product">
-      <paper-checkbox class="styled"></paper-checkbox>
+      <img src="http://placehold.it/75">
       <div  class="description">
         <span class="name">Chicken Sandwich</span>
         <div  class="calories">200<span>cal</span></div>
       </div>
+      <paper-ripple></paper-ripple>
     </div>
     <div class="product">
-      <paper-checkbox class="styled"></paper-checkbox>
+      <img src="http://placehold.it/75">
       <div  class="description">
         <span class="name">Watermelon Slice</span>
         <div  class="calories">120<span>cal</span></div>
       </div>
+      <div class="delete"></div>
+      <paper-ripple></paper-ripple>
     </div>
   </div>
 </template>
@@ -62,23 +78,23 @@
   <div class="user-profile">
     <h1>Your Profile</h1>
     <div class="age">
-      <paper-input label="Age" type="number"></paper-input>
+      <paper-input label="Age" type="number" class="ageVal"></paper-input>
     </div>
     <div class="weight">
-      <paper-input label="Weight (kg)" type="number"></paper-input>
+      <paper-input label="Weight (kg)" type="number" class="weightVal"></paper-input>
     </div>
     <div class="height">
-      <paper-input label="Height (cm)" type="number"></paper-input>
+      <paper-input label="Height (cm)" type="number" class="heightVal"></paper-input>
     </div>
     <div class="gender">
-      <select>
+      <select class="genderVal">
         <option value="" disabled selected>Gender</option>
         <option value="male">Male</option>
         <option value="female">Female</option>
       </select>
     </div>
     <div class="activity">
-      <select>
+      <select class="activityVal">
         <option value="" disabled selected>Level of Activity</option>
         <option value="a0">Activity 0</option>
         <option value="a1">Activity 1</option>
@@ -88,11 +104,20 @@
         <option value="a5">Activity 5</option>
       </select>
     </div>
+    <paper-button raised class="indigo update">Update</paper-button>
   </div>
 </template>
 
-<template name="visualisation">
-  <div class="calories">{{calories}}</div>
-  <div class="name">{{name}}</div>
-  <div class="calories">{{calorie}}</div>
+<template name="output">
+  <div class="output">
+    <h1>Prediction</h1>
+    <div class="calories text">
+      To mantain your current weight you are consuming <span>{{bmr}}</span> calories.
+      <img src="u1.png" width="350px" class="uncert">
+    </div>
+    <div class="months">
+      <br>
+      <img src="pic2.png" width="520px">
+    </div>
+  </div>
 </template>
