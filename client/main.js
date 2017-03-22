@@ -60,21 +60,20 @@ Template.product.events({
 Template.controls.rendered = function () {
   var slider = document.getElementById('slider');
   noUiSlider.create(slider, {
-    start: 0,
+    start: 2,
     connect: "lower",
     range: {
       'min': 0,
-      '20%': 20,
-      '40%': 40,
-      '60%': 60,
-      '80%': 80,
-      'max': 100
+      '20%': 2,
+      '40%': 4,
+      '60%': 6,
+      '80%': 8,
+      'max': 10
     },
     snap: true,
     pips: {
-      mode: 'values',
-      values: [20, 80],
-      density: 4
+      mode: 'steps',
+      density: 2
     }
   });
 };

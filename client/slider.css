@@ -1,0 +1,14 @@
+#slider { width: 100%;}
+#slider .noUi-connect {	background: #3F51B5;}
+.noUi-horizontal {height: 10px;}
+.noUi-handle {
+  width:  20px !important;
+  height: 20px !important;
+  border-radius: 50%;
+  left: -10px !important;
+}
+
+.noUi-handle::before { display: none;}
+.noUi-handle::after  { display: none;}
+.noUi-pips { font-size: 12px;}
+.noUi-marker-horizontal.noUi-marker-large {height: 7px;}
