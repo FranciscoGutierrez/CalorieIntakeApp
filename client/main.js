@@ -6,7 +6,8 @@ import './main.html';
 
 Template.controls.onCreated(function helloOnCreated() {
   // counter starts at 0
-  Session.setDefault("bmr",0)
+  Session.setDefault("bmr",0);
+  Session.setDefault("activity",0);
 });
 
 Template.controls.helpers({
@@ -27,7 +28,7 @@ Template.controls.events({
     var weight = $(".weightVal").val();
     var height = $(".heightVal").val();
     var gender = $(".genderVal").val();
-    var activity = $(".activityVal").val();
+    var activity = Session.get("value");
     var bmr = 0;
     if(gender == "male") {
       bmr = 10 * weight + 6.25 * height - 5 * age + 5;
@@ -55,13 +56,22 @@ Template.product.events({
   },
 });
 
-
-
 Template.controls.rendered = function () {
   var slider = document.getElementById('slider');
   noUiSlider.create(slider, {
     start: 2,
     connect: "lower",
+    tooltips: {to: function (v) {
+      var text = "";
+      if(v==0)  text = "No Activity";
+      if(v==2)  text = "Little or no exercise"; //"Sedentary - Little or no exercise";
+      if(v==4)  text = "Lightly Active - Exercise/sports 1-3 times/week";
+      if(v==6)  text = "Moderately Active - Exercise/sports 3-5 times/week";
+      if(v==8)  text = "Very Active - Hard Exercise/sports 6-7 times/week ";
+      if(v==10) text = "Extra Active - Very hard exercise/sports or physical job";
+      return text;
+      }
+    },
     range: {
       'min': 0,
       '20%': 2,
@@ -75,5 +85,9 @@ Template.controls.rendered = function () {
       mode: 'steps',
       density: 2
     }
+  });
+
+  slider.noUiSlider.on('slide', function(value){
+    Session.set("activity",value[0]);
   });
 };

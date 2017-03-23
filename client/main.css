@@ -10,15 +10,16 @@
   padding: 0;
 }
 
+body {
+  background: #fcfcfc;
+}
+
 paper-input {
   width: 200px;
   margin: auto;
 }
 
-.main-container { display: flex; flex-direction: column; }
-.main-container .top    { display: flex;}
-.main-container .bottom { display: flex;}
-
+.main-container { display: flex;}
 
 select {
   width: 200px;
@@ -63,26 +64,26 @@ select:focus {
   margin-right: 20px;
 }
 
-h1{
+h1 {
   font-weight: 100;
   font-family: Roboto, Arial, sans-serif;
   margin: 0;
   padding: 0;
   cursor: default;
+  align-self: flex-start;
+  width: 100%;
 }
 
-.user-profile {
-  /*background: red;*/
-  padding: 10px 30px 30px 30px;
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: flex-start;
-  box-shadow: 1px 0px 4px #dddddd;
+h2 {
+  font-weight: 300;
+  font-family: Roboto, Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  cursor: default;
+  font-size: 16px;
+  margin-bottom: 5px;
+  color: #747474;
 }
-.user-profile .column {display: flex; flex-direction: column;}
-.user-profile .row    {display: flex; flex-direction: row;}
 
 .product-container {
   padding: 30px;
@@ -122,17 +123,5 @@ paper-fab {
   margin: 8px;
 }
 
-#slider { width: 100%;}
-#slider .noUi-connect {	background: #3F51B5;}
-.noUi-horizontal {height: 10px;}
-.noUi-handle {
-  width:  20px !important;
-  height: 20px !important;
-  border-radius: 50%;
-  left: -10px !important;
-}
-
-.noUi-handle::before { display: none;}
-.noUi-handle::after  { display: none;}
-.noUi-pips { font-size: 12px;}
-.noUi-marker-horizontal.noUi-marker-large {height: 7px;}
+.user-profile .text-inputs { display: flex;}
+.text-inputs  .input {width: 100px;}

@@ -1,0 +1,22 @@
+.user-profile {
+  padding: 30px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+}
+.user-profile .h1     {margin-right: 20px; }
+.user-profile .column {display: flex; flex-direction: column; justify-content: flex-end;}
+.user-profile .row    {display: flex; flex-direction: row;}
+
+.user-profile .allergies .column {margin-right: 20px;}
+.user-profile .allergies { margin-top: 40px;}
+.user-profile .allergies paper-checkbox {margin-bottom: 10px;}
+
+.user-profile .activity {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  margin-top: 30px;
+}

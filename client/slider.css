@@ -1,14 +1,31 @@
-#slider { width: 100%;}
-#slider .noUi-connect {	background: #3F51B5;}
-.noUi-horizontal {height: 10px;}
-.noUi-handle {
+.user-profile #slider { width: 100%;}
+.user-profile #slider .noUi-connect {	background: #3F51B5;}
+.user-profile .noUi-horizontal {height: 10px;}
+.user-profile .noUi-handle {
   width:  20px !important;
   height: 20px !important;
   border-radius: 50%;
   left: -10px !important;
 }
 
-.noUi-handle::before { display: none;}
-.noUi-handle::after  { display: none;}
-.noUi-pips { font-size: 12px;}
-.noUi-marker-horizontal.noUi-marker-large {height: 7px;}
+.user-profile .noUi-handle::before { display: none !important;}
+.user-profile .noUi-handle::after  { display: none !important;}
+.user-profile .noUi-pips { font-size: 12px;}
+.user-profile .noUi-marker-horizontal.noUi-marker-large {height: 7px;}
+.user-profile .noUi-tooltip {
+  display: block;
+  position: absolute;
+  border: 0 !important;
+  border-radius: 3px;
+  background: none;
+  color: darkgrey !important;
+  /* padding: 5px; */
+  text-align: center;
+  font-size: 11px;
+  width: 200px;
+  color: #424242;
+  bottom: -330% !important;
+  height: 50px !important;
+}
+
+.noUi-value {display: none;}
