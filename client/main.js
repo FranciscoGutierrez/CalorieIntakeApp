@@ -88,6 +88,6 @@ Template.controls.rendered = function () {
   });
 
   slider.noUiSlider.on('slide', function(value){
-    Session.set("activity",value[0]);
+    Session.set("activity",value[0]); 
   });
 };
