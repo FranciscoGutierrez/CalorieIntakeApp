@@ -1,7 +1,7 @@
+import * as d3 from "d3";
 import noUiSlider from 'noUiSlider';
 import { Template } from 'meteor/templating';
 import { ReactiveVar } from 'meteor/reactive-var';
-
 import './main.html';
 
 Template.controls.onCreated(function helloOnCreated() {
@@ -57,6 +57,7 @@ Template.product.events({
 });
 
 Template.controls.rendered = function () {
+  console.log(d3);
   var slider = document.getElementById('slider');
   noUiSlider.create(slider, {
     start: 2,
@@ -88,6 +89,6 @@ Template.controls.rendered = function () {
   });
 
   slider.noUiSlider.on('slide', function(value){
-    Session.set("activity",value[0]); 
+    Session.set("activity",value[0]);
   });
 };
