@@ -1,10 +1,13 @@
+import * as d3 from "d3";
 import noUiSlider from 'noUiSlider';
 import { Template } from 'meteor/templating';
 import { ReactiveVar } from 'meteor/reactive-var';
 import './main.html';
 
 Template.controls.onCreated(function helloOnCreated() {
-  Session.setDefault("activity",0);
+  Session.setDefault("activity",2.00);
+  Session.setDefault("basket",1500);
+  Session.setDefault("prediction",100);
 });
 
 Template.controls.helpers({
@@ -15,12 +18,13 @@ Template.controls.helpers({
 
 Template.output.helpers({
   bmr() {
-    var age      = Session.get("age");
-    var weight   = Session.get("weight");
-    var height   = Session.get("height");
-    var gender   = Session.get("gender");
-    var activity = Session.get("activity");
-    var bmr      = 0;
+    let age      = parseInt(Session.get("age"));
+    let weight   = parseInt(Session.get("weight"));
+    let height   = parseInt(Session.get("height"));
+    let gender   = parseInt(Session.get("gender"));
+    let activity = parseInt(Session.get("activity"));
+    let basket   = parseInt(Session.get("basket"));
+    let bmr      = 0;
     if(gender == "male") {
       bmr = 10 * weight + 6.25 * height - 5 * age + 5;
     } else if(gender == "female"){
@@ -32,8 +36,46 @@ Template.output.helpers({
     if(activity == 6.00)  bmr = bmr * 1.55;
     if(activity == 8.00)  bmr = bmr * 1.725;
     if(activity == 10.00) bmr = bmr * 1.95;
+
+    // Generate and update prediction array.
+    let diff = (basket-bmr)/1000;
+    let pred = [weight,
+      weight+diff,
+      weight+(diff*2),
+      weight+(diff*3),
+      weight+(diff*4),
+      weight+(diff*5),
+      weight+(diff*6),
+      weight+(diff*7),
+      weight+(diff*8),
+      weight+(diff*9),
+      weight+(diff*10),
+      weight+(diff*11),
+      weight+(diff*12),
+      weight+(diff*13),
+      weight+(diff*14),
+      weight+(diff*15),
+      weight+(diff*16),
+      weight+(diff*17),
+      weight+(diff*18),
+      weight+(diff*19),
+      weight+(diff*20),
+      weight+(diff*21),
+      weight+(diff*22),
+      weight+(diff*23),
+      weight+(diff*24),
+    ];
+    console.log(pred);
+    updateData(pred);
+
     return bmr.toFixed(2);
-  },
+  }
+});
+
+Template.products.helpers({
+  basket() {
+    return Session.get("basket");
+  }
 });
 
 Template.controls.events({
@@ -61,7 +103,7 @@ Template.product.events({
 });
 
 Template.controls.rendered = function () {
-  var slider = document.getElementById('slider');
+  let slider = document.getElementById('slider');
   noUiSlider.create(slider, {
     start: 2,
     connect: "lower",
@@ -74,24 +116,92 @@ Template.controls.rendered = function () {
       if(v==8)  text = "Very Active - Hard Exercise/sports 6-7 times/week ";
       if(v==10) text = "Extra Active - Very hard exercise/sports or physical job";
       return text;
-      }
-    },
-    range: {
-      'min': 0,
-      '20%': 2,
-      '40%': 4,
-      '60%': 6,
-      '80%': 8,
-      'max': 10
-    },
-    snap: true,
-    pips: {
-      mode: 'steps',
-      density: 2
     }
-  });
-
-  slider.noUiSlider.on('slide', function(value){
-    Session.set("activity",value[0]);
-  });
+  },
+  range: {
+    'min': 0,
+    '20%': 2,
+    '40%': 4,
+    '60%': 6,
+    '80%': 8,
+    'max': 10
+  },
+  snap: true,
+  pips: {
+    mode: 'steps',
+    density: 2
+  }
+});
+slider.noUiSlider.on('slide', function(value){
+  Session.set("activity",value[0]);
+});
 };
+
+
+Template.output.rendered = function () {
+  let data = Session.get("prediction");
+
+  let width  = 400;
+  let height = 300;
+  let svg    = d3.select(".d3-svg").attr("width", width).attr("height", height);
+  let x      = d3.scaleLinear().domain([0, data.length]).range([0, width]);
+  let y      = d3.scaleLinear().domain([0, d3.max(data)+50]).range([height, 0]);
+
+  d3.timeParse("%b");
+
+  svg.append("g").attr("transform", "translate(0,"+height+")").call(d3.axisBottom(x))
+  .append("text")
+  .attr("fill", "#7f8c8d")
+  .attr("x", width)
+  .attr("dy", "-0.71em")
+  .attr("text-anchor", "end")
+  .text("Weeks");
+
+  svg.append("g").call(d3.axisLeft(y))
+  .append("text")
+  .attr("fill", "#7f8c8d")
+  .attr("transform", "rotate(-90)")
+  .attr("y", 6)
+  .attr("dy", "0.71em")
+  .attr("text-anchor", "end")
+  .text("Weight (kg.)");
+
+  let line = d3.line()
+  .x(function(d,i) {
+    return x(i);
+  })
+  .y(function(d) {
+    return y(d);
+  })
+
+  svg.append("path")
+  .attr("fill", "none")
+  .attr("stroke", "#3F51B5")
+  .attr("stroke-linejoin", "round")
+  .attr("stroke-linecap", "round")
+  .attr("stroke-width", 3)
+  .attr("d", line(data));
+
+};
+
+function updateData(pred) {
+
+  let w  = 400;
+  let h  = 300;
+  let svg    = d3.select(".d3-svg").attr("width", w).attr("height", h);
+  let x      = d3.scaleLinear().domain([0, pred.length]).range([0, w]);
+  let y      = d3.scaleLinear().domain([0, d3.max(pred)+50]).range([h, 0]);
+
+
+  let line = d3.line()
+  .x(function(d,i) {
+    return x(i);
+  })
+  .y(function(d) {
+    return y(d);
+  })
+
+  d3.svg.select("path").transition()
+  .duration(750)
+  .attr("d", line(pred));
+}
