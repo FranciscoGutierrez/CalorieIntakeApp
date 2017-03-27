@@ -43,8 +43,19 @@ Template.controls.events({
     if(activity == "a5") bmr = bmr * 1.95;
     console.log(bmr);
     Session.set("bmr", bmr.toFixed(2));
-
   },
+  'keyup .ageVal'(event, instance) {
+    Session.set("age",instance.$(".ageVal").val());
+  },
+  'keyup .weightVal'(event, instance) {
+    Session.set("weight",instance.$(".weightVal").val());
+  },
+  'keyup .heightVal'(event, instance) {
+    Session.set("height",instance.$(".heightVal").val());
+  },
+  'click .genderVal'(event, instance) {
+    Session.set("gender",instance.$(".genderVal").val());
+  }
 });
 
 Template.product.events({
@@ -57,7 +68,6 @@ Template.product.events({
 });
 
 Template.controls.rendered = function () {
-  console.log(d3);
   var slider = document.getElementById('slider');
   noUiSlider.create(slider, {
     start: 2,
