@@ -1,12 +1,9 @@
-import * as d3 from "d3";
 import noUiSlider from 'noUiSlider';
 import { Template } from 'meteor/templating';
 import { ReactiveVar } from 'meteor/reactive-var';
 import './main.html';
 
 Template.controls.onCreated(function helloOnCreated() {
-  // counter starts at 0
-  Session.setDefault("bmr",0);
   Session.setDefault("activity",0);
 });
 
@@ -18,32 +15,28 @@ Template.controls.helpers({
 
 Template.output.helpers({
   bmr() {
-    return Session.get("bmr");
-  },
-});
-
-Template.controls.events({
-  'click .update'(event, instance) {
-    var age    = $(".ageVal").val();
-    var weight = $(".weightVal").val();
-    var height = $(".heightVal").val();
-    var gender = $(".genderVal").val();
-    var activity = Session.get("value");
-    var bmr = 0;
+    var age      = Session.get("age");
+    var weight   = Session.get("weight");
+    var height   = Session.get("height");
+    var gender   = Session.get("gender");
+    var activity = Session.get("activity");
+    var bmr      = 0;
     if(gender == "male") {
       bmr = 10 * weight + 6.25 * height - 5 * age + 5;
     } else if(gender == "female"){
       bmr = 10 * weight + 6.25 * height - 5 * age - 161;
     }
-    if(activity == "a0") bmr = bmr * 1;
-    if(activity == "a1") bmr = bmr * 1.2;
-    if(activity == "a2") bmr = bmr * 1.375;
-    if(activity == "a3") bmr = bmr * 1.55;
-    if(activity == "a4") bmr = bmr * 1.725;
-    if(activity == "a5") bmr = bmr * 1.95;
-    console.log(bmr);
-    Session.set("bmr", bmr.toFixed(2));
+    if(activity == 0.00)  bmr = bmr * 1;
+    if(activity == 2.00)  bmr = bmr * 1.2;
+    if(activity == 4.00)  bmr = bmr * 1.375;
+    if(activity == 6.00)  bmr = bmr * 1.55;
+    if(activity == 8.00)  bmr = bmr * 1.725;
+    if(activity == 10.00) bmr = bmr * 1.95;
+    return bmr.toFixed(2);
   },
+});
+
+Template.controls.events({
   'keyup .ageVal'(event, instance) {
     Session.set("age",instance.$(".ageVal").val());
   },
@@ -53,7 +46,7 @@ Template.controls.events({
   'keyup .heightVal'(event, instance) {
     Session.set("height",instance.$(".heightVal").val());
   },
-  'click .genderVal'(event, instance) {
+  'change .genderVal'(event, instance) {
     Session.set("gender",instance.$(".genderVal").val());
   }
 });
