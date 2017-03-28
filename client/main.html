@@ -29,28 +29,6 @@
   </div>
 </body>
 
-<template name="product">
-  <div class="product">
-    <div  class="description">
-      <img src="http://placehold.it/75">
-      <div class="text">
-        <span class="name">Gummy Bears (Pack)</span>
-        <div  class="calories">500<span>cal</span></div>
-      </div>
-    </div>
-    <paper-fab mini icon="icons:close" class="delete"></paper-fab>
-  </div>
-</template>
-
-<template name="products">
-  <div class="product-container">
-    <h1>What are you eating today?</h1>
-    <h2>Amount of calories: {{basket}}<span>cal</span></h2>
-    <paper-input label="Search to add more products..." type="text" class="searchProduct"></paper-input>
-    {{> product}}
-  </div>
-</template>
-
 <template name="output">
   <div class="output">
     <svg class="d3-svg"></svg>
