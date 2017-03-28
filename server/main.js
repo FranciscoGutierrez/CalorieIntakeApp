@@ -12,11 +12,18 @@ Meteor.startup(() => {
 });
 
 SearchSource.defineSource('products', function(searchText, options) {
-  return Products.find({}, {sort: {name: -1}, limit: 20}).fetch();
+  options  = {sort: {name: -1}, limit: 20};
+  if(searchText) {
+    let regExp = buildRegExp(searchText);
+    let selector = {$or: [{name: regExp}]};
+    return Products.find(selector, options).fetch();
+  } else {
+    return Products.find({}, options).fetch();
+  }
 });
 
 function buildRegExp(searchText) {
-  // this is a dumb implementation lol!!!!
+  // this is a dumb implementation -> lol!!!!
   let parts = searchText.trim().split(/[ \-\:]+/);
   return new RegExp("(" + parts.join('|') + ")", "ig");
 }
