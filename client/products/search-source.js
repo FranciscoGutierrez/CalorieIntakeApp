@@ -3,7 +3,7 @@ let options = {keepHistory: 1000 * 60 * 5, localSearch: true};
 ProductSearch = new SearchSource('products', fields, options);
 
 Template.products.helpers({
-  getPackages: function() {
+  getProducts: function() {
     return ProductSearch.getData({
       transform: function(matchText, regExp) {
         return matchText.replace(regExp, "<b>$&</b>")

@@ -12,7 +12,7 @@ Meteor.startup(() => {
 });
 
 SearchSource.defineSource('products', function(searchText, options) {
-  options  = {sort: {name: -1}, limit: 20};
+  options  = {sort: {name: -1}, limit: 5};
   if(searchText) {
     let regExp = buildRegExp(searchText);
     let selector = {$or: [{name: regExp}]};
