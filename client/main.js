@@ -59,19 +59,27 @@ Template.output.helpers({
       weight+(diff*21),
       weight+(diff*22),
       weight+(diff*23),
-      weight+(diff*24),
+      weight+(diff*24)
     ];
     console.log(pred);
     console.log(bmr);
 
-    let w    = 400;
-    let h    = 300;
+    let w    = 300;
+    let h    = 200;
     let svg  = d3.select(".d3-svg").transition();
     let x    = d3.scaleLinear().domain([0, pred.length]).range([0, w]);
     let y    = d3.scaleLinear().domain([0, d3.max(pred)+50]).range([h, 0]);
-    let line = d3.line().x(function(d,i) {return x(i);}).y(function(d) {return y(d);})
-    svg.select(".line").duration(750).attr("d", line(pred));
-    svg.select(".y-axis").duration(750).call(d3.axisLeft(y));
+    let line = d3.line()
+    .x(function(d,i) {
+      return x(i);
+    })
+    .y(function(d) {
+      return y(d);
+    })
+
+    svg.select(".line").duration(200).attr("d", line(pred));
+    svg.select(".y-axis").duration(200).call(d3.axisLeft(y));
+    svg.select(".x-axis").duration(200).call(d3.axisBottom(x));
 
 
     return bmr.toFixed(2);
@@ -97,15 +105,6 @@ Template.controls.events({
   'change .genderVal'(event, instance) {
     Session.set("gender",instance.$(".genderVal").val());
   }
-});
-
-Template.product.events({
-  'mouseenter .product'(event, instance) {
-    instance.$(".delete").fadeIn(0);
-  },
-  'mouseleave .product'(event, instance) {
-    instance.$(".delete").fadeOut(0);
-  },
 });
 
 Template.controls.rendered = function () {

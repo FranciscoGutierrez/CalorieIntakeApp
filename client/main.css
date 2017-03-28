@@ -1,4 +1,6 @@
 /* CSS declarations go here */
+.margin-bottom { margin-bottom: 10px;}
+
 * {
   font-family: Roboto, Arial, sans-serif;
   -webkit-user-select: none;
@@ -27,7 +29,8 @@ paper-input {
   display: flex;
   min-width: 1250px;
   width: 100%;
-  justify-content: space-around;
+  height: 800px;
+  justify-content: center;
 
 }
 
@@ -92,8 +95,8 @@ paper-fab {
 
 
 .disclaimer {
-  color: #c1c1c1;
-  font-size: 10px;
+  color: #919191;
+  font-size: 11px;
   width: 800px;
   cursor: default;
 }

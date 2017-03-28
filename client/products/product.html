@@ -1,13 +1,13 @@
 <template name="products">
   <div class="product-container">
     <h1>What are you eating today?</h1>
-    <h2>Amount of calories: {{basket}}<span>cal</span></h2>
-    <paper-input label="Search to add more products..." type="text" class="searchProduct"></paper-input>
+    <!-- <h2>Amount of calories: {{basket}}<span>cal</span></h2> -->
+    <paper-input label="Search and click to add products..." type="text" class="searchProduct"></paper-input>
     {{#each getProducts}}
     {{> product}}
     {{/each}}
     {{#if isLoading}}
-      Searching ...
+    <paper-spinner active></paper-spinner>
     {{/if}}
   </div>
 </template>
@@ -17,10 +17,16 @@
     <div  class="description">
       <img src="{{picture}}">
       <div class="text">
-        <div class="name">{{name}}</div>
-        <div  class="calories">{{energy}}<span>cal</span></div>
+        <div class="name">{{{name}}}</div>
+        <div class="metadata">
+          <div  class="calories meta">{{energy}}<span> kcal</span></div>
+          <div  class="sodium   meta">{{sodium}}<span> gr</span></div>
+          <div  class="sugars   meta">{{sugars}}<span> gr</span></div>
+          <div  class="fat      meta">{{fat}}<span> gr</span></div>
+        </div>
       </div>
     </div>
-    <paper-fab mini icon="icons:close" class="delete"></paper-fab>
+    <!-- <paper-fab mini icon="icons:close" class="delete"></paper-fab> -->
+    <paper-ripple></paper-ripple>
   </div>
 </template>
