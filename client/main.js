@@ -10,32 +10,26 @@ Template.controls.onCreated(function helloOnCreated() {
   Session.setDefault("prediction",100);
 });
 
-Template.controls.helpers({
-  counter() {
-    return Template.instance().counter.get();
-  },
-});
-
 Template.output.helpers({
   bmr() {
+    let gender   = Session.get("gender");
     let age      = parseInt(Session.get("age"));
     let weight   = parseInt(Session.get("weight"));
     let height   = parseInt(Session.get("height"));
-    let gender   = parseInt(Session.get("gender"));
     let activity = parseInt(Session.get("activity"));
     let basket   = parseInt(Session.get("basket"));
-    let bmr      = 0;
+    let bmr      = 0.0;
     if(gender == "male") {
       bmr = 10 * weight + 6.25 * height - 5 * age + 5;
     } else if(gender == "female"){
       bmr = 10 * weight + 6.25 * height - 5 * age - 161;
     }
-    if(activity == 0.00)  bmr = bmr * 1;
-    if(activity == 2.00)  bmr = bmr * 1.2;
-    if(activity == 4.00)  bmr = bmr * 1.375;
-    if(activity == 6.00)  bmr = bmr * 1.55;
-    if(activity == 8.00)  bmr = bmr * 1.725;
-    if(activity == 10.00) bmr = bmr * 1.95;
+    if(activity == 0)  bmr = bmr * 1;
+    if(activity == 2)  bmr = bmr * 1.2;
+    if(activity == 4)  bmr = bmr * 1.375;
+    if(activity == 6)  bmr = bmr * 1.55;
+    if(activity == 8)  bmr = bmr * 1.725;
+    if(activity == 10) bmr = bmr * 1.95;
 
     // Generate and update prediction array.
     let diff = (basket-bmr)/1000;
@@ -66,7 +60,17 @@ Template.output.helpers({
       weight+(diff*24),
     ];
     console.log(pred);
-    updateData(pred);
+    console.log(bmr);
+
+    let w    = 400;
+    let h    = 300;
+    let svg  = d3.select(".d3-svg").transition();
+    let x    = d3.scaleLinear().domain([0, pred.length]).range([0, w]);
+    let y    = d3.scaleLinear().domain([0, d3.max(pred)+50]).range([h, 0]);
+    let line = d3.line().x(function(d,i) {return x(i);}).y(function(d) {return y(d);})
+    svg.select(".line").duration(750).attr("d", line(pred));
+    svg.select(".y-axis").duration(750).call(d3.axisLeft(y));
+
 
     return bmr.toFixed(2);
   }
@@ -136,72 +140,3 @@ slider.noUiSlider.on('slide', function(value){
   Session.set("activity",value[0]);
 });
 };
-
-
-Template.output.rendered = function () {
-  let data = Session.get("prediction");
-
-  let width  = 400;
-  let height = 300;
-  let svg    = d3.select(".d3-svg").attr("width", width).attr("height", height);
-  let x      = d3.scaleLinear().domain([0, data.length]).range([0, width]);
-  let y      = d3.scaleLinear().domain([0, d3.max(data)+50]).range([height, 0]);
-
-  d3.timeParse("%b");
-
-  svg.append("g").attr("transform", "translate(0,"+height+")").call(d3.axisBottom(x))
-  .append("text")
-  .attr("fill", "#7f8c8d")
-  .attr("x", width)
-  .attr("dy", "-0.71em")
-  .attr("text-anchor", "end")
-  .text("Weeks");
-
-  svg.append("g").call(d3.axisLeft(y))
-  .append("text")
-  .attr("fill", "#7f8c8d")
-  .attr("transform", "rotate(-90)")
-  .attr("y", 6)
-  .attr("dy", "0.71em")
-  .attr("text-anchor", "end")
-  .text("Weight (kg.)");
-
-  let line = d3.line()
-  .x(function(d,i) {
-    return x(i);
-  })
-  .y(function(d) {
-    return y(d);
-  })
-
-  svg.append("path")
-  .attr("fill", "none")
-  .attr("stroke", "#3F51B5")
-  .attr("stroke-linejoin", "round")
-  .attr("stroke-linecap", "round")
-  .attr("stroke-width", 3)
-  .attr("d", line(data));
-
-};
-
-function updateData(pred) {
-
-  let w  = 400;
-  let h  = 300;
-  let svg    = d3.select(".d3-svg").attr("width", w).attr("height", h);
-  let x      = d3.scaleLinear().domain([0, pred.length]).range([0, w]);
-  let y      = d3.scaleLinear().domain([0, d3.max(pred)+50]).range([h, 0]);
-
-
-  let line = d3.line()
-  .x(function(d,i) {
-    return x(i);
-  })
-  .y(function(d) {
-    return y(d);
-  })
-
-  d3.svg.select("path").transition()
-  .duration(750)
-  .attr("d", line(pred));
-}
