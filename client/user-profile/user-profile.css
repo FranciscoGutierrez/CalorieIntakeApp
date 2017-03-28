@@ -63,3 +63,6 @@
   height: 55px;
   margin-right: 20px;
 }
+
+.user-profile .text-inputs { display: flex;}
+.text-inputs  .input {width: 100px;}

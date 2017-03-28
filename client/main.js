@@ -4,6 +4,8 @@ import { Template } from 'meteor/templating';
 import { ReactiveVar } from 'meteor/reactive-var';
 import './main.html';
 
+Products = new Meteor.Collection('products');
+
 Template.controls.onCreated(function helloOnCreated() {
   Session.setDefault("activity",2.00);
   Session.setDefault("basket",1500);
