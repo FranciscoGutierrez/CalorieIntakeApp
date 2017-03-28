@@ -19,7 +19,7 @@ Template.output.rendered = function () {
   .attr("text-anchor", "end")
   .text("Weeks");
 
-  svg.append("g").call(d3.axisLeft(y))
+  svg.append("g").attr("class", "y-axis").call(d3.axisLeft(y))
   .append("text")
   .attr("fill", "#7f8c8d")
   .attr("transform", "rotate(-90)")

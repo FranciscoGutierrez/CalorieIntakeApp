@@ -52,54 +52,7 @@
   </div>
 </template>
 
-<template name="controls">
-  <div class="user-profile">
-    <h1>Your Profile</h1>
-    <div class="text-inputs">
-      <div class="column">
-        <div class="age input">
-          <paper-input label="Age" type="number" class="ageVal" onKeyPress="if(this.value.length==2) return false;"></paper-input>
-        </div>
-        <div class="gender input">
-          <select class="genderVal">
-            <option value="" disabled selected>Gender</option>
-            <option value="male">Male</option>
-            <option value="female">Female</option>
-          </select>
-        </div>
-      </div>
-      <div class="column">
-        <div class="weight input">
-          <paper-input label="Weight (kg)" type="number" class="weightVal" onKeyPress="if(this.value.length==3) return false;"></paper-input>
-        </div>
-        <div class="height input">
-          <paper-input label="Height (cm)" type="number" class="heightVal" onKeyPress="if(this.value.length==3) return false;"></paper-input>
-        </div>
-      </div>
-    </div>
-    <div class="activity input">
-      <h2>Activity Level</h2>
-      <div id="slider"></div>
-    </div>
-    <div class="allergies">
-      <h2>Allergies</h2>
-      <div class="row">
-        <div class="column">
-          <paper-checkbox>Milk</paper-checkbox>
-          <paper-checkbox>Eggs</paper-checkbox>
-          <paper-checkbox>Wheat</paper-checkbox>
-          <paper-checkbox>Soy</paper-checkbox>
-        </div>
-        <div class="column">
-          <paper-checkbox>Peanuts</paper-checkbox>
-          <paper-checkbox>Tree nuts</paper-checkbox>
-          <paper-checkbox>Fish</paper-checkbox>
-          <paper-checkbox>Shellfish</paper-checkbox>
-        </div>
-      </div>
-    </div>
-  </div>
-</template>
+
 
 <template name="output">
   <div class="output">
