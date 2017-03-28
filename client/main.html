@@ -24,9 +24,9 @@
     {{> output}}
     {{> products}}
   </div>
-  <!-- <div class="legend">
-  Disclaimer: Information provided by this evaluation is for academic research purposes only and is not intended to be a substitute for professional medical advice specific to the reader's particular situation. The information is not to be used for diagnosing or treating any health concerns you may have. The reader is advised to seek prompt professional medical advice from a doctor or other healthcare practitioner about any health question, symptom, treatment, disease, or medical condition.
-</div> -->
+  <div class="disclaimer">
+    <b>Disclaimer:</b> Information provided by this evaluation is for academic research purposes only and is not intended to be a substitute for professional medical advice specific to the reader's particular situation. The information is not to be used for diagnosing or treating any health concerns you may have. The reader is advised to seek prompt professional medical advice from a doctor or other healthcare practitioner about any health question, symptom, treatment, disease, or medical condition.
+  </div>
 </body>
 
 <template name="product">
@@ -39,7 +39,6 @@
       </div>
     </div>
     <paper-fab mini icon="icons:close" class="delete"></paper-fab>
-    <!-- <paper-ripple></paper-ripple> -->
   </div>
 </template>
 
@@ -51,8 +50,6 @@
     {{> product}}
   </div>
 </template>
-
-
 
 <template name="output">
   <div class="output">
