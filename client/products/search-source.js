@@ -1,26 +1,24 @@
-let fields = ['packageName', 'description'];
+let fields = ['name'];
 let options = {keepHistory: 1000 * 60 * 5, localSearch: true};
-
-PackageSearch = new SearchSource('packages', fields, options);
+ProductSearch = new SearchSource('products', fields, options);
 
 Template.products.helpers({
   getPackages: function() {
-    return PackageSearch.getData({
+    return ProductSearch.getData({
       transform: function(matchText, regExp) {
         return matchText.replace(regExp, "<b>$&</b>")
-      },
-      sort: {isoScore: -1}
+      },sort: {name: -1}
     });
   },
-
   isLoading: function() {
-    return PackageSearch.getStatus().loading;
+    console.log(ProductSearch.getStatus());
+    return ProductSearch.getStatus().loading;
   }
 });
 
 Template.products.events({
   "keyup .searchProduct": _.throttle(function(e) {
     var text = $(e.target).val().trim();
-    PackageSearch.search(text);
+    ProductSearch.search(text);
   }, 200)
 });

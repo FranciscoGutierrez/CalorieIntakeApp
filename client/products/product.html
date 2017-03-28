@@ -8,14 +8,11 @@
 
   {{#each getPackages}}
   <div class="package">
-    <h4 class="name">
-      <a href="{{git}}" target="_blank">{{{packageName}}}</a>
-    </h4>
-    <div class="description">
-      {{{description}}}
-    </div>
+    <h4 class="name">{{{name}}}</h4>
+    <div class="description">{{{energy}}}</div>
   </div>
   {{/each}}
+  {{isLoading}}
 </template>
 
 <template name="product">
