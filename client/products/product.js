@@ -6,6 +6,9 @@ Template.product.events({
     instance.$(".delete").fadeOut(0);
   },
   'click .product'(event, instance){
-    console.log(instance.data);
+    let basket = Session.get("basket");
+    basket.push(instance.data);
+    Session.set("basket",basket);
+    console.log(instance.data._id);
   }
 });

@@ -11,15 +11,12 @@
   <link rel="import" href="bower_components/paper-fab/paper-fab.html">
   <link rel="import" href="bower_components/paper-spinner/paper-spinner.html">
   <link rel="import" href="bower_components/iron-icons/iron-icons.html">
-  <title>Proof of concept App</title>
+  <title>Test App</title>
   <style is="custom-style">
-  paper-button.indigo { background-color: var(--paper-indigo-500);  color: white;  }
-  paper-button.indigo:hover { background-color: var(--paper-indigo-400);  }
-  paper-fab[mini] {  --paper-fab-background: #e74c3c;}
-  paper-checkbox {
-    --paper-checkbox-unchecked-color: #747474;
-    color: #747474;
-  }
+  paper-button.indigo { background-color: var(--paper-indigo-500);  color: white;}
+  paper-button.indigo:hover { background-color: var(--paper-indigo-400);}
+  paper-fab[mini] { --paper-fab-background: #e74c3c;}
+  paper-checkbox  { --paper-checkbox-unchecked-color: #747474; color: #747474;}
   </style>
 </head>
 
@@ -27,6 +24,9 @@
   <div class="main-container">
     {{> controls}}
     <!-- {{> output}} -->
+    <div class="analytics">
+
+    </div>
     {{> products}}
   </div>
   <div class="disclaimer">
@@ -36,11 +36,14 @@
 
 <template name="output">
   <div class="output">
-    <div class="basket">
-    </div>
+
     <svg class="d3-svg"></svg>
     <div class="calories text">
       To mantain your current weight you are consuming approximately <span>{{bmr}}</span> calories.
     </div>
   </div>
+</template>
+
+<template name="basket">
+  <div class="basket-container"></div>
 </template>

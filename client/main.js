@@ -8,8 +8,8 @@ Products = new Meteor.Collection('products');
 
 Template.controls.onCreated(function helloOnCreated() {
   Session.setDefault("activity",2.00);
-  Session.setDefault("basket",1500);
   Session.setDefault("prediction",100);
+  Session.setDefault("basket", []);
 });
 
 Template.output.helpers({
