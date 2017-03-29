@@ -56,7 +56,8 @@ h2 {
 }
 
 .product-container {
-  padding: 30px;
+  padding: 15px;
+  width: 375px;
 }
 
 .output {

@@ -6,7 +6,8 @@ Template.products.helpers({
   getProducts: function() {
     return ProductSearch.getData({
       transform: function(matchText, regExp) {
-        return matchText.replace(regExp, "<b>$&</b>")
+        //return matchText.replace(regExp, "<b>$&</b>")
+        return matchText
       },sort: {name: -1}
     });
   },

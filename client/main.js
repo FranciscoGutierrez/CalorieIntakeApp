@@ -86,12 +86,6 @@ Template.output.helpers({
   }
 });
 
-Template.products.helpers({
-  basket() {
-    return Session.get("basket");
-  }
-});
-
 Template.controls.events({
   'keyup .ageVal'(event, instance) {
     Session.set("age",instance.$(".ageVal").val());

@@ -27,6 +27,7 @@
     "paper-ripple": "PolymerElements/paper-ripple#^1.0.10",
     "paper-fab": "PolymerElements/paper-fab#^1.2.1",
     "nouislider": "^9.2.0",
-    "paper-spinner": "PolymerElements/paper-spinner#^1.2.1"
+    "paper-spinner": "PolymerElements/paper-spinner#^1.2.1",
+    "animate.css": "^3.5.2"
   }
 }

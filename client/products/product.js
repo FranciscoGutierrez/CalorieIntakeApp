@@ -12,3 +12,11 @@ Template.product.events({
     console.log(instance.data._id);
   }
 });
+
+Template.littleProduct.events({
+  'click .little-product'(event, instance){
+    let basket = Session.get("basket");
+    basket.splice(_.indexOf(basket, _.findWhere(basket, { _id : instance.data._id})), 1);
+    Session.set("basket", basket);
+  }
+});

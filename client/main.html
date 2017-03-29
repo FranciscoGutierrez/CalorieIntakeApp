@@ -11,6 +11,7 @@
   <link rel="import" href="bower_components/paper-fab/paper-fab.html">
   <link rel="import" href="bower_components/paper-spinner/paper-spinner.html">
   <link rel="import" href="bower_components/iron-icons/iron-icons.html">
+  <link rel="stylesheet" href="animate.min.css">
   <title>Test App</title>
   <style is="custom-style">
   paper-button.indigo { background-color: var(--paper-indigo-500);  color: white;}
@@ -22,10 +23,9 @@
 
 <body>
   <div class="main-container">
-    {{> controls}}
-    <!-- {{> output}} -->
+    {{> controls}} <!-- {{> output}} -->
     <div class="analytics">
-
+      {{> basket}}
     </div>
     {{> products}}
   </div>
@@ -36,14 +36,9 @@
 
 <template name="output">
   <div class="output">
-
     <svg class="d3-svg"></svg>
     <div class="calories text">
       To mantain your current weight you are consuming approximately <span>{{bmr}}</span> calories.
     </div>
   </div>
-</template>
-
-<template name="basket">
-  <div class="basket-container"></div>
 </template>

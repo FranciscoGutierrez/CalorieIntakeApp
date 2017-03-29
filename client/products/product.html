@@ -1,6 +1,6 @@
 <template name="products">
   <div class="product-container">
-    <h1>What are you eating today?</h1>
+    <h1>What are you eating?</h1>
     <!-- <h2>Amount of calories: {{basket}}<span>cal</span></h2> -->
     <paper-input label="Search and click to add products..." type="text" class="searchProduct"></paper-input>
     {{#each getProducts}}
@@ -27,6 +27,23 @@
       </div>
     </div>
     <!-- <paper-fab mini icon="icons:close" class="delete"></paper-fab> -->
+    <paper-ripple></paper-ripple>
+  </div>
+</template>
+
+<template name="littleProduct">
+  <div class="little-product animated bounceInDown">
+    <img src="demo/{{picture}}">
+    <div class="text">
+      <div class="name">{{{name}}}</div>
+      <div class="metadata">
+        <div  class="calories meta">{{energy}}<span> kcal</span></div>
+        <!-- <div  class="sodium   meta">{{sodium}}<span> gr</span></div>
+        <div  class="sugars   meta">{{sugars}}<span> gr</span></div>
+        <div  class="fat      meta">{{fat}}<span> gr</span></div> -->
+      </div>
+    </div>
+    <paper-fab mini icon="icons:close" class="delete"></paper-fab>
     <paper-ripple></paper-ripple>
   </div>
 </template>
