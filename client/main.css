@@ -31,7 +31,11 @@ paper-input {
   width: 100%;
   height: 800px;
   justify-content: center;
-
+  -webkit-transition: all 0.7s ease-out;
+   -moz-transition:   all 0.7s ease-out;
+    -ms-transition:   all 0.7s ease-out;
+     -o-transition:   all 0.7s ease-out;
+        transition:   all 0.7s ease-out;
 }
 
 h1 {
@@ -58,13 +62,17 @@ h2 {
 .product-container {
   padding: 15px;
   width: 375px;
+  -webkit-transition: all 0.7s ease-out;
+  -moz-transition: all 0.7s ease-out;
+  -ms-transition: all 0.7s ease-out;
+  -o-transition: all 0.7s ease-out;
+  transition: all 0.7s ease-out;
 }
 
 .output {
   display: flex;
   flex-direction: column;
   padding: 30px;
-  width: 420px;
   font-family: Roboto, sans-serif;
   font-weight: 300;
   cursor: default;
@@ -72,6 +80,7 @@ h2 {
 
 .output .text {
   margin-top: 20px;
+  width: 200px;
 }
 
 .output span {
@@ -100,4 +109,10 @@ paper-fab {
   font-size: 11px;
   width: 800px;
   cursor: default;
+}
+
+.analytics {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }

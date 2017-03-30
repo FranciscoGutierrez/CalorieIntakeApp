@@ -11,6 +11,35 @@ Template.output.rendered = function () {
 
   d3.timeParse("%b");
 
+  let line = d3.line()
+  .x(function(d,i) { return x(i);})
+  .y(function(d)   { return y(d);})
+
+  let area = d3.area()
+  .x(function(d,i)  { return x(i); })
+  .y1(function(d)   { return y(d); });
+
+  svg.append("path")
+  .attr("class", "areaU")
+  .attr("fill",  "#E8EAF6")
+  .attr("d", line(data));
+
+  svg.append("path")
+  .attr("class", "areaL")
+  .attr("fill",  "#E8EAF6")
+  .attr("d", line(data));
+
+  svg.append("path")
+  .attr("class", "line")
+  .attr("fill", "none")
+  .attr("stroke", "#3F51B5")
+  .style("stroke-dasharray", "4,4")
+  .attr("stroke-linejoin", "round")
+  .attr("stroke-linecap",  "round")
+  .attr("stroke-width", 2)
+  .attr("d", line(data));
+
+
   svg.append("g")
   .attr("class", "x-axis")
   .attr("transform", "translate(0,"+height+")")
@@ -32,22 +61,5 @@ Template.output.rendered = function () {
   .attr("dy", "0.71em")
   .attr("text-anchor", "end")
   .text("Weight (kg.)");
-
-  let line = d3.line()
-  .x(function(d,i) {
-    return x(i);
-  })
-  .y(function(d) {
-    return y(d);
-  })
-
-  svg.append("path")
-  .attr("class", "line")
-  .attr("fill", "none")
-  .attr("stroke", "#3F51B5")
-  .attr("stroke-linejoin", "round")
-  .attr("stroke-linecap",  "round")
-  .attr("stroke-width", 3)
-  .attr("d", line(data));
 
 };

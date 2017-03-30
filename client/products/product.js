@@ -1,3 +1,5 @@
+import { Blaze } from 'meteor/blaze'
+
 Template.product.events({
   'mouseenter .product'(event, instance) {
     instance.$(".delete").fadeIn(0);
@@ -7,16 +9,37 @@ Template.product.events({
   },
   'click .product'(event, instance){
     let basket = Session.get("basket");
+    let calories = Session.get("calories");
+    if (basket.length <1) {
+      $(".basket-container").css("width","520px");
+      $(".basket-container").css("background","#f6f6f6");
+      $(".basket-container .amount").fadeIn();
+      Blaze.render(Template.output, $('.analytics').get(0));
+    }
+    calories = calories + parseInt(instance.data.energy);
     basket.push(instance.data);
     Session.set("basket",basket);
-    console.log(instance.data._id);
+    Session.set("calories",calories);
   }
 });
 
 Template.littleProduct.events({
   'click .little-product'(event, instance){
     let basket = Session.get("basket");
+    let calories = Session.get("calories");
+    calories = calories - parseInt(instance.data.energy);
     basket.splice(_.indexOf(basket, _.findWhere(basket, { _id : instance.data._id})), 1);
-    Session.set("basket", basket);
+    instance.$('.little-product').addClass('animated bounceInDown').addClass("animated bounceOutUp");
+    instance.$('.little-product').one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function(){
+      Session.set("basket", basket);
+      Session.set("calories",calories);
+      if (basket.length <1) {
+        $(".basket-container").css("width",0);
+        $(".basket-container").css("background","none");
+        $(".basket-container .amount").fadeOut();
+        let view = Blaze.getView($('.output').get(0));
+        Blaze.remove(view);
+      }
+    });
   }
 });

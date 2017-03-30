@@ -10,6 +10,7 @@ Template.controls.onCreated(function helloOnCreated() {
   Session.setDefault("activity",2.00);
   Session.setDefault("prediction",100);
   Session.setDefault("basket", []);
+  Session.setDefault("calories", 0);
 });
 
 Template.output.helpers({
@@ -19,7 +20,7 @@ Template.output.helpers({
     let weight   = parseInt(Session.get("weight"));
     let height   = parseInt(Session.get("height"));
     let activity = parseInt(Session.get("activity"));
-    let basket   = parseInt(Session.get("basket"));
+    let basket   = parseInt(Session.get("calories"));
     let bmr      = 0.0;
     if(gender == "male") {
       bmr = 10 * weight + 6.25 * height - 5 * age + 5;
@@ -61,8 +62,60 @@ Template.output.helpers({
       weight+(diff*23),
       weight+(diff*24)
     ];
-    console.log(pred);
-    console.log(bmr);
+
+    let lower = [(weight*0.95),
+      (weight*0.94)+diff,
+      (weight*0.93)+(diff*2),
+      (weight*0.92)+(diff*3),
+      (weight*0.91)+(diff*4),
+      (weight*0.90)+(diff*5),
+      (weight*0.89)+(diff*6),
+      (weight*0.88)+(diff*7),
+      (weight*0.87)+(diff*8),
+      (weight*0.86)+(diff*9),
+      (weight*0.85)+(diff*10),
+      (weight*0.84)+(diff*11),
+      (weight*0.83)+(diff*12),
+      (weight*0.82)+(diff*13),
+      (weight*0.81)+(diff*14),
+      (weight*0.80)+(diff*15),
+      (weight*0.79)+(diff*16),
+      (weight*0.78)+(diff*17),
+      (weight*0.77)+(diff*18),
+      (weight*0.76)+(diff*19),
+      (weight*0.75)+(diff*20),
+      (weight*0.74)+(diff*21),
+      (weight*0.73)+(diff*22),
+      (weight*0.72)+(diff*23),
+      (weight*0.71)+(diff*24)
+    ];
+
+    let upper = [(weight*1.05),
+      (weight*1.06)+diff,
+      (weight*1.07)+(diff*2),
+      (weight*1.08)+(diff*3),
+      (weight*1.09)+(diff*4),
+      (weight*1.10)+(diff*5),
+      (weight*1.11)+(diff*6),
+      (weight*1.12)+(diff*7),
+      (weight*1.13)+(diff*8),
+      (weight*1.14)+(diff*9),
+      (weight*1.15)+(diff*10),
+      (weight*1.16)+(diff*11),
+      (weight*1.17)+(diff*12),
+      (weight*1.18)+(diff*13),
+      (weight*1.19)+(diff*14),
+      (weight*1.20)+(diff*15),
+      (weight*1.21)+(diff*16),
+      (weight*1.22)+(diff*17),
+      (weight*1.23)+(diff*18),
+      (weight*1.24)+(diff*19),
+      (weight*1.25)+(diff*20),
+      (weight*1.26)+(diff*21),
+      (weight*1.27)+(diff*22),
+      (weight*1.28)+(diff*23),
+      (weight*1.29)+(diff*24)
+    ];
 
     let w    = 300;
     let h    = 200;
@@ -70,14 +123,23 @@ Template.output.helpers({
     let x    = d3.scaleLinear().domain([0, pred.length]).range([0, w]);
     let y    = d3.scaleLinear().domain([0, d3.max(pred)+50]).range([h, 0]);
     let line = d3.line()
-    .x(function(d,i) {
-      return x(i);
-    })
-    .y(function(d) {
-      return y(d);
-    })
+    .x(function(d,i) {return x(i);})
+    .y(function(d)   {return y(d);});
 
-    svg.select(".line").duration(200).attr("d", line(pred));
+    console.log(pred);
+    let areaL = d3.area()
+    .x(function(d,i)  { return x(i);})
+    .y0(function(d,i) { return y(pred[i]) })
+    .y1(function(d)   { return y(d);});
+
+    let areaU = d3.area()
+    .x(function(d,i)  { return x(i);})
+    .y0(function(d,i) { return y(pred[i]) })
+    .y1(function(d)   { return y(d);});
+
+    svg.select(".areaU").duration(400).attr("d", areaL(upper));
+    svg.select(".areaL").duration(400).attr("d", areaL(lower));
+    svg.select(".line").duration(400).attr("d", line(pred));
     svg.select(".y-axis").duration(200).call(d3.axisLeft(y));
     svg.select(".x-axis").duration(200).call(d3.axisBottom(x));
 
