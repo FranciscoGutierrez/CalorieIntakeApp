@@ -3,26 +3,43 @@
     <h1>What are you eating?</h1>
     <!-- <h2>Amount of calories: {{basket}}<span>cal</span></h2> -->
     <paper-input label="Search and click to add products..." type="text" class="searchProduct"></paper-input>
+    <div class="legends">
+    <div class="calories lg"><div class="dot"></div> Calories</div>
+    <div class="sodium   lg"><div class="dot"></div> Sodium</div>
+    <div class="sugars   lg"><div class="dot"></div> Sugars</div>
+    <div class="fat      lg"><div class="dot"></div> Saturated Fat</div>
+    *Portions per 100g.
+    </div>
+    <div class="results">
     {{#each getProducts}}
-    {{> product}}
+      {{> product}}
     {{/each}}
     {{#if isLoading}}
-    <paper-spinner active></paper-spinner>
+    <div class="loading">
+      <paper-spinner active></paper-spinner>
+      <h1>Loading Data</h1>
+    </div>
     {{/if}}
+    </div>
   </div>
 </template>
 
 <template name="product">
   <div class="product">
     <div  class="description">
-      <img src="demo/{{picture}}">
+      <img src="{{image}}">
       <div class="text">
-        <div class="name">{{{name}}}</div>
+        <div class="name">{{{product_name}}}</div>
         <div class="metadata">
-          <div  class="calories meta">{{energy}}<span> kcal</span></div>
-          <div  class="sodium   meta">{{sodium}}<span> gr</span></div>
-          <div  class="sugars   meta">{{sugars}}<span> gr</span></div>
-          <div  class="fat      meta">{{fat}}<span> gr</span></div>
+          {{#if ffacts.show}}
+          <div  class="calories   meta"><div class="calories lg"><div class="dot"></div></div>{{ffacts.energy}}<span> kcal</span></div>
+          <div  class="sodium     meta"><div class="sodium   lg"><div class="dot"></div></div>{{ffacts.sodium}}<span> gr  </span></div>
+          <div  class="sugars     meta"><div class="sugars   lg"><div class="dot"></div></div>{{ffacts.sugars}}<span> gr  </span></div>
+          <div  class="fat        meta"><div class="fat      lg"><div class="dot"></div></div>{{ffacts.fat}}   <span> gr  </span></div>
+          <div  class="nutriscore meta">{{ffacts.grade}}</div>
+          {{else}}
+          <div  class="message meta">No data available.</div>
+          {{/if}}
         </div>
       </div>
     </div>
@@ -35,7 +52,7 @@
   <div class="little-product animated bounceInDown">
     <img src="demo/{{picture}}">
     <div class="text">
-      <div class="name">{{{name}}}</div>
+      <div class="name">{{{product_name}}}</div>
       <div class="metadata">
         <div  class="calories meta">{{energy}}<span> kcal</span></div>
         <!-- <div  class="sodium   meta">{{sodium}}<span> gr</span></div>

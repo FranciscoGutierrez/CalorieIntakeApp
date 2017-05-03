@@ -12,7 +12,7 @@ Template.products.helpers({
     });
   },
   isLoading: function() {
-    console.log(ProductSearch.getStatus());
+    //console.log(ProductSearch.getStatus());
     return ProductSearch.getStatus().loading;
   }
 });

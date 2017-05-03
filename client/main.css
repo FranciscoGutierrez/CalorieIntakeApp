@@ -30,7 +30,7 @@ paper-input {
   min-width: 1250px;
   width: 100%;
   height: 800px;
-  justify-content: center;
+  justify-content: flex-start;
   -webkit-transition: all 0.7s ease-out;
    -moz-transition:   all 0.7s ease-out;
     -ms-transition:   all 0.7s ease-out;
@@ -115,4 +115,24 @@ paper-fab {
   display: flex;
   flex-direction: column;
   align-items: center;
+}
+
+.loading-screen {
+  background: white;
+  display: flex;
+  width: 100%;
+  height: 100%;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  z-index: 100;
+  flex-direction: column;
+  color: #a1a1a1;
+  font-style: italic;
+}
+
+.loading-screen h1 {
+  text-align: center;
+  font-size: 14px;
+  margin-top: 8px;
 }

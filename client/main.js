@@ -5,6 +5,7 @@ import { ReactiveVar } from 'meteor/reactive-var';
 import './main.html';
 
 Products = new Meteor.Collection('products');
+Images   = new Meteor.Collection('images');
 
 Template.controls.onCreated(function helloOnCreated() {
   Session.setDefault("activity",2.00);
@@ -126,7 +127,6 @@ Template.output.helpers({
     .x(function(d,i) {return x(i);})
     .y(function(d)   {return y(d);});
 
-    console.log(pred);
     let areaL = d3.area()
     .x(function(d,i)  { return x(i);})
     .y0(function(d,i) { return y(pred[i]) })

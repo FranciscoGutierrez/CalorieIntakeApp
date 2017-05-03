@@ -1,5 +1,34 @@
 import { Blaze } from 'meteor/blaze'
 
+Template.product.helpers({
+  ffacts: function(){
+    let facts  = {};
+    let show   = false;
+    let sodium = 0.0;
+    let energy = 0.0;
+    let sugars = 0.0;
+    let fat    = 0.0;
+    let grade  = false;
+
+    if(this.nutriments) facts = this.nutriments
+    if(facts.sodium) sodium = Number(facts.sodium).toFixed(2);
+    if(facts.energy) energy = Number(facts.energy).toFixed(2);
+    if(facts.sugars) sugars = Number(facts.sugars).toFixed(2);
+    if(facts["saturatedFat"]) fat = Number(facts["saturatedFat"]).toFixed(2);
+    if(facts.grade)  grade  = this.nutrition_grade_fr;
+
+    let check = [sodium, energy, sugars, fat];
+    for (var  i=1; i<check.length; i++) {
+      if (check[i-1] != check[i]) show = true;
+    }
+    return {sodium: sodium, energy: energy, sugars: sugars, fat: fat, show: show};
+  },
+  image: function(){
+    let img = Images.findOne({id: Number(this._id)})
+    return img.url;
+  }
+});
+
 Template.product.events({
   'mouseenter .product'(event, instance) {
     instance.$(".delete").fadeIn(0);
