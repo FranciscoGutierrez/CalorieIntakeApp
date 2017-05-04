@@ -3,6 +3,7 @@ import { Meteor } from 'meteor/meteor';
 Products = new Meteor.Collection('products');
 Images   = new Meteor.Collection('images');
 Similar  = new Meteor.Collection('similar');
+Users    = new Meteor.Collection('users');
 
 Meteor.startup(() => {
   // Insert sample data if the Products collection is empty

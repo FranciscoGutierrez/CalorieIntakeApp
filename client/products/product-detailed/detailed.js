@@ -53,3 +53,13 @@ Template.similarProducts.helpers({
     return {name: name, image: img};
   }
 });
+
+
+Template.similarProducts.events({
+  'click .similar-product'(event, instance){
+    let id = instance.data._id.toString();
+    Meteor.subscribe('products', id);
+    Meteor.subscribe('images', Number(id));
+    Session.set("detailed",Products.findOne({_id : id}));
+  }
+});

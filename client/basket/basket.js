@@ -16,6 +16,39 @@ Template.basket.helpers({
   }
 });
 
+Template.basket.events({
+  'click .save-profile'(event, instance){
+    let id        = Meteor.default_connection._lastSessionId;
+    let age       = Session.get("age");
+    let gender    = Session.get("gender");
+    let weight    = Session.get("weight");
+    let height    = Session.get("height");
+    let activity  = Session.get("activity");
+    let allergies = Session.get("allergies");
+    let time_start= Session.get("time_start");
+    let time_end  = new Date().getTime();
+    let favorites = Session.get("basket");
+
+    let user = {id:id,
+    age:age,
+    gender:gender,
+    weight:weight,
+    height:height,
+    activity :activity,
+    allergies:allergies,
+    time_start:time_start,
+    time_end:time_end,
+    favorites:favorites}
+    Users.insert(user);
+  },
+  'click .fav-product'(event, instance){
+      let id = instance.data._id.toString();
+      Meteor.subscribe('products', id);
+      Meteor.subscribe('images', Number(id));
+      Session.set("detailed",Products.findOne({_id : id}));
+    }
+});
+
 Template.favorite.helpers({
   data: function() {
     let id = this.toString();

@@ -3,12 +3,13 @@
   position: relative;
   flex-direction: column;
   min-width: 482px;
+  max-width: 482px;
   background: #FAFAFA;
   border: 1px solid #f4f4f4;
   padding: 16px;
-  height: 200px;
   margin-top: 16px;
   border-radius: 10px;
+  min-height: 200px;
   -webkit-transition: all 0.7s ease-out;
    -moz-transition:   all 0.7s ease-out;
     -ms-transition:   all 0.7s ease-out;
@@ -37,6 +38,9 @@
   display: flex;
   flex-direction: row;
   margin-top: 16px;
+  flex-wrap: wrap;
+  justify-content: center;
+  position: relative;
 }
 
 .fav-product {
@@ -44,7 +48,17 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  margin: 2px;
+  padding: 2px;
+  cursor: pointer;
+  position: relative;
 }
+
+.fav-product:hover {
+  background: #ECEFF1;
+  border-radius: 5px;
+}
+
 .fav-product .fav-image{
   min-width: 40px;
   min-height: 40px;

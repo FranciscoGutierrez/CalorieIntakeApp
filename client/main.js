@@ -7,6 +7,7 @@ import './main.html';
 Products = new Meteor.Collection('products');
 Images   = new Meteor.Collection('images');
 Similar  = new Meteor.Collection('similar');
+Users    = new Meteor.Collection('users');
 
 Template.profile.onCreated(function() {
   Session.set("activity",2.00);
@@ -14,6 +15,7 @@ Template.profile.onCreated(function() {
   Session.set("detailed", "");
   Session.set("basket", []);
   Session.set("calories", 0);
+  Session.set("time_start", new Date().getTime());
 });
 
 Template.output.helpers({
@@ -164,6 +166,7 @@ Template.profile.events({
     Session.set("gender",instance.$(".genderVal").val());
   },
   'click .next-profile'(event, instace) {
+    Session.set("allergies",$("paper-checkbox[active]").map(function(){return $(this).attr("name");}).get());
     var animationEnd = 'webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend';
     $(".user-profile").removeClass('animated fadeInLeft');
     $(".user-profile").addClass('animated fadeOutRight').one(animationEnd, function() {

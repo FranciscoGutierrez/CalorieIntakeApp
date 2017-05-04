@@ -3,7 +3,15 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  margin: 4px;
+  margin: 2px;
+  padding: 2px;
+  cursor: pointer;
+  position: relative;
+}
+
+.similar-product:hover {
+  background: #ECEFF1;
+  border-radius: 5px;
 }
 
 .similar-product .similar-image {
