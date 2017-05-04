@@ -7,7 +7,7 @@ import './main.html';
 Products = new Meteor.Collection('products');
 Images   = new Meteor.Collection('images');
 
-Template.controls.onCreated(function helloOnCreated() {
+Template.profile.onCreated(function helloOnCreated() {
   Session.setDefault("activity",2.00);
   Session.setDefault("prediction",100);
   Session.setDefault("basket", []);
@@ -148,7 +148,7 @@ Template.output.helpers({
   }
 });
 
-Template.controls.events({
+Template.profile.events({
   'keyup .ageVal'(event, instance) {
     Session.set("age",instance.$(".ageVal").val());
   },
@@ -160,10 +160,18 @@ Template.controls.events({
   },
   'change .genderVal'(event, instance) {
     Session.set("gender",instance.$(".genderVal").val());
+  },
+  'click .next-profile'(event, instace) {
+    var animationEnd = 'webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend';
+    $(".user-profile").removeClass('animated fadeInLeft');
+    $(".user-profile").addClass('animated fadeOutRight').one(animationEnd, function() {
+      $(this).remove();
+      Blaze.render(Template.products, $("body")[0]);
+    });
   }
 });
 
-Template.controls.rendered = function () {
+Template.profile.rendered = function () {
   let slider = document.getElementById('slider');
   noUiSlider.create(slider, {
     start: 2,

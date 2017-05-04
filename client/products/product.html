@@ -1,5 +1,5 @@
 <template name="products">
-  <div class="product-container">
+  <div class="product-container animated fadeInLeft">
     <h1>What are you eating?</h1>
     <!-- <h2>Amount of calories: {{basket}}<span>cal</span></h2> -->
     <paper-input label="Search and click to add products..." type="text" class="searchProduct"></paper-input>
@@ -17,7 +17,7 @@
     {{#if isLoading}}
     <div class="loading">
       <paper-spinner active></paper-spinner>
-      <h1>Loading Data</h1>
+      <h1>Loading</h1>
     </div>
     {{/if}}
     </div>
@@ -27,7 +27,7 @@
 <template name="product">
   <div class="product">
     <div  class="description">
-      <img src="{{image}}">
+      <img class="product-image" src="{{image}}">
       <div class="text">
         <div class="name">{{{product_name}}}</div>
         <div class="metadata">
@@ -36,11 +36,13 @@
           <div  class="sodium     meta"><div class="sodium   lg"><div class="dot"></div></div>{{ffacts.sodium}}<span> gr  </span></div>
           <div  class="sugars     meta"><div class="sugars   lg"><div class="dot"></div></div>{{ffacts.sugars}}<span> gr  </span></div>
           <div  class="fat        meta"><div class="fat      lg"><div class="dot"></div></div>{{ffacts.fat}}   <span> gr  </span></div>
-          <div  class="nutriscore meta">{{ffacts.grade}}</div>
           {{else}}
           <div  class="message meta">No data available.</div>
           {{/if}}
         </div>
+      </div>
+      <div class="rating">
+        <img class="product-grade" src="{{ffacts.grade}}"/>
       </div>
     </div>
     <!-- <paper-fab mini icon="icons:close" class="delete"></paper-fab> -->
