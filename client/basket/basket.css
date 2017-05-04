@@ -1,11 +1,14 @@
 .basket-container {
-  position: relative;
   display: flex;
-  width: 0px;
-  background: none;
-  padding: 10px;
-  height: 125px;
-  border-radius: 0px 0px 10px 10px;
+  position: relative;
+  flex-direction: column;
+  min-width: 482px;
+  background: #FAFAFA;
+  border: 1px solid #f4f4f4;
+  padding: 16px;
+  height: 200px;
+  margin-top: 16px;
+  border-radius: 10px;
   -webkit-transition: all 0.7s ease-out;
    -moz-transition:   all 0.7s ease-out;
     -ms-transition:   all 0.7s ease-out;
@@ -28,4 +31,43 @@
 
 .basket-container .amount b {
   color: #424242;
+}
+
+.basket-container .row {
+  display: flex;
+  flex-direction: row;
+  margin-top: 16px;
+}
+
+.fav-product {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.fav-product .fav-image{
+  min-width: 40px;
+  min-height: 40px;
+  max-width: 40px;
+  max-height: 40px;
+  object-fit: cover;
+  background: #fcfcfc;
+  border-radius: 50%;
+}
+
+.fav-product .fav-name {
+  font-size: 12px;
+  font-weight: 300;
+  color: #818181;
+  font-variant: small-caps;
+  white-space: nowrap;
+  overflow: hidden;
+  width: 80px;
+  text-overflow: ellipsis;
+  text-align: center;
+}
+
+.basket-container .save-profile {
+  position: absolute;
+  bottom: -60px;
 }

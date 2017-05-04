@@ -4,6 +4,9 @@
   flex-direction: column;
   justify-content: flex-start;
   align-items: flex-start;
+  background: #FAFAFA;
+  border: 1px solid #f4f4f4;
+  margin-top: 10px;
   -webkit-transition: all 0.7s ease-out;
    -moz-transition:   all 0.7s ease-out;
     -ms-transition:   all 0.7s ease-out;
@@ -34,17 +37,14 @@
   font-size: 14px;
   font-weight: 300;
   border: 0px;
-  background-color: white;
+  background-color: none;
   border-bottom: 1px solid #747474;
   border-radius: 0px;
   -webkit-appearance: none;
   color: #727272;
   font-size: 16px;
   font-weight: 300;
-  background:
-  linear-gradient(45deg, transparent 50%, #747474 50%),
-  linear-gradient(135deg, #747474 50%, transparent 50%),
-  linear-gradient(to right, white, white);
+  background: linear-gradient(45deg, transparent 50%, #747474 50%), linear-gradient(135deg, #747474 50%, transparent 50%), linear-gradient(to right, rgba(255, 255, 255, 0), rgba(255, 255, 255, 0));
   background-position:
   calc(100% - 21px) calc(1em + 2px),
   calc(100% - 16px) calc(1em + 2px),

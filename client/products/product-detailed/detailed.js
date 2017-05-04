@@ -28,7 +28,17 @@ Template.detailed.helpers({
 });
 
 Template.detailed.events({
-
+  'click .add-product'(event, instance){
+    let basket = Session.get("basket");
+    //let calories = Session.get("calories");
+    if (basket.length <1) {
+      Blaze.render(Template.basket, $(".analytics")[0]);
+    }
+    //calories = calories + parseInt(instance.data.energy);
+    basket.push(Session.get("detailed")._id);
+    Session.set("basket",_.uniq(basket));
+    //Session.set("calories",calories);
+  }
 });
 
 Template.similarProducts.helpers({
@@ -41,5 +51,5 @@ Template.similarProducts.helpers({
     try{name  = Products.findOne({_id: id}).product_name; } catch(e){}
     try{img   = Images.findOne({id: Number(id)}).url;     } catch(e){}
     return {name: name, image: img};
-  },
+  }
 });

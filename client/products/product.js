@@ -23,6 +23,7 @@ Template.product.helpers({
     for (var  i=1; i<check.length; i++) {
       if (check[i-1] != check[i]) show = true;
     }
+
     return {sodium: sodium, energy: energy, sugars: sugars, fat: fat, show: show, grade:grade};
   },
   image: function(){

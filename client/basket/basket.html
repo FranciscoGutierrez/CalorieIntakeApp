@@ -1,9 +1,23 @@
 <template name="basket">
   <div class="basket-container">
+    <h2>Favorites <span>{{size}}/20</span></h2>
+    <div class="row">
     {{#each basket}}
-    {{> littleProduct}}
+      {{> favorite}}
     {{/each}}
-    <div class="amount">
-      <b>Amount:</b> {{amount}} <span>kcal</span></div>
+    </div>
+    {{#if showSave}}
+    <paper-button class="save-profile">Save Profile</paper-button>
+    {{/if}}
+    <!-- <div class="amount">
+      <b>Amount:</b> {{amount}} <span>kcal</span>
+    </div> -->
+  </div>
+</template>
+
+<template name="favorite">
+  <div class="fav-product">
+    <img class="fav-image animated fadeIn" src="{{data.image}}"/>
+    <div class="fav-name">{{data.name}}</div>
   </div>
 </template>

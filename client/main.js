@@ -8,12 +8,12 @@ Products = new Meteor.Collection('products');
 Images   = new Meteor.Collection('images');
 Similar  = new Meteor.Collection('similar');
 
-Template.profile.onCreated(function helloOnCreated() {
-  Session.setDefault("activity",2.00);
-  Session.setDefault("prediction",100);
-  Session.setDefault("detailed", "");
-  Session.setDefault("basket", []);
-  Session.setDefault("calories", 0);
+Template.profile.onCreated(function() {
+  Session.set("activity",2.00);
+  Session.set("prediction",100);
+  Session.set("detailed", "");
+  Session.set("basket", []);
+  Session.set("calories", 0);
 });
 
 Template.output.helpers({

@@ -57,6 +57,10 @@ h2 {
   padding: 16px;
   margin-right: 16px;
   width: 375px;
+  background: #FAFAFA;
+  border: 1px solid #f4f4f4;
+  margin-top: 10px;
+  border-radius: 10px;
   -webkit-transition: all 0.7s ease-out;
   -moz-transition: all 0.7s ease-out;
   -ms-transition: all 0.7s ease-out;
