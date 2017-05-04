@@ -1,0 +1,29 @@
+.similar-product {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 4px;
+}
+
+.similar-product .similar-image {
+  min-width: 40px;
+  min-height: 40px;
+  max-width: 40px;
+  max-height: 40px;
+  object-fit: cover;
+  background: #fcfcfc;
+  border-radius: 50%;
+}
+
+.similar-product .similar-name {
+  font-size: 12px;
+  font-weight: 300;
+  color: #818181;
+  font-variant: small-caps;
+  white-space: nowrap;
+  overflow: hidden;
+  width: 80px;
+  text-overflow: ellipsis;
+  text-align: center;
+}

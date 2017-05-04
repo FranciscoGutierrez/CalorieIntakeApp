@@ -6,7 +6,8 @@ Router.route('/', {
   name: 'nameOfRoute',
   waitOn: function () {
     // we will wait for these subsciptions
-    return [Meteor.subscribe('products'), Meteor.subscribe('images')]
+    //return [Meteor.subscribe('products'), Meteor.subscribe('images')]
+    //return [Meteor.subscribe('products')]
   },
   action: function () {
     // this.ready() is true if all items in the wait list are ready

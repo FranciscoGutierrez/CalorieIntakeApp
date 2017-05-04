@@ -88,11 +88,10 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  margin-top: 10px;
   cursor:default;
   position: relative;
-  width:  100px;
-  height: 100px;
+  width:  72px;
+  height: 72px;
 }
 
 .little-product:hover {background: #ECEFF1; cursor: pointer;}
@@ -173,4 +172,8 @@ paper-spinner {
   justify-content: center;
   align-items: center;
   flex-direction: column;
+}
+
+.product .rating {
+  align-self: flex-end;
 }

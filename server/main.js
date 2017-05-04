@@ -2,6 +2,7 @@ import { Meteor } from 'meteor/meteor';
 
 Products = new Meteor.Collection('products');
 Images   = new Meteor.Collection('images');
+Similar  = new Meteor.Collection('similar');
 
 Meteor.startup(() => {
   // Insert sample data if the Products collection is empty
@@ -31,10 +32,14 @@ function buildRegExp(searchText) {
   return new RegExp("(" + parts.join('|') + ")", "ig");
 }
 
-Meteor.publish('images', function tasksPublication() {
-  return Images.find();
+Meteor.publish('images', function(image) {
+  return Images.find({id:image});
 });
 
-Meteor.publish('products', function tasksPublication() {
-  return Products.find();
+Meteor.publish('products', function(productid) {
+  return Products.find({_id: productid});
+});
+
+Meteor.publish('similar', function (productid) {
+  return Similar.find({_id: productid});
 });

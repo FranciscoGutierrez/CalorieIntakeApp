@@ -6,10 +6,12 @@ import './main.html';
 
 Products = new Meteor.Collection('products');
 Images   = new Meteor.Collection('images');
+Similar  = new Meteor.Collection('similar');
 
 Template.profile.onCreated(function helloOnCreated() {
   Session.setDefault("activity",2.00);
   Session.setDefault("prediction",100);
+  Session.setDefault("detailed", "");
   Session.setDefault("basket", []);
   Session.setDefault("calories", 0);
 });

@@ -54,7 +54,8 @@ h2 {
 }
 
 .product-container {
-  padding: 15px;
+  padding: 16px;
+  margin-right: 16px;
   width: 375px;
   -webkit-transition: all 0.7s ease-out;
   -moz-transition: all 0.7s ease-out;
@@ -84,7 +85,8 @@ h2 {
 
 paper-button {
   align-self: flex-end;
-  margin-top: 20px !important;
+  font-size: 14px !important;
+  background: red;
 }
 
 
@@ -133,4 +135,8 @@ paper-fab {
 
 .floated-label-placeholder {
   display: none;
+}
+
+img {
+  pointer-events: none;
 }
