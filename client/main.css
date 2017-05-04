@@ -28,6 +28,7 @@ body {
   -ms-transition:   all 0.7s ease-out;
   -o-transition:   all 0.7s ease-out;
   transition:   all 0.7s ease-out;
+  flex-direction: row-reverse;
 }
 
 h1 {
@@ -38,6 +39,7 @@ h1 {
   cursor: default;
   align-self: flex-start;
   width: 100%;
+  color: #a1a1a1;
 }
 
 h2 {

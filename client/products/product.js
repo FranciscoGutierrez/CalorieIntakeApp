@@ -45,7 +45,7 @@ Template.product.events({
       $(".basket-container").css("width","520px");
       $(".basket-container").css("background","#f6f6f6");
       $(".basket-container .amount").fadeIn();
-      Blaze.render(Template.output, $('.analytics').get(0));
+      Blaze.render(Template.output, $(".analytics")[0]);
     }
     calories = calories + parseInt(instance.data.energy);
     basket.push(instance.data);
