@@ -63,3 +63,40 @@ Template.similarProducts.events({
     Session.set("detailed",Products.findOne({_id : id}));
   }
 });
+
+
+Template.barchart.helpers({
+  data: function(){
+    let id = Session.get("detailed")._id;
+    let product = "";
+    Meteor.subscribe('products', id);
+    try{product  = Products.findOne({_id: id}); } catch(e){}
+
+    let facts  = {};
+    let show   = false;
+    let sodium = 0.0;
+    let energy = 0.0;
+    let sugars = 0.0;
+    let fat    = 0.0;
+
+    if(product.nutriments) facts = product.nutriments
+    if(facts.sodium) sodium = Number(facts.sodium).toFixed(2);
+    if(facts.energy) energy = Number(facts.energy).toFixed(2);
+    if(facts.sugars) sugars = Number(facts.sugars).toFixed(2);
+    if(facts["saturatedFat"]) fat = Number(facts["saturatedFat"]).toFixed(2);
+
+    let check = [Number(sodium), Number(energy), Number(sugars), Number(fat)];
+    let min = Math.min.apply(Math, check);
+    let max = Math.max.apply(Math, check);
+    sodium = ((sodium - min) / (max - min));
+    energy = ((energy - min) / (max - min));
+    sugars = ((sugars - min) / (max - min));
+    fat    = ((fat    - min) / (max - min));
+
+    for (var  i=1; i<check.length; i++) {
+      if (check[i-1] != check[i]) show = true;
+    }
+
+    return {sodium: sodium*100, energy: energy*100, sugars: sugars*100, fat: fat*100, show: show};
+  }
+});

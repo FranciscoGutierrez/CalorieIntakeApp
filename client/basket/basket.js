@@ -30,34 +30,34 @@ Template.basket.events({
     let favorites = Session.get("basket");
 
     let user = {id:id,
-    age:age,
-    gender:gender,
-    weight:weight,
-    height:height,
-    activity :activity,
-    allergies:allergies,
-    time_start:time_start,
-    time_end:time_end,
-    favorites:favorites}
-    Users.insert(user);
-  },
-  'click .fav-product'(event, instance){
-      let id = instance.data._id.toString();
+      age:age,
+      gender:gender,
+      weight:weight,
+      height:height,
+      activity :activity,
+      allergies:allergies,
+      time_start:time_start,
+      time_end:time_end,
+      favorites:favorites}
+      Users.insert(user);
+    },
+    'click .fav-product'(event, instance){
+      let id = this.toString();
       Meteor.subscribe('products', id);
       Meteor.subscribe('images', Number(id));
       Session.set("detailed",Products.findOne({_id : id}));
     }
-});
+  });
 
-Template.favorite.helpers({
-  data: function() {
-    let id = this.toString();
-    Meteor.subscribe('products', id);
-    Meteor.subscribe('images', Number(id));
-    let name  = "";
-    let img   = "";
-    try{name  = Products.findOne({_id: id}).product_name; } catch(e){}
-    try{img   = Images.findOne({id: Number(id)}).url;     } catch(e){}
-    return {name: name, image: img};
-  }
-});
+  Template.favorite.helpers({
+    data: function() {
+      let id = this.toString();
+      Meteor.subscribe('products', id);
+      Meteor.subscribe('images', Number(id));
+      let name  = "";
+      let img   = "";
+      try{name  = Products.findOne({_id: id}).product_name; } catch(e){}
+      try{img   = Images.findOne({id: Number(id)}).url;     } catch(e){}
+      return {name: name, image: img};
+    }
+  });
