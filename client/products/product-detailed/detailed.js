@@ -12,12 +12,7 @@ Template.detailed.helpers({
     return arr;
   },
   image: function(){
-    let img = Images.findOne({id: Number(Session.get("detailed")._id)})
-    let url = "";
-    try{
-      url = img.url
-    }catch(e){}
-    return url;
+    return Session.get("detailed")._id;
   },
   grade: function(){
     let grade  = Session.get('detailed').nutrition_grade_fr;
@@ -49,8 +44,7 @@ Template.similarProducts.helpers({
     let name  = "";
     let img   = "";
     try{name  = Products.findOne({_id: id}).product_name; } catch(e){}
-    try{img   = Images.findOne({id: Number(id)}).url;     } catch(e){}
-    return {name: name, image: img};
+    return {name: name, id: id};
   }
 });
 
@@ -71,6 +65,8 @@ Template.barchart.helpers({
     let product = "";
     Meteor.subscribe('products', id);
     try{product  = Products.findOne({_id: id}); } catch(e){}
+
+    console.log(product.nutrient_levels)
 
     let facts  = {};
     let show   = false;

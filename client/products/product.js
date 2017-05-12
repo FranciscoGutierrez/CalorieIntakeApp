@@ -27,13 +27,12 @@ Template.product.helpers({
     return {sodium: sodium, energy: energy, sugars: sugars, fat: fat, show: show, grade:grade};
   },
   image: function(){
-    Meteor.subscribe('images', Number(this._id));
-    let img = Images.findOne({id: Number(this._id)});
-    let url = "";
-    try{
-      url = img.url
-    }catch(e){}
-    return url;
+    let img = "products/"+Number(this._id)+".jpg";
+    $.get(img)
+    .done().fail(function() {
+      img = "demo/d1.png";
+    })
+    return img;
   }
 });
 

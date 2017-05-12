@@ -2,7 +2,7 @@
   <div class="product-detailed animated fadeInRight">
     <div class="details">
       <div class="product-image-container column">
-        <img class="product-image" src="{{image}}"/>
+        <img class="product-image" src="products/{{image}}.jpg"/>
       </div>
       <div class="column">
         <div class="product-name">{{data.product_name}}</div>
@@ -34,7 +34,7 @@
 
 <template name="similarProducts">
   <div class="similar-product">
-    <img class="similar-image animated fadeIn" src="{{data.image}}"/>
+    <img class="similar-image animated fadeIn" src="products/{{data.id}}.jpg">
     <div class="similar-name">{{data.name}}</div>
     <paper-ripple></paper-ripple>
   </div>
