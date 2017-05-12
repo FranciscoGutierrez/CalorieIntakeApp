@@ -102,3 +102,10 @@
   max-width: 160px;
   max-height: 160px;
 }
+
+.similar-image-container {
+  min-width: 40px;
+  min-height: 40px;
+  max-width: 40px;
+  max-height: 40px;
+}

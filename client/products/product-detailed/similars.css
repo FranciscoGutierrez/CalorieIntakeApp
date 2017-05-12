@@ -3,10 +3,14 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  margin: 2px;
-  padding: 2px;
+  /*margin: 2px;
+  padding: 2px;*/
   cursor: pointer;
   position: relative;
+  min-width:  88px;
+  min-height: 88px;
+  max-width:  88px;
+  max-height: 88px;
 }
 
 .similar-product:hover {
@@ -32,6 +36,16 @@
   white-space: nowrap;
   overflow: hidden;
   width: 80px;
+  min-height: 16px;
+  max-height: 16px;
   text-overflow: ellipsis;
   text-align: center;
+}
+
+
+.similar-image-container {
+  min-width: 40px;
+  min-height: 40px;
+  max-width: 40px;
+  max-height: 40px;
 }

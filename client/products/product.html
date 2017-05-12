@@ -29,7 +29,10 @@
     <div  class="description">
       <img class="product-image animated fadeIn" src="products/{{_id}}.jpg">
       <div class="text">
-        <div class="name">{{{product_name}}}</div>
+        <div class="name">
+          {{{product_name}}}
+          <div class="nutri-dot {{ffacts.grade}}"></div>
+        </div>
         <div class="metadata">
           {{#if ffacts.show}}
           <div  class="calories   meta"><div class="calories lg"><div class="dot"></div></div>{{ffacts.energy}}<span> kcal</span></div>
@@ -41,9 +44,7 @@
           {{/if}}
         </div>
       </div>
-      <div class="rating">
-        <img class="product-grade" src="{{ffacts.grade}}"/>
-      </div>
+      <div class="rating"></div>
     </div>
     <!-- <paper-fab mini icon="icons:close" class="delete"></paper-fab> -->
     <paper-ripple></paper-ripple>

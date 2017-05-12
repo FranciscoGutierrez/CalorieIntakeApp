@@ -18,7 +18,7 @@ Template.basket.helpers({
 
 Template.basket.events({
   'click .save-profile'(event, instance){
-    let id        = Meteor.default_connection._lastSessionId;
+    let id        = Session.get("userID");
     let age       = Session.get("age");
     let gender    = Session.get("gender");
     let weight    = Session.get("weight");

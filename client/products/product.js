@@ -17,7 +17,7 @@ Template.product.helpers({
     if(facts["saturatedFat"]) fat = Number(facts["saturatedFat"]).toFixed(2);
 
     if(grade == "") grade = "nutriscore/x.svg"
-    grade = "nutriscore/"+grade+".svg"
+    //grade = "nutriscore/"+grade+".svg"
 
     let check = [sodium, energy, sugars, fat];
     for (var  i=1; i<check.length; i++) {

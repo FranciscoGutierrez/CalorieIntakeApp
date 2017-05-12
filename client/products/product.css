@@ -7,7 +7,7 @@
 
 .product-container paper-input { width: 100%;}
 .product {
-  height: 48px;
+  min-height: 32px;
   width: 100%;
   display: flex;
   align-items: center;
@@ -32,12 +32,14 @@
   width: 100%;
 }
 .product .name {
-  font-size: 20px;
+  display: flex;
+  align-items: center;
+  font-size: 18px;
   font-weight: 100;
-  font-variant: small-caps;
+  text-transform: capitalize;
   white-space: nowrap;
   overflow: hidden;
-  max-width: 200px;
+  /*max-width: 200px;*/
   text-overflow: ellipsis;
   color: #818181;
 }
@@ -66,11 +68,13 @@
 
 .product .product-grade {
   min-width: 40px;
-  min-height:40px;
-  max-height:40px;
+  min-height:24px;
+  max-height:24px;
   object-fit: cover;
-  background:#fcfcfc;
+  background: none;
   border-radius: 5px;
+  margin-right: 8px;
+  margin-top: 2px;
 }
 
 .product-container .results {
@@ -152,7 +156,7 @@ paper-spinner {
 .calories .dot { background: #CDDC39; }
 .sodium   .dot { background: #607D8B; }
 .sugars   .dot { background: #00BCD4; }
-.fat      .dot { background: #FF9800; }
+.fat      .dot { background: #795548; }
 
 .product-container .legends .lg {
   display: flex;
@@ -166,6 +170,10 @@ paper-spinner {
   font-style: italic;
 }
 
+.product-container .results {
+  margin-top: 24px;
+}
+
 .product-container .loading {
   margin-top: 16px;
   display: flex;
@@ -175,5 +183,21 @@ paper-spinner {
 }
 
 .product .rating {
-  align-self: flex-end;
+  align-self: flex-start;
 }
+
+.product .nutri-dot {
+  border-radius: 50%;
+  min-width:  8px;
+  min-height: 8px;
+  max-width:  8px;
+  max-height: 8px;
+  background: none;
+  margin-left: 8px;
+}
+
+.product .nutri-dot.a { background: #128043; }
+.product .nutri-dot.b { background: #86b93b; }
+.product .nutri-dot.c { background: #fdca2f; }
+.product .nutri-dot.d { background: #ec8122; }
+.product .nutri-dot.e { background: #e43f21; }

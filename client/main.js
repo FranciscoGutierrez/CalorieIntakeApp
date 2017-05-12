@@ -166,6 +166,7 @@ Template.profile.events({
     Session.set("gender",instance.$(".genderVal").val());
   },
   'click .next-profile'(event, instace) {
+    Session.set("userID", Meteor.default_connection._lastSessionId);
     Session.set("allergies",$("paper-checkbox[active]").map(function(){return $(this).attr("name");}).get());
     var animationEnd = 'webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend';
     $(".user-profile").removeClass('animated fadeInLeft');
