@@ -6,6 +6,8 @@
   cursor: default;
   width: 480px;
   margin-top: 10px;
+  transition: all 2s ease;
+  min-height: 50px;
 }
 
 .product-detailed .details {
@@ -17,8 +19,8 @@
 .product-detailed .others  {
   display: flex;
   flex-direction: column;
-  margin-bottom: 16px;
-  height: 120px;
+  min-height: 232px;
+  /*margin-bottom: 16px;*/
 }
 
 .product-detailed .product-image {
@@ -73,6 +75,7 @@
   display: flex;
   margin-top: 8px;
   justify-content: space-around;
+  flex-wrap: wrap;
 }
 
 .product-detailed .column {

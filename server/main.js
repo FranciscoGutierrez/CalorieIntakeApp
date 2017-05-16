@@ -42,7 +42,8 @@ Meteor.publish('products', function(productid) {
 });
 
 Meteor.publish('similar', function (productid) {
-  return Similar.find({_id: productid});
+  console.log(productid);
+  return Similar.find({"pid": productid});
 });
 
 Meteor.publish('users', function (id) {

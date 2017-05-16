@@ -5,11 +5,36 @@ Template.detailed.helpers({
     return Session.get("detailed");
   },
   similars: function(){
-    Meteor.subscribe('similar', Session.get('detailed')._id);
-    let similar = Similar.findOne({_id: Session.get('detailed')._id});
+    let product  = Session.get('detailed');
+    let category = product.categories_tags;
+
+    let drinks   = ["en:beverages","en:carbonated-drinks","en:sodas","en:sugared-beverages"]
+    let veggies  = ["en:plant-based-foods"];
+    let proteins = ["en:meals", "en:meats","en:seafood","en:dairies","en:cheeses", "fr:salade-de-poulet-curry", "en:soupe","en:seafood","en:fishes"]
+    let snacks   = ["en:desserts","en:salty-snacks", "en:waffles", "en:sugary-snacks", "en:chocolates"]
+    let id = "";
+
+    try { id = product._id.toString(); } catch(e){}
+
+    Meteor.subscribe('similar', id);
+    // if(!_.isEmpty(_.intersection(category, drinks)))) {
+    //
+    //
+    // } else if(!_.isEmpty(_.intersection(category, veggies))) {
+    //   Meteor.subscribe('similar', product._id);
+    //
+    // } else if(!_.isEmpty(_.intersection(category, proteins))) {
+    //   Meteor.subscribe('similar', product._id);
+    //
+    // } else if(!_.isEmpty(_.intersection(category, snacks))) {
+    //   Meteor.subscribe('similar', product._id);
+    // }
+    let similar = Similar.findOne({pid: product._id});
     let arr = [];
-    try{arr = similar.similarity.slice(0, 5); }catch(e){}
-    return arr;
+    try{arr = similar.similarity; }catch(e){}
+    let sliced = _.sortBy(arr, 'score').slice(0, 10);
+    console.log(sliced);
+    return sliced;
   },
   image: function(){
     return Session.get("detailed")._id;
@@ -44,8 +69,9 @@ Template.detailed.events({
 
 Template.similarProducts.helpers({
   data: function(){
-    let id = this._id.toString();
-    Meteor.subscribe('products', id);
+    console.log(this.pid);
+    let id = this.pid;
+    Meteor.subscribe('products', Number(id));
     Meteor.subscribe('images', Number(id));
     let name  = "";
     let img   = "";
