@@ -13,7 +13,7 @@ Template.detailed.helpers({
     let proteins = ["en:meals", "en:meats","en:seafood","en:dairies","en:cheeses", "fr:salade-de-poulet-curry", "en:soupe","en:seafood","en:fishes"]
     let snacks   = ["en:desserts","en:salty-snacks", "en:waffles", "en:sugary-snacks", "en:chocolates"]
     let id = "";
-
+    let show = false;
     try { id = product._id.toString(); } catch(e){}
 
     Meteor.subscribe('similar', id);
@@ -33,8 +33,8 @@ Template.detailed.helpers({
     let arr = [];
     try{arr = similar.similarity; }catch(e){}
     let sliced = _.sortBy(arr, 'score').slice(0, 10);
-    console.log(sliced);
-    return sliced;
+    if(sliced.length > 0) show = true;
+    return {array: sliced, show: show};
   },
   image: function(){
     return Session.get("detailed")._id;
@@ -69,9 +69,8 @@ Template.detailed.events({
 
 Template.similarProducts.helpers({
   data: function(){
-    console.log(this.pid);
     let id = this.pid;
-    Meteor.subscribe('products', Number(id));
+    Meteor.subscribe('products', id);
     Meteor.subscribe('images', Number(id));
     let name  = "";
     let img   = "";
@@ -83,7 +82,7 @@ Template.similarProducts.helpers({
 
 Template.similarProducts.events({
   'click .similar-product'(event, instance){
-    let id = instance.data._id.toString();
+    let id = instance.data.pid.toString();
     Meteor.subscribe('products', id);
     Meteor.subscribe('images', Number(id));
     Session.set("detailed",Products.findOne({_id : id}));

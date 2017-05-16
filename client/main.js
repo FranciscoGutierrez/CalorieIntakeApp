@@ -172,7 +172,7 @@ Template.profile.events({
     $(".user-profile").removeClass('animated fadeInLeft');
     $(".user-profile").addClass('animated fadeOutRight').one(animationEnd, function() {
       $(this).remove();
-      Blaze.render(Template.products, $("body")[0]);
+      Blaze.renderWithData(Template.products, {title: "What do you like?"}, $("body")[0]);
     });
   }
 });

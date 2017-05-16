@@ -1,6 +1,6 @@
 <template name="products">
   <div class="product-container animated fadeInLeft">
-    <h1 style="margin-bottom: 24px;">What do you like?</h1>
+    <h1 style="margin-bottom: 24px;">{{title}}</h1>
     <!-- <h2>Amount of calories: {{basket}}<span>cal</span></h2> -->
     <paper-input label="Find Products of your Interest..." type="text" class="searchProduct"></paper-input>
     <div class="legends">
@@ -31,7 +31,7 @@
       <div class="text">
         <div class="name">
           {{{product_name}}}
-          <div class="nutri-dot {{ffacts.grade}}"></div>
+          <!-- <div class="nutri-dot {{ffacts.grade}}"></div> -->
         </div>
         <div class="metadata">
           {{#if ffacts.show}}

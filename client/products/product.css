@@ -40,7 +40,7 @@
   text-transform: capitalize;
   white-space: nowrap;
   overflow: hidden;
-  /*max-width: 200px;*/
+  max-width: 300px;
   text-overflow: ellipsis;
   color: #818181;
 }
@@ -82,10 +82,7 @@
   display: flex;
   align-items: center;
   flex-direction: column;
-  height: 400px;
 }
-
-
 
 .little-product-container paper-input { width: 100%;}
 .little-product {
@@ -202,3 +199,18 @@ paper-spinner {
 .product .nutri-dot.c { background: #fdca2f; }
 .product .nutri-dot.d { background: #ec8122; }
 .product .nutri-dot.e { background: #e43f21; }
+
+.product-container {
+  padding: 16px;
+  margin-right: 16px;
+  min-width: 350px;
+  background: #FAFAFA;
+  border: 1px solid #f4f4f4;
+  margin-top: 10px;
+  border-radius: 10px;
+  -webkit-transition: all 0.7s ease-out;
+  -moz-transition: all 0.7s ease-out;
+  -ms-transition: all 0.7s ease-out;
+  -o-transition: all 0.7s ease-out;
+  transition: all 0.7s ease-out;
+}

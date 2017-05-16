@@ -21,14 +21,16 @@
     <div class="column">
       <paper-button class="add-product">Add to Favorites</paper-button>
     </div>
+    {{#if similars.show}}
     <div class="others">
       <h2 style="margin-top: 16px;">Similar Products</h2>
       <div class="row">
-      {{#each similars}}
+      {{#each similars.array}}
         {{> similarProducts}}
       {{/each}}
       </div>
     </div>
+    {{/if}}
     <div class="add-product-container">
     </div>
   </div>

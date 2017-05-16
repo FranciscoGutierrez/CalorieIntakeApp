@@ -39,8 +39,8 @@
   flex-direction: row;
   margin-top: 16px;
   flex-wrap: wrap;
-  justify-content: center;
   position: relative;
+  justify-content: flex-start;
 }
 
 .fav-product {
@@ -84,4 +84,6 @@
 .basket-container .save-profile {
   position: absolute;
   bottom: -60px;
+  box-shadow: rgb(136, 136, 136) 1px 1px 10px;
+  right: 0;
 }
