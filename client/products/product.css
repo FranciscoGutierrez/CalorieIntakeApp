@@ -24,6 +24,7 @@
   align-items: center;
   width: 100%;
  }
+
 .product .text {
   display: flex;
   flex-direction: column;

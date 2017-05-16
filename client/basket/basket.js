@@ -28,8 +28,9 @@ Template.basket.events({
     let time_start= Session.get("time_start");
     let time_end  = new Date().getTime();
     let favorites = Session.get("basket");
-
-    let user = {id:id,
+    $(".save-profile").prop("disabled", true);
+    $('.save-profile').css('background', "gray");
+    let user = {_id:id,
       age:age,
       gender:gender,
       weight:weight,
@@ -39,7 +40,14 @@ Template.basket.events({
       time_start:time_start,
       time_end:time_end,
       favorites:favorites}
-      Users.insert(user);
+      Users.insert(user, function(){
+        $('.save-profile').fadeOut(function(){
+           $(".analytics").remove();
+           $(".basket-container").remove();
+           $(".product-container").remove();
+          Router.go('/'+String(id));
+        });
+      });
     },
     'click .fav-product'(event, instance){
       let id = this.toString();

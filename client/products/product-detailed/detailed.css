@@ -42,7 +42,7 @@
   color: #818181;
 }
 
-.product-detailed .product-description {
+.product-detailed .product-ription {
   font-size: 14px;
   color: #818181;
   font-variant: small-caps;
@@ -72,7 +72,7 @@
 .product-detailed .row {
   display: flex;
   margin-top: 8px;
-  justify-content: space-between;
+  justify-content: space-around;
 }
 
 .product-detailed .column {
@@ -103,9 +103,14 @@
   max-height: 160px;
 }
 
-.similar-image-container {
-  min-width: 40px;
-  min-height: 40px;
-  max-width: 40px;
-  max-height: 40px;
+.product-detailed .nutri-row {
+  margin-bottom: 25px;
+  height: 88px;
+  transition: all 1.5s ease-out;
+  margin-top: 22px;
+}
+
+.product-detailed .product-description {
+  color: #a1a1a1;
+  font-size: 14px;
 }

@@ -1,13 +1,11 @@
-
-
-
-
 .barchart {
   display: flex;
   align-items: flex-end;
   border-bottom: 1px solid #c1c1c1;
   width: 150px;
   justify-content: space-around;
+  transition: all 1.5s ease-out;
+  height: 80px;
 }
 .bar {width: 20px;}
 
@@ -15,3 +13,19 @@
 .barchart .b-sod {background: #607D8B;}
 .barchart .b-sug {background: #00BCD4;}
 .barchart .b-sat {background: #FF9800;}
+.barchart .b-satfat { background: #795548;}
+
+.bar {
+  transition: all 1.5s ease-out;
+  transition: max-height 1s; 
+  position: relative;
+}
+
+.bar span {
+  font-size: 9px;
+  position: absolute;
+  bottom: -12px;
+  color: #828282;
+  text-align: center;
+  width: 100%;
+}

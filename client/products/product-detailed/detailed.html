@@ -8,10 +8,12 @@
         <div class="product-name">{{data.product_name}}</div>
         <div class="product-id">[{{data.id}}]</div>
         <div class="product-description">{{data.generic_name}}</div>
-        <div class="row" style="margin-bottom: 25px;"> <!-- justify-content: center; -->
-        <!-- {{> barchart}} -->
+        {{#if show}}
+        <div class="animated fadeIn row nutri-row"> <!-- justify-content: center; -->
+        {{> barchart}}
         <img class="product-grade" src="{{grade}}"/>
         </div>
+        {{/if}}
         <!-- <div class="product-keywords">{{data._keywords}}</div> -->
         <!-- <div class="product-category">{{data.categories}}</div> -->
       </div>
@@ -45,10 +47,11 @@
 <template name="barchart">
   {{#if data.show}}
   <div class="nutri-barchart barchart">
-    <div class="bar b-cal" style="height:{{data.energy}}px;"></div>
-    <div class="bar b-sod" style="height:{{data.sodium}}px;"></div>
-    <div class="bar b-sug" style="height:{{data.sugars}}px;"></div>
-    <div class="bar b-sat" style="height:{{data.fat}}px;"></div>
+    <!-- <div class="bar b-cal" style="height:{{data.energy}}px;"></div> -->
+    <div class="bar b-sod" style="height:{{data.sodium}}px;"><span>Salt</span></div>
+    <div class="bar b-sug" style="height:{{data.sugars}}px;"><span>Sugar</span></div>
+    <div class="bar b-sat" style="height:{{data.fat}}px;"><span>Fat</span></div>
+    <div class="bar b-satfat" style="height:{{data.satfat}}px;"><span>Sat.Fat</span></div>
   </div>
   {{/if}}
 </template>

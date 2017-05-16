@@ -19,6 +19,12 @@ Template.detailed.helpers({
     if(grade == "") grade = "nutriscore/x.svg"
     grade = "nutriscore/"+grade+".svg"
     return grade;
+  },
+  show: function() {
+    let levels  = Session.get('detailed').nutrient_levels;
+    let show = true;
+    if(_.isEmpty(levels)) show = false;
+    return show;
   }
 });
 
@@ -66,33 +72,44 @@ Template.barchart.helpers({
     Meteor.subscribe('products', id);
     try{product  = Products.findOne({_id: id}); } catch(e){}
 
-    console.log(product.nutrient_levels)
+    let nutri  = "";
+    let fat    = "";
+    let salt   = "";
+    let satfat = "";
+    let sugars = "";
 
-    let facts  = {};
-    let show   = false;
-    let sodium = 0.0;
-    let energy = 0.0;
-    let sugars = 0.0;
-    let fat    = 0.0;
-
-    if(product.nutriments) facts = product.nutriments
-    if(facts.sodium) sodium = Number(facts.sodium).toFixed(2);
-    if(facts.energy) energy = Number(facts.energy).toFixed(2);
-    if(facts.sugars) sugars = Number(facts.sugars).toFixed(2);
-    if(facts["saturatedFat"]) fat = Number(facts["saturatedFat"]).toFixed(2);
-
-    let check = [Number(sodium), Number(energy), Number(sugars), Number(fat)];
-    let min = Math.min.apply(Math, check);
-    let max = Math.max.apply(Math, check);
-    sodium = ((sodium - min) / (max - min));
-    energy = ((energy - min) / (max - min));
-    sugars = ((sugars - min) / (max - min));
-    fat    = ((fat    - min) / (max - min));
-
-    for (var  i=1; i<check.length; i++) {
-      if (check[i-1] != check[i]) show = true;
+    let show   = true;
+    try {
+      nutri  = product.nutrient_levels;
+      fat    = nutri.fat;
+      if(fat == "high")     fat =  80;
+      if(fat == "moderate") fat =  40;
+      if(fat == "low")      fat =   8;
+      salt   = nutri.salt;
+      if(salt == "high")     salt =  80;
+      if(salt == "moderate") salt =  40;
+      if(salt == "low")      salt =   8;
+      satfat = nutri["saturated-fat"];
+      if(satfat == "high")     satfat =  80;
+      if(satfat == "moderate") satfat =  40;
+      if(satfat == "low")      satfat =   8;
+      sugars = nutri.sugars;
+      if(sugars == "high")     sugars =  80;
+      if(sugars == "moderate") sugars =  40;
+      if(sugars == "low")      sugars =   8;
+    } catch(e){
+      show   = false;
     }
 
-    return {sodium: sodium*100, energy: energy*100, sugars: sugars*100, fat: fat*100, show: show};
+    if(_.isEmpty(nutri)) show = false;
+
+    return {
+      sodium: salt,
+      sugars: sugars,
+      fat: fat,
+      satfat: satfat,
+      show: show
+    };
+
   }
 });
