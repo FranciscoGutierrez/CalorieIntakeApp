@@ -44,17 +44,6 @@ Template.product.events({
     instance.$(".delete").fadeOut(0);
   },
   'click .product'(event, instance){
-    // let basket = Session.get("basket");
-    // let calories = Session.get("calories");
-    // if (basket.length <1) {
-    //   $(".basket-container").css("width","520px");
-    //   $(".basket-container").css("background","#f6f6f6");
-    //   $(".basket-container .amount").fadeIn();
-    // }
-    // calories = calories + parseInt(instance.data.energy);
-    // basket.push(instance.data);
-    // Session.set("basket",basket);
-    // Session.set("calories",calories);
     if(Session.get("detailed") == "") {
       Blaze.renderWithData(Template.detailed, instance.data, $(".analytics")[0]);
       Session.set("detailed",instance.data);
