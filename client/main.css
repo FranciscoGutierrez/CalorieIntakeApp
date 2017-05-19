@@ -31,6 +31,7 @@ body {
   transition:   all 0.7s ease-out;
   flex-direction: column;
   /*padding-left: 16px;*/
+  background: #f7f7f7;
 }
 
 h1 {

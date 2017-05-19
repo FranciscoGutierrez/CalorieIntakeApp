@@ -4,8 +4,8 @@
   flex-direction: column;
   max-width: 533px;
   min-width: 533px;
-  background: #FAFAFA;
-  border: 1px solid #f4f4f4;
+  background: white;
+  border: 1px solid #e7e7e7;
   padding: 16px;
   margin-left: 16px;
   border-radius: 10px;
@@ -87,3 +87,38 @@
 .basket-container .save-profile {
   box-shadow: rgb(136, 136, 136) 1px 1px 10px;
 }
+
+.fav-product.small {
+  min-width:  24px;
+  min-height: 24px;
+  max-width:  24px;
+  max-height: 24px;
+}
+
+.fav-product.small img{
+  min-width:  24px;
+  min-height: 24px;
+  max-width:  24px;
+  max-height: 24px;
+}
+
+
+.myplate {
+  align-self: center;
+  width: 480px !important;
+}
+
+.myplate .bar span {
+  width: 80px !important;
+}
+
+.myplate .bar {
+  display: flex;
+  justify-content: center;
+}
+
+.myplate .b-veg {background: #81C784;}
+.myplate .b-fru {background: #e57373;}
+.myplate .b-pro {background: #FFB74D;}
+.myplate .b-gra {background: #A1887F;}
+.myplate .b-wat {background: #4FC3F7;}

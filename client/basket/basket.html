@@ -5,22 +5,35 @@
     {{else}}
     <h2>Favorites <span>{{size}}/20</span></h2>
     {{/if}}
+    {{#if dashboard}}
+    {{> myplate}}
+    {{/if}}
     <div class="row">
     {{#each basket}}
       {{> favorite}}
     {{/each}}
     </div>
-    {{#if dashboard}}
-    {{else}}
+    {{#unless dashboard}}
     <paper-button class="save-profile">Go to dashboard</paper-button>
-    {{/if}}
+    {{/unless}}
   </div>
 </template>
 
 <template name="favorite">
-  <div class="fav-product">
+  <div class="fav-product {{data.size}}">
     <img class="fav-image animated fadeIn" src="{{data.image}}"/>
     <div class="fav-name">{{data.name}}</div>
     <paper-ripple></paper-ripple>
+  </div>
+</template>
+
+<template name="myplate">
+  <div class="myplate barchart">
+    <!-- <div class="bar b-cal" style="height:{{data.energy}}px;"></div> -->
+    <div class="bar b-veg" style="height:{{data.veggies}}px;"><span>Vegetables</span></div>
+    <div class="bar b-fru" style="height:{{data.fruits}}px;"><span>Fruits</span></div>
+    <div class="bar b-pro" style="height:{{data.proteins}}px;"> <span>Proteins</span></div>
+    <div class="bar b-gra" style="height:{{data.grains}}px;"><span>Whole Grains</span></div>
+    <div class="bar b-wat" style="height:{{data.water}}px;"><span>Water</span></div>
   </div>
 </template>

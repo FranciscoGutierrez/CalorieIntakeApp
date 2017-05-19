@@ -21,6 +21,12 @@ Template.basket.helpers({
   }
 });
 
+Template.myplate.helpers({
+  data() {
+    return {veggies: 10, fruits: 40, proteins: 20, grains: 30, water: 10 };
+  }
+});
+
 Template.basket.events({
   'click .save-profile'(event, instance){
     let id        = Session.get("userID");
@@ -71,6 +77,8 @@ Template.basket.events({
       let img   = "";
       try{name  = Products.findOne({_id: id}).product_name; } catch(e){}
       try{img   = Images.findOne({id: Number(id)}).url;     } catch(e){}
-      return {name: name, image: img};
+      let size = "small";
+      if(Session.get("user") == "profile") size = "normal";
+      return {name: name, image: img, size:size};
     }
   });
