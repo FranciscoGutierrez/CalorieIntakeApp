@@ -23,7 +23,9 @@ Template.basket.helpers({
 
 Template.myplate.helpers({
   data() {
-    return {veggies: 10, fruits: 40, proteins: 20, grains: 30, water: 10 };
+    let limits  = {veggies: 10, fruits: 40, proteins: 20, grains: 30, water: 50, isbad: 60 };
+    let current = {vfill: 5, ffill: 20, pfill: 15, gfill: 20, wfill: 25, isbadfill: 40 };
+    return _.extend(current, limits);
   }
 });
 

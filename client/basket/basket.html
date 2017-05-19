@@ -30,10 +30,29 @@
 <template name="myplate">
   <div class="myplate barchart">
     <!-- <div class="bar b-cal" style="height:{{data.energy}}px;"></div> -->
-    <div class="bar b-veg" style="height:{{data.veggies}}px;"><span>Vegetables</span></div>
-    <div class="bar b-fru" style="height:{{data.fruits}}px;"><span>Fruits</span></div>
-    <div class="bar b-pro" style="height:{{data.proteins}}px;"> <span>Proteins</span></div>
-    <div class="bar b-gra" style="height:{{data.grains}}px;"><span>Whole Grains</span></div>
-    <div class="bar b-wat" style="height:{{data.water}}px;"><span>Water</span></div>
+    <div class="bar b-veg" style="height:{{data.veggies}}px;">
+      <div class="bar-fill b-veg-fill" style="height:{{data.vfill}}px;"></div>
+      <span>Vegetables</span>
+    </div>
+    <div class="bar b-fru" style="height:{{data.fruits}}px;">
+      <div class="bar-fill b-fru-fill" style="height:{{data.ffill}}px;"></div>
+      <span>Fruits</span>
+    </div>
+    <div class="bar b-pro" style="height:{{data.proteins}}px;">
+      <div class="bar-fill b-pro-fill" style="height:{{data.pfill}}px;"></div>
+      <span>Proteins</span>
+    </div>
+    <div class="bar b-gra" style="height:{{data.grains}}px;">
+      <div class="bar-fill b-gra-fill" style="height:{{data.gfill}}px;"></div>
+      <span>Whole Grains</span>
+    </div>
+    <div class="bar b-wat" style="height:{{data.water}}px;">
+      <div class="bar-fill b-wat-fill" style="height:{{data.wfill}}px;"></div>
+      <span>Water</span>
+    </div>
+    <div class="bar b-ext" style="height:{{data.isbad}}px;">
+      <div class="bar-fill b-ext-fill" style="height:{{data.isbadfill}}px;"></div>
+      <span>Unhealthy</span>
+    </div>
   </div>
 </template>

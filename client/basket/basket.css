@@ -95,6 +95,11 @@
   max-height: 24px;
 }
 
+.fav-product.small:hover {
+  border-radius: 50% !important;
+}
+
+
 .fav-product.small img{
   min-width:  24px;
   min-height: 24px;
@@ -106,19 +111,38 @@
 .myplate {
   align-self: center;
   width: 480px !important;
+  border-bottom: 1px solid #424242;
 }
 
 .myplate .bar span {
   width: 80px !important;
+  bottom: -15px;
+  font-size: 11px;
 }
 
 .myplate .bar {
   display: flex;
   justify-content: center;
+  border-radius: 4px 4px 0 0;
+  border-bottom: 0px !important;
 }
 
-.myplate .b-veg {background: #81C784;}
-.myplate .b-fru {background: #e57373;}
-.myplate .b-pro {background: #FFB74D;}
-.myplate .b-gra {background: #A1887F;}
-.myplate .b-wat {background: #4FC3F7;}
+.myplate .bar-fill {
+  width: 100%;
+  align-self: flex-end;
+  /*border-radius: 4px 4px 0 0;*/
+}
+
+.myplate .b-veg {border: 2px solid #43A047;}
+.myplate .b-fru {border: 2px solid #e53935;}
+.myplate .b-pro {border: 2px solid #FB8C00;}
+.myplate .b-gra {border: 2px solid #6D4C41;}
+.myplate .b-wat {border: 2px solid #1E88E5;}
+.myplate .b-ext {border: 2px solid #546E7A;}
+
+.myplate .b-veg-fill {background: #81C784;}
+.myplate .b-fru-fill {background: #e57373;}
+.myplate .b-pro-fill {background: #FFCC80;}
+.myplate .b-gra-fill {background: #A1887F;}
+.myplate .b-wat-fill {background: #90CAF9;}
+.myplate .b-ext-fill {background: #B0BEC5;}
