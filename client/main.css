@@ -29,7 +29,7 @@ body {
   -ms-transition:   all 0.7s ease-out;
   -o-transition:   all 0.7s ease-out;
   transition:   all 0.7s ease-out;
-  flex-direction: column-reverse;
+  flex-direction: column;
   /*padding-left: 16px;*/
 }
 
@@ -134,4 +134,15 @@ img {
 
 .paper-button-0 {
   margin: 0;
+}
+
+
+.top-container {
+  width: 100%;
+  display: flex;
+  margin-top: 16px;
+}
+
+.bottom-container {
+  width: 100%;
 }

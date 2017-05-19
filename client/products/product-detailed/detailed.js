@@ -42,7 +42,7 @@ Template.detailed.helpers({
   buttonText: function(){
     let text = "Add to Favorites";
     if(Session.get("user") != "profile") {
-      text = "Add to Basket";
+      text = "Add to My Plate";
     }
     return text;
   },
@@ -54,7 +54,6 @@ Template.detailed.helpers({
   healthysimilars: function(){
     let product  = Session.get('detailed');
     let category = product.categories_tags;
-
     let drinks   = ["en:beverages","en:carbonated-drinks","en:sodas","en:sugared-beverages"]
     let veggies  = ["en:plangetProductst-based-foods"];
     let proteins = ["en:meals", "en:meats","en:seafood","en:dairies","en:cheeses", "fr:salade-de-poulet-curry", "en:soupe","en:seafood","en:fishes"]
@@ -62,25 +61,19 @@ Template.detailed.helpers({
     let id = "";
     let show = false;
     try { id = product._id.toString(); } catch(e){}
-
     Meteor.subscribe('similar', id);
     let similar = Similar.findOne({pid: product._id});
     let arr = [];
     try{arr = similar.similarity; }catch(e){}
-
     const toDelete = new Set(["","c","d","e"]);
     const newArray = arr.filter(obj => !toDelete.has(obj.healthy));
-
     let sliced = _.sortBy(newArray, 'healthy').slice(0, 6);
-
-    console.log(sliced);
     if(sliced.length > 0) show = true;
     return {array: sliced, show: show};
   },
   usersimilars: function(){
     let product  = Session.get('detailed');
     let category = product.categories_tags;
-
     let drinks   = ["en:beverages","en:carbonated-drinks","en:sodas","en:sugared-beverages"]
     let veggies  = ["en:plant-based-foods"];
     let proteins = ["en:meals", "en:meats","en:seafood","en:dairies","en:cheeses", "fr:salade-de-poulet-curry", "en:soupe","en:seafood","en:fishes"]
@@ -88,7 +81,6 @@ Template.detailed.helpers({
     let id = "";
     let show = false;
     try { id = product._id.toString(); } catch(e){}
-
     Meteor.subscribe('similar', id);
     let similar = Similar.findOne({pid: product._id});
     let arr = [];
@@ -104,7 +96,7 @@ Template.detailed.events({
     let basket = Session.get("basket");
     //let calories = Session.get("calories");
     if (basket.length <1) {
-      Blaze.render(Template.basket, $(".analytics")[0]);
+      Blaze.render(Template.basket, $(".top-container")[0]);
     }
     //calories = calories + parseInt(instance.data.energy);
     basket.push(Session.get("detailed")._id);

@@ -42,7 +42,7 @@ Template.product.events({
   },
   'click .product'(event, instance){
     if(Session.get("detailed") == "") {
-      Blaze.renderWithData(Template.detailed, instance.data, $(".analytics")[0]);
+      Blaze.renderWithData(Template.detailed, instance.data, $(".bottom-container")[0]);
       Session.set("detailed",instance.data);
     } else {
       Session.set("detailed",instance.data);

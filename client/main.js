@@ -10,7 +10,7 @@ Similar  = new Meteor.Collection('similar');
 Users    = new Meteor.Collection('users');
 
 Template.body.events({
-  'click .analytics': function() {
+  'click .bottom-container': function() {
       $(".results").fadeOut();
   }
 });
@@ -175,10 +175,10 @@ Template.profile.events({
     Session.set("userID", Meteor.default_connection._lastSessionId);
     Session.set("allergies",$("paper-checkbox[active]").map(function(){return $(this).attr("name");}).get());
     var animationEnd = 'webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend';
-    $(".user-profile").removeClass('animated fadeInLeft');
-    $(".user-profile").addClass('animated fadeOutRight').one(animationEnd, function() {
+    $(".user-profile").removeClass('animated fadeIn');
+    $(".user-profile").addClass('animated fadeOut').one(animationEnd, function() {
       $(this).remove();
-      Blaze.renderWithData(Template.products, {title: "What do you like?"}, $("body")[0]);
+      Blaze.renderWithData(Template.products, {title: "What do you like?"}, $(".top-container")[0]);
     });
   }
 });

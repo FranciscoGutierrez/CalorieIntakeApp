@@ -22,10 +22,13 @@ Router.route('/:_id', function () {
   Meteor.subscribe('users', id, function(){
     Session.set("detailed", "");
     Session.set("user", Users.findOne({_id: id}));
-    self.render("dashboard", {
-      data: function() {
-        return Users.findOne({_id: id});
-      }
-    });
+    Session.set("basket", []);
+    Blaze.render(Template.dashboard, $(".top-container")[0]);
+
+    // self.render("dashboard", {
+    //   data: function() {
+    //     return Users.findOne({_id: id});
+    //   }
+    // });
   });
 });

@@ -2,14 +2,15 @@
   display: flex;
   position: relative;
   flex-direction: column;
-  min-width: 482px;
-  max-width: 482px;
+  max-width: 533px;
+  min-width: 533px;
   background: #FAFAFA;
   border: 1px solid #f4f4f4;
   padding: 16px;
-  margin-top: 16px;
+  margin-left: 16px;
   border-radius: 10px;
   min-height: 200px;
+  justify-content: space-between;
   -webkit-transition: all 0.7s ease-out;
    -moz-transition:   all 0.7s ease-out;
     -ms-transition:   all 0.7s ease-out;
@@ -48,10 +49,12 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  margin: 2px;
-  padding: 2px;
   cursor: pointer;
   position: relative;
+  min-width: 88px;
+  min-height: 88px;
+  max-width: 88px;
+  max-height: 88px;
 }
 
 .fav-product:hover {
@@ -82,8 +85,5 @@
 }
 
 .basket-container .save-profile {
-  position: absolute;
-  bottom: -60px;
   box-shadow: rgb(136, 136, 136) 1px 1px 10px;
-  right: 0;
 }

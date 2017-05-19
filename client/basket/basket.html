@@ -1,17 +1,19 @@
 <template name="basket">
   <div class="basket-container">
+    {{#if dashboard}}
+    <h2>My Plate</h2>
+    {{else}}
     <h2>Favorites <span>{{size}}/20</span></h2>
+    {{/if}}
     <div class="row">
     {{#each basket}}
       {{> favorite}}
     {{/each}}
     </div>
-    {{#if showSave}}
+    {{#if dashboard}}
+    {{else}}
     <paper-button class="save-profile">Go to dashboard</paper-button>
     {{/if}}
-    <!-- <div class="amount">
-      <b>Amount:</b> {{amount}} <span>kcal</span>
-    </div> -->
   </div>
 </template>
 

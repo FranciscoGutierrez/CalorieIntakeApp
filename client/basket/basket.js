@@ -13,6 +13,11 @@ Template.basket.helpers({
     let show = false;
     if (size > 2) show = true;
     return show;
+  },
+  dashboard: function() {
+    let dashboard = true;
+    if(Session.get("user") == "profile") dashboard = false;
+    return dashboard;
   }
 });
 
