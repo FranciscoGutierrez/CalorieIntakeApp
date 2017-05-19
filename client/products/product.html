@@ -1,26 +1,27 @@
 <template name="products">
-  <div class="product-container animated fadeInLeft">
-    <h1 style="margin-bottom: 24px;">{{title}}</h1>
-    <!-- <h2>Amount of calories: {{basket}}<span>cal</span></h2> -->
-    <paper-input label="Find Products of your Interest..." type="text" class="searchProduct"></paper-input>
-    <div class="legends">
-    <div class="calories lg"><div class="dot"></div> Calories</div>
-    <div class="sodium   lg"><div class="dot"></div> Salt</div>
-    <div class="sugars   lg"><div class="dot"></div> Sugars</div>
-    <div class="fat      lg"><div class="dot"></div> Saturated Fat</div>
-    *Portions per 100g.
+  <div class="product-container animated fadeIn">
+    <div class="top-content">
+      <h1 style="margin-bottom: 24px;">{{title}}</h1>
+      <!-- <h2>Amount of calories: {{basket}}<span>cal</span></h2> -->
+      {{#if isLoading}}
+      <paper-spinner class="spinner-search" active></paper-spinner>
+      {{/if}}
+      <paper-input label="Find Products of your Interest..." type="text" class="searchProduct"></paper-input>
+      <div class="legends">
+        <div class="calories lg"><div class="dot"></div> Calories</div>
+        <div class="sodium   lg"><div class="dot"></div> Salt</div>
+        <div class="sugars   lg"><div class="dot"></div> Sugars</div>
+        <div class="fat      lg"><div class="dot"></div> Saturated Fat</div>
+        *Portions per 100g.
+      </div>
     </div>
+    {{#if getProducts}}
     <div class="results">
-    {{#each getProducts}}
+      {{#each getProducts}}
       {{> product}}
-    {{/each}}
-    {{#if isLoading}}
-    <div class="loading">
-      <paper-spinner active></paper-spinner>
-      <h1>Loading</h1>
+      {{/each}}
     </div>
     {{/if}}
-    </div>
   </div>
 </template>
 

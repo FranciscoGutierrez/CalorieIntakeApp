@@ -9,6 +9,12 @@ Images   = new Meteor.Collection('images');
 Similar  = new Meteor.Collection('similar');
 Users    = new Meteor.Collection('users');
 
+Template.body.events({
+  'click .analytics': function() {
+      $(".results").fadeOut();
+  }
+});
+
 Template.profile.onCreated(function() {
   Session.set("activity",2.00);
   Session.set("prediction",100);

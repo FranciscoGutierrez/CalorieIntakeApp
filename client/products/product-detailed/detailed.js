@@ -17,22 +17,10 @@ Template.detailed.helpers({
     try { id = product._id.toString(); } catch(e){}
 
     Meteor.subscribe('similar', id);
-    // if(!_.isEmpty(_.intersection(category, drinks)))) {
-    //
-    //
-    // } else if(!_.isEmpty(_.intersection(category, veggies))) {
-    //   Meteor.subscribe('similar', product._id);
-    //
-    // } else if(!_.isEmpty(_.intersection(category, proteins))) {
-    //   Meteor.subscribe('similar', product._id);
-    //
-    // } else if(!_.isEmpty(_.intersection(category, snacks))) {
-    //   Meteor.subscribe('similar', product._id);
-    // }
     let similar = Similar.findOne({pid: product._id});
     let arr = [];
     try{arr = similar.similarity; }catch(e){}
-    let sliced = _.sortBy(arr, 'score').slice(0, 10);
+    let sliced = _.sortBy(arr, 'score').slice(0, 6);
     if(sliced.length > 0) show = true;
     return {array: sliced, show: show};
   },
@@ -50,7 +38,65 @@ Template.detailed.helpers({
     let show = true;
     if(_.isEmpty(levels)) show = false;
     return show;
-  }
+  },
+  buttonText: function(){
+    let text = "Add to Favorites";
+    if(Session.get("user") != "profile") {
+      text = "Add to Basket";
+    }
+    return text;
+  },
+  userDashboard: function(){
+    let dashboard = true;
+    if(Session.get("user") == "profile") dashboard = false;
+    return dashboard;
+  },
+  healthysimilars: function(){
+    let product  = Session.get('detailed');
+    let category = product.categories_tags;
+
+    let drinks   = ["en:beverages","en:carbonated-drinks","en:sodas","en:sugared-beverages"]
+    let veggies  = ["en:plangetProductst-based-foods"];
+    let proteins = ["en:meals", "en:meats","en:seafood","en:dairies","en:cheeses", "fr:salade-de-poulet-curry", "en:soupe","en:seafood","en:fishes"]
+    let snacks   = ["en:desserts","en:salty-snacks", "en:waffles", "en:sugary-snacks", "en:chocolates"]
+    let id = "";
+    let show = false;
+    try { id = product._id.toString(); } catch(e){}
+
+    Meteor.subscribe('similar', id);
+    let similar = Similar.findOne({pid: product._id});
+    let arr = [];
+    try{arr = similar.similarity; }catch(e){}
+
+    const toDelete = new Set(["","c","d","e"]);
+    const newArray = arr.filter(obj => !toDelete.has(obj.healthy));
+
+    let sliced = _.sortBy(newArray, 'healthy').slice(0, 6);
+
+    console.log(sliced);
+    if(sliced.length > 0) show = true;
+    return {array: sliced, show: show};
+  },
+  usersimilars: function(){
+    let product  = Session.get('detailed');
+    let category = product.categories_tags;
+
+    let drinks   = ["en:beverages","en:carbonated-drinks","en:sodas","en:sugared-beverages"]
+    let veggies  = ["en:plant-based-foods"];
+    let proteins = ["en:meals", "en:meats","en:seafood","en:dairies","en:cheeses", "fr:salade-de-poulet-curry", "en:soupe","en:seafood","en:fishes"]
+    let snacks   = ["en:desserts","en:salty-snacks", "en:waffles", "en:sugary-snacks", "en:chocolates"]
+    let id = "";
+    let show = false;
+    try { id = product._id.toString(); } catch(e){}
+
+    Meteor.subscribe('similar', id);
+    let similar = Similar.findOne({pid: product._id});
+    let arr = [];
+    try{arr = similar.similarity; }catch(e){}
+    let sliced = _.sortBy(arr, 'score').reverse().slice(0, 6);
+    if(sliced.length > 0) show = true;
+    return {array: sliced, show: show};
+  },
 });
 
 Template.detailed.events({

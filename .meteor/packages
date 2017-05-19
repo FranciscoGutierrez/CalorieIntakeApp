@@ -27,3 +27,4 @@ meteorhacks:search-source
 check # search-source required dependency
 ejson # search-source required dependency
 iron:router
+gwendall:body-events

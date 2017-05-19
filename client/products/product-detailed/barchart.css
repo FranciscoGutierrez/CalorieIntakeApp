@@ -1,4 +1,5 @@
 .barchart {
+  position: relative;
   display: flex;
   align-items: flex-end;
   border-bottom: 1px solid #c1c1c1;
@@ -6,6 +7,7 @@
   justify-content: space-around;
   transition: all 1.5s ease-out;
   height: 80px;
+  align-self: flex-end;
 }
 .bar {width: 20px;}
 
@@ -17,7 +19,7 @@
 
 .bar {
   transition: all 1.5s ease-out;
-  transition: max-height 1s; 
+  transition: max-height 1s;
   position: relative;
 }
 
@@ -29,3 +31,26 @@
   text-align: center;
   width: 100%;
 }
+
+.barchart .y-axis {
+  position: absolute;
+  left: -10px;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  justify-content: space-between;
+  z-index: 1;
+}
+
+.barchart .y-axis .text {
+  width: 100%;
+  border-bottom: 1px dotted #d1d1d1;
+  color: #c1c1c1;
+  font-size: 9px;
+}
+
+.barchart .y-axis .low  { position: absolute; bottom: 8px;  width: 100%;}
+.barchart .y-axis .med  { position: absolute; bottom: 40px; width: 100%;}
+.barchart .y-axis .high { position: absolute; bottom: 80px; width: 100%;}
