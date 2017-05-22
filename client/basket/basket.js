@@ -26,6 +26,49 @@ Template.myplate.helpers({
     let limits  = {veggies: 10, fruits: 40, proteins: 20, grains: 30, water: 50, isbad: 60 };
     let current = {vfill: 5, ffill: 20, pfill: 15, gfill: 20, wfill: 25, isbadfill: 40 };
     return _.extend(current, limits);
+  },
+  basket() {
+    let basket   = Session.get("basket");
+    let veggies  = [];
+    let fruits   = [];
+    let proteins = [];
+    let grains   = [];
+    let water    = [];
+    let junk     = [];
+    let fruits_tags   = ["en:fruits-in-syrup", "en:canned-fruits", "en:fruits-based-foods","en:fruit-preserves",  "en:fruits-and-vegetables-based-foods"];
+    let drinks_tags   = ["en:beverages","en:carbonated-drinks","en:sodas","en:sugared-beverages", "en:hot-beverages",  "en:non-sugared-beverages"];
+    let veggies_tags  = ["en:plant-based-foods", "en:fruits-and-vegetables-based-foods", "en:dehydrated-vegetable-soups", "en:vegetable-soups"];
+    let proteins_tags = ["en:meals", "en:meats","en:seafood","en:dairies","en:cheeses", "fr:salade-de-poulet-curry", "en:soupe","en:seafood","en:fishes"];
+    let snacks_tags   = ["en:desserts","en:salty-snacks", "en:waffles", "en:sugary-snacks", "en:chocolates", "en:ketchup"];
+    let grains_tags   = ["en:sandwiches", "en:cereal-bars",  "en:cereals-and-potatoes", "en:cereals-and-their-products", "en:breakfast-cereals"];
+    for (i = 0; i < basket.length; i++) {
+
+      let product = [];
+      try{ product = Products.findOne({_id: basket[i]}).categories_tags}catch(e){};
+      Meteor.subscribe('products',  basket[i]);
+
+      if(_.intersection(product, fruits_tags).length  > 0){
+        fruits.push(basket[i]);
+      }
+      if(_.intersection(product, veggies_tags).length  > 0){
+        veggies.push(basket[i]);
+      }
+      if(_.intersection(product, drinks_tags).length   > 0){
+        water.push(basket[i]);
+      }
+      if(_.intersection(product, snacks_tags).length   > 0){
+        junk.push(basket[i]);
+      }
+      if(_.intersection(product, grains_tags).length  > 0){
+        grains.push(basket[i]);
+      }
+      if(_.intersection(product, proteins_tags).length > 0){
+        proteins.push(basket[i]);
+      }
+    }
+
+    let data = {veggies: veggies, fruits: fruits, proteins:proteins, grains:grains, water:water, junk:junk};
+    return data;
   }
 });
 

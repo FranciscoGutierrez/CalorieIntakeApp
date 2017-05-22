@@ -55,7 +55,7 @@ Template.detailed.helpers({
     let product  = Session.get('detailed');
     let category = product.categories_tags;
     let drinks   = ["en:beverages","en:carbonated-drinks","en:sodas","en:sugared-beverages"]
-    let veggies  = ["en:plangetProductst-based-foods"];
+    let veggies  = ["en:plant-based-foods"];
     let proteins = ["en:meals", "en:meats","en:seafood","en:dairies","en:cheeses", "fr:salade-de-poulet-curry", "en:soupe","en:seafood","en:fishes"]
     let snacks   = ["en:desserts","en:salty-snacks", "en:waffles", "en:sugary-snacks", "en:chocolates"]
     let id = "";
@@ -173,6 +173,12 @@ Template.barchart.helpers({
       satfat: satfat,
       show: show
     };
-
+  },
+  isDrink: function(){
+    let id = Session.get("detailed")._id;
+    let product       = [];
+    let drinks_tags   = ["en:beverages","en:carbonated-drinks","en:sodas","en:sugared-beverages", "en:hot-beverages",  "en:non-sugared-beverages"];
+    try{ product = Products.findOne({_id: id}).categories_tags}catch(e){};
+    return (_.intersection(product, drinks_tags).length   > 0)
   }
 });

@@ -10,7 +10,7 @@
   margin-left: 16px;
   border-radius: 10px;
   min-height: 200px;
-  justify-content: space-between;
+  justify-content: flex-start;
   -webkit-transition: all 0.7s ease-out;
    -moz-transition:   all 0.7s ease-out;
     -ms-transition:   all 0.7s ease-out;
@@ -93,6 +93,7 @@
   min-height: 24px;
   max-width:  24px;
   max-height: 24px;
+  margin-top: 2px;
 }
 
 .fav-product.small:hover {
@@ -111,13 +112,14 @@
 .myplate {
   align-self: center;
   width: 480px !important;
-  border-bottom: 1px solid #424242;
+  border-bottom:0;
 }
 
 .myplate .bar span {
   width: 80px !important;
   bottom: -15px;
   font-size: 11px;
+  border-top: 1px solid black;
 }
 
 .myplate .bar {
@@ -146,3 +148,24 @@
 .myplate .b-gra-fill {background: #A1887F;}
 .myplate .b-wat-fill {background: #90CAF9;}
 .myplate .b-ext-fill {background: #B0BEC5;}
+
+
+.basket-products {
+  margin-top: 20px;
+}
+
+.bar-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-self: baseline;
+  position: relative;
+}
+
+.bar-container iron-icon {
+  position: absolute;
+  top:-24px;
+  height: 16px;
+  width: 16px;
+  color: #FBC02D;
+}

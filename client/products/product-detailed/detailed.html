@@ -12,11 +12,13 @@
           {{#if show}}
           <div class="animated fadeIn row nutri-row"> <!-- justify-content: center; -->
             {{> barchart}}
-            <img class="product-grade" src="{{grade}}"/>
-            <div class="ingredients">
-              <h2>Ingredients</h2>
-              <div class="ingredients-text">
-              {{data.ingredients_text}}
+            <div class="ingredients-nutriscore">
+              <img class="product-grade" src="{{grade}}"/>
+              <div class="ingredients">
+                <h2>Ingredients</h2>
+                <div class="ingredients-text">
+                  {{data.ingredients_text}}
+                </div>
               </div>
             </div>
           </div>
@@ -28,34 +30,34 @@
       <paper-button class="add-product">{{buttonText}}</paper-button>
     </div>
     <div class="recommendations">
-    {{#if similars.show}}
-    <div class="others rs-container">
-      <h2 style="margin-top: 16px;">Similar Products</h2>
-      <div class="row">
-        {{#each similars.array}}
-        {{> similarProducts}}
-        {{/each}}
+      {{#if similars.show}}
+      <div class="others rs-container">
+        <h2 style="margin-top: 16px;">Similar Products</h2>
+        <div class="row">
+          {{#each similars.array}}
+          {{> similarProducts}}
+          {{/each}}
+        </div>
       </div>
-    </div>
-    {{/if}}
-    {{#if userDashboard}}
-    <div class="healthy-based rs-container">
-      <h2 style="margin-top: 16px;">Healthy Alternatives</h2>
-      <div class="row">
-        {{#each healthysimilars.array}}
-        {{> similarProducts}}
-        {{/each}}
+      {{/if}}
+      {{#if userDashboard}}
+      <div class="healthy-based rs-container">
+        <h2 style="margin-top: 16px;">Healthy Alternatives</h2>
+        <div class="row">
+          {{#each healthysimilars.array}}
+          {{> similarProducts}}
+          {{/each}}
+        </div>
       </div>
-    </div>
-    <div class="favorites-based rs-container">
-      <h2 style="margin-top: 16px;">Based in your Profile</h2>
-      <div class="row">
-        {{#each usersimilars.array}}
-        {{> similarProducts}}
-        {{/each}}
+      <div class="favorites-based rs-container">
+        <h2 style="margin-top: 16px;">Based in your Profile</h2>
+        <div class="row">
+          {{#each usersimilars.array}}
+          {{> similarProducts}}
+          {{/each}}
+        </div>
       </div>
-    </div>
-    {{/if}}
+      {{/if}}
     </div>
   </div>
 </template>
@@ -83,6 +85,9 @@
     <div class="bar b-sug" style="height:{{data.sugars}}px;"><span>Sugar</span></div>
     <div class="bar b-sat" style="height:{{data.fat}}px;"><span>Fat</span></div>
     <div class="bar b-satfat" style="height:{{data.satfat}}px;"><span>Sat.Fat</span></div>
+    {{#unless isDrink}}
+    <div class="bar-footnote">*Based on 100g portions.</div>
+    {{/unless}}
   </div>
   {{/if}}
 </template>

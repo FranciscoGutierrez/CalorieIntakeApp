@@ -56,3 +56,20 @@
 .barchart .y-axis .low  { position: absolute; bottom: 8px;  width: 100%;}
 .barchart .y-axis .med  { position: absolute; bottom: 40px; width: 100%;}
 .barchart .y-axis .high { position: absolute; bottom: 80px; width: 100%;}
+.barchart .bar-footnote {
+  display: flex;
+  font-size: 11px;
+  font-style: italic;
+  color: #a1a1a1;
+  justify-content: space-between;
+  align-items: center;
+  cursor: default;
+  position: absolute;
+  bottom: -30px;
+  left: 0;
+}
+
+.product-detailed .ingredients-nutriscore {
+  display: flex;
+  flex-direction: column; 
+}
