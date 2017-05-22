@@ -111,13 +111,13 @@
 
 .product-detailed .nutri-row {
   transition: all 1.5s ease-out;
-  margin-top: 22px;
+  margin-top: 8px;
   justify-content: flex-start;
-  margin-left: 10px;
+  display: flex;
 }
 
 .nutri-row .product-grade {
-  margin-left: 8px;
+  margin-left: 0px;
 }
 
 .product-detailed .product-description {
@@ -140,7 +140,7 @@
 }
 
 .product-detailed .ingredients {
-  margin-left: 10px;
+  margin-left: 4px;
 }
 
 .product-detailed .ingredients h2 {
@@ -149,7 +149,30 @@
 }
 
 .product-detailed .ingredients-text {
-  width: 375px;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.ingredient-tag {
+  position: relative;
+  cursor: pointer;
+  color: #8c8c8c;
+  padding: 1px;
+  margin:  1px;
   font-size: 11px;
-  color: #b1b1b1;
+  display:   flex;
+  border-radius: 4px;
+  border: 1px solid #cccccc;
+  text-transform: capitalize;
+  max-width:     242px;
+  overflow:      hidden;
+  white-space:   nowrap;
+  text-overflow: ellipsis;
+  padding-left:  4px;
+  padding-right: 4px;
+}
+
+.nodata-legend {
+  color: #c1c1c1;
+  font-size: 11px;
 }

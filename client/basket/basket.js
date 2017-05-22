@@ -40,9 +40,9 @@ Template.myplate.helpers({
     let veggies_tags  = ["en:plant-based-foods", "en:fruits-and-vegetables-based-foods", "en:dehydrated-vegetable-soups", "en:vegetable-soups"];
     let proteins_tags = ["en:meals", "en:meats","en:seafood","en:dairies","en:cheeses", "fr:salade-de-poulet-curry", "en:soupe","en:seafood","en:fishes"];
     let snacks_tags   = ["en:desserts","en:salty-snacks", "en:waffles", "en:sugary-snacks", "en:chocolates", "en:ketchup"];
-    let grains_tags   = ["en:sandwiches", "en:cereal-bars",  "en:cereals-and-potatoes", "en:cereals-and-their-products", "en:breakfast-cereals"];
-    for (i = 0; i < basket.length; i++) {
+    let grains_tags   = ["en:sandwiches", "en:cereal-bars",  "en:cereals-and-potatoes", "en:cereals-and-their-products", "en:breakfast-cereals", "en:cereals-and-potatoes", "en:breads", "en:baguettes"];
 
+    for (i = 0; i < basket.length; i++) {
       let product = [];
       try{ product = Products.findOne({_id: basket[i]}).categories_tags}catch(e){};
       Meteor.subscribe('products',  basket[i]);

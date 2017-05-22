@@ -9,20 +9,23 @@
           <div class="product-name">{{data.product_name}}</div>
           <div class="product-id">[{{data.id}}]</div>
           <div class="product-description">{{data.generic_name}}</div>
-          {{#if show}}
-          <div class="animated fadeIn row nutri-row"> <!-- justify-content: center; -->
-            {{> barchart}}
-            <div class="ingredients-nutriscore">
-              <img class="product-grade" src="{{grade}}"/>
-              <div class="ingredients">
-                <h2>Ingredients</h2>
-                <div class="ingredients-text">
-                  {{data.ingredients_text}}
-                </div>
-              </div>
+          <div class="ingredients-nutriscore">
+            <div class="ingredients-text">
+              {{#each ingredients_tags.data}}
+              {{> ingredienttag}}
+              {{/each}}
             </div>
           </div>
-          {{/if}}
+          <div class="animated fadeIn nutri-row">
+            {{#if show}}
+            {{> barchart}}
+            {{/if}}
+            {{#if grade.show}}
+            <img class="product-grade" src="{{grade.grade}}"/>
+            {{else}}
+            <div class="nodata-legend">Insufficient data.</div>
+            {{/if}}
+          </div>
           <!-- <div class="product-keywords">{{data._keywords}}</div> -->
           <!-- <div class="product-category">{{data.categories}}</div> -->
         </div>
@@ -88,6 +91,15 @@
     {{#unless isDrink}}
     <div class="bar-footnote">*Based on 100g portions.</div>
     {{/unless}}
+  </div>
+  {{/if}}
+</template>
+
+<template name="ingredienttag">
+  {{#if ingredients.show}}
+  <div class="ingredient-tag">
+    {{ingredients.text}}
+    <paper-ripple></paper-ripple>
   </div>
   {{/if}}
 </template>

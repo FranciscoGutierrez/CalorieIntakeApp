@@ -6,9 +6,12 @@
   width: 240px;
   justify-content: space-around;
   transition: all 1.5s ease-out;
-  height: 80px;
+  height: 90px;
   align-self: flex-end;
+  margin-left: 12px;
+  margin-bottom: 24px;
 }
+
 .bar {width: 20px;}
 
 .barchart .b-cal {background: #CDDC39;}
@@ -25,7 +28,6 @@
 }
 
 .bar span {
-  width: 40px !important;
   position: absolute;
   bottom: -15px;
   font-size: 11px;
@@ -49,8 +51,8 @@
 .barchart .y-axis .text {
   width: 100%;
   border-bottom: 1px dotted #d1d1d1;
-  color: #c1c1c1;
-  font-size: 9px;
+  color: #a7a7a7;
+  font-size: 10px;
 }
 
 .barchart .y-axis .low  { position: absolute; bottom: 8px;  width: 100%;}
@@ -66,10 +68,12 @@
   cursor: default;
   position: absolute;
   bottom: -30px;
-  left: 0;
+  right: 0;
 }
 
 .product-detailed .ingredients-nutriscore {
   display: flex;
-  flex-direction: column; 
+  flex-direction: column;
+  margin-top: 4px;
+  margin-bottom: 4px;
 }

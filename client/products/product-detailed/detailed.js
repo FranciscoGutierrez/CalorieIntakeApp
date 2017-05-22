@@ -4,6 +4,12 @@ Template.detailed.helpers({
   data: function(){
     return Session.get("detailed");
   },
+  ingredients_tags: function(){
+    let tags = Session.get("detailed").ingredients_tags;
+    let show = true;
+    if (tags.length < 1 ) show = false;
+    return {data: _.uniq(tags, false).slice(1,8), show: show};
+  },
   similars: function(){
     let product  = Session.get('detailed');
     let category = product.categories_tags;
@@ -29,9 +35,13 @@ Template.detailed.helpers({
   },
   grade: function(){
     let grade  = Session.get('detailed').nutrition_grade_fr;
-    if(grade == "") grade = "nutriscore/x.svg"
+    let show   = true;
+    if((grade == "") || (grade == undefined)){
+       grade = ""
+       show  = false;
+     }
     grade = "nutriscore/"+grade+".svg"
-    return grade;
+    return {grade: grade, show: show};
   },
   show: function() {
     let levels  = Session.get('detailed').nutrient_levels;
@@ -181,4 +191,13 @@ Template.barchart.helpers({
     try{ product = Products.findOne({_id: id}).categories_tags}catch(e){};
     return (_.intersection(product, drinks_tags).length   > 0)
   }
+});
+
+Template.ingredienttag.helpers({
+  ingredients: function(){
+    let text = this.valueOf().replace(/-/g, "");
+    let show = true;
+    if(text == "") show = false;
+    return {text:text, show:show};
+  },
 });

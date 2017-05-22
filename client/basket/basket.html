@@ -8,11 +8,11 @@
     {{#if dashboard}}
     {{> myplate}}
     {{/if}}
-    <!-- <div class="row">
+    <div class="row">
       {{#each basket}}
       {{> favorite}}
       {{/each}}
-    </div> -->
+    </div>
     {{#unless dashboard}}
     <paper-button class="save-profile">Go to dashboard</paper-button>
     {{/unless}}
@@ -36,11 +36,11 @@
         <div class="bar-fill b-veg-fill" style="height:{{data.vfill}}px;"></div>
         <span>Vegetables</span>
       </div>
-      <div class="basket-products">
+      <!-- <div class="basket-products">
         {{#each basket.veggies}}
         {{> favorite}}
         {{/each}}
-      </div>
+      </div> -->
     </div>
 
     <div class="bar-container">
@@ -48,11 +48,11 @@
         <div class="bar-fill b-fru-fill" style="height:{{data.ffill}}px;"></div>
         <span>Fruits</span>
       </div>
-      <div class="basket-products">
+      <!-- <div class="basket-products">
         {{#each basket.fruits}}
         {{> favorite}}
         {{/each}}
-      </div>
+      </div> -->
     </div>
 
     <div class="bar-container">
@@ -60,11 +60,11 @@
         <div class="bar-fill b-pro-fill" style="height:{{data.pfill}}px;"></div>
         <span>Proteins</span>
       </div>
-      <div class="basket-products">
+      <!-- <div class="basket-products">
         {{#each basket.proteins}}
         {{> favorite}}
         {{/each}}
-      </div>
+      </div> -->
     </div>
 
     <div class="bar-container">
@@ -72,11 +72,11 @@
         <div class="bar-fill b-gra-fill" style="height:{{data.gfill}}px;"></div>
         <span>Whole Grains</span>
       </div>
-      <div class="basket-products">
+      <!-- <div class="basket-products">
         {{#each basket.grains}}
         {{> favorite}}
         {{/each}}
-      </div>
+      </div> -->
     </div>
 
     <div class="bar-container">
@@ -84,25 +84,25 @@
         <div class="bar-fill b-wat-fill" style="height:{{data.wfill}}px;"></div>
         <span>Water</span>
       </div>
-      <div class="basket-products">
+      <!-- <div class="basket-products">
         {{#each basket.water}}
         {{> favorite}}
         {{/each}}
-      </div>
+      </div> -->
     </div>
 
-    <div class="bar-container">
+    <!-- <div class="bar-container">
       <div class="bar b-ext" style="height:{{data.isbad}}px;">
         <iron-icon icon="warning"></iron-icon>
         <div class="bar-fill b-ext-fill" style="height:{{data.isbadfill}}px;"></div>
         <span>Unhealthy</span>
-      </div>
-      <div class="basket-products">
+      </div> -->
+      <!-- <div class="basket-products">
         {{#each basket.junk}}
         {{> favorite}}
         {{/each}}
-      </div>
-    </div>
+      </div> -->
+    <!-- </div> -->
 
   </div>
 </template>
