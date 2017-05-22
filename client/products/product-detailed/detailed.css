@@ -66,7 +66,7 @@
   min-height: 40px;
   max-height: 40px;
   border-radius: 10px;
-  align-self: flex-end;
+  align-self: flex-start;
 }
 
 .product-detailed .product-id {
@@ -117,7 +117,7 @@
 }
 
 .nutri-row .product-grade {
-  margin-left: 16px;
+  margin-left: 8px;
 }
 
 .product-detailed .product-description {
