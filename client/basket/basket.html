@@ -10,7 +10,7 @@
     {{/if}}
     <div class="row">
       {{#each basket}}
-      {{> favorite}}
+      {{> basketItem}}
       {{/each}}
     </div>
     {{#unless dashboard}}
@@ -20,7 +20,7 @@
 </template>
 
 <template name="favorite">
-  <div class="fav-product {{data.size}}">
+  <div class="fav-product">
     <img class="fav-image animated fadeIn" src="{{data.image}}"/>
     <div class="fav-name">{{data.name}}</div>
     <paper-ripple></paper-ripple>
@@ -28,81 +28,86 @@
 </template>
 
 <template name="myplate">
-  <div class="myplate barchart">
+  <div class="myplate">
     <!-- <div class="bar b-cal" style="height:{{data.energy}}px;"></div> -->
 
     <div class="bar-container">
-      <div class="bar b-veg" style="height:{{data.veggies}}px;">
-        <div class="bar-fill b-veg-fill" style="height:{{data.vfill}}px;"></div>
-        <span>Vegetables</span>
-      </div>
-      <!-- <div class="basket-products">
+      <div class="basket-products">
         {{#each basket.veggies}}
-        {{> favorite}}
+        {{> dot name="veggies"}}
         {{/each}}
-      </div> -->
+      </div>
+      <span>Vegetables</span>
     </div>
 
     <div class="bar-container">
-      <div class="bar b-fru" style="height:{{data.fruits}}px;">
-        <div class="bar-fill b-fru-fill" style="height:{{data.ffill}}px;"></div>
-        <span>Fruits</span>
-      </div>
-      <!-- <div class="basket-products">
+      <div class="basket-products">
         {{#each basket.fruits}}
-        {{> favorite}}
+        {{> dot name="fruits"}}
         {{/each}}
-      </div> -->
+      </div>
+      <span>Fruits</span>
     </div>
 
     <div class="bar-container">
-      <div class="bar b-pro" style="height:{{data.proteins}}px;">
-        <div class="bar-fill b-pro-fill" style="height:{{data.pfill}}px;"></div>
-        <span>Proteins</span>
-      </div>
-      <!-- <div class="basket-products">
+      <div class="basket-products">
         {{#each basket.proteins}}
-        {{> favorite}}
+        {{> dot name="proteins"}}
         {{/each}}
-      </div> -->
+      </div>
+      <span>Proteins</span>
     </div>
 
     <div class="bar-container">
-      <div class="bar b-gra" style="height:{{data.grains}}px;">
-        <div class="bar-fill b-gra-fill" style="height:{{data.gfill}}px;"></div>
-        <span>Whole Grains</span>
-      </div>
-      <!-- <div class="basket-products">
+      <div class="basket-products">
         {{#each basket.grains}}
-        {{> favorite}}
+        {{> dot name="grains"}}
         {{/each}}
-      </div> -->
+      </div>
+      <span>Whole Grains</span>
     </div>
 
     <div class="bar-container">
-      <div class="bar b-wat" style="height:{{data.water}}px;">
-        <div class="bar-fill b-wat-fill" style="height:{{data.wfill}}px;"></div>
-        <span>Water</span>
-      </div>
-      <!-- <div class="basket-products">
+      <div class="basket-products">
         {{#each basket.water}}
-        {{> favorite}}
+        {{> dot name="water"}}
         {{/each}}
-      </div> -->
+      </div>
+      <span>Water</span>
     </div>
 
-    <!-- <div class="bar-container">
-      <div class="bar b-ext" style="height:{{data.isbad}}px;">
-        <iron-icon icon="warning"></iron-icon>
-        <div class="bar-fill b-ext-fill" style="height:{{data.isbadfill}}px;"></div>
-        <span>Unhealthy</span>
-      </div> -->
-      <!-- <div class="basket-products">
-        {{#each basket.junk}}
-        {{> favorite}}
+    <div class="bar-container">
+      <div class="basket-products">
+        {{#each basket.dairy}}
+        {{> dot name="dairy"}}
         {{/each}}
-      </div> -->
-    <!-- </div> -->
+      </div>
+      <span>Dairy</span>
+    </div>
 
+
+    <div class="bar-container">
+      <div class="basket-products">
+        {{#each basket.junk}}
+        {{> dot name="junk"}}
+        {{/each}}
+      </div>
+      <span>Others</span>
+    </div>
+
+  </div>
+</template>
+
+<template name="dot">
+  <div class="dot-product {{name}}">
+    <paper-ripple></paper-ripple>
+  </div>
+</template>
+
+
+<template name="basketItem">
+  <div class="fav-product">
+    <img class="fav-image animated fadeIn" src="{{data.image}}"/>
+    <paper-ripple></paper-ripple>
   </div>
 </template>

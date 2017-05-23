@@ -35,12 +35,15 @@ Template.myplate.helpers({
     let grains   = [];
     let water    = [];
     let junk     = [];
-    let fruits_tags   = ["en:fruits-in-syrup", "en:canned-fruits", "en:fruits-based-foods","en:fruit-preserves",  "en:fruits-and-vegetables-based-foods"];
+    let dairy    = [];
+    let fruits_tags   = ["en:fruits-in-syrup", "en:canned-fruits", "en:fruits-based-foods","en:fruit-preserves"];
+    let veggies_tags  = ["en:plant-based-foods", "en:dehydrated-vegetable-soups", "en:vegetable-soups", "nl:vegetarian-meatballs",  "en:prepared-vegetables", "fr:ratatouilles"];
     let drinks_tags   = ["en:beverages","en:carbonated-drinks","en:sodas","en:sugared-beverages", "en:hot-beverages",  "en:non-sugared-beverages"];
-    let veggies_tags  = ["en:plant-based-foods", "en:fruits-and-vegetables-based-foods", "en:dehydrated-vegetable-soups", "en:vegetable-soups"];
-    let proteins_tags = ["en:meals", "en:meats","en:seafood","en:dairies","en:cheeses", "fr:salade-de-poulet-curry", "en:soupe","en:seafood","en:fishes"];
-    let snacks_tags   = ["en:desserts","en:salty-snacks", "en:waffles", "en:sugary-snacks", "en:chocolates", "en:ketchup"];
+    let proteins_tags = ["en:meats","en:seafood", "fr:salade-de-poulet-curry", "en:soupe","en:seafood","en:fishes"];
+    let snacks_tags   = ["en:desserts","en:salty-snacks", "en:waffles", "en:sugary-snacks", "en:chocolates", "en:ketchup", "en:jams"];
     let grains_tags   = ["en:sandwiches", "en:cereal-bars",  "en:cereals-and-potatoes", "en:cereals-and-their-products", "en:breakfast-cereals", "en:cereals-and-potatoes", "en:breads", "en:baguettes"];
+    let dairy_tags    = ["fr:fromages-blancs", "en:dairies", "en:cheeses", "en:cow-cheeses", "en:uncooked-pressed-cheeses", "fr:fromage-a-pate-dure", "en:yogurts", "en:fruit-yogurts", "fr:yaourts-sur-lit-de-fruits"];
+
 
     for (i = 0; i < basket.length; i++) {
       let product = [];
@@ -65,9 +68,12 @@ Template.myplate.helpers({
       if(_.intersection(product, proteins_tags).length > 0){
         proteins.push(basket[i]);
       }
+      if(_.intersection(product, dairy_tags).length > 0){
+        dairy.push(basket[i]);
+      }
     }
 
-    let data = {veggies: veggies, fruits: fruits, proteins:proteins, grains:grains, water:water, junk:junk};
+    let data = {veggies: veggies, fruits: fruits, proteins:proteins, grains:grains, water:water, dairy: dairy, junk:junk};
     return data;
   }
 });

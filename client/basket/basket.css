@@ -12,10 +12,10 @@
   min-height: 200px;
   justify-content: flex-start;
   -webkit-transition: all 0.7s ease-out;
-   -moz-transition:   all 0.7s ease-out;
-    -ms-transition:   all 0.7s ease-out;
-     -o-transition:   all 0.7s ease-out;
-        transition:   all 0.7s ease-out;
+  -moz-transition:   all 0.7s ease-out;
+  -ms-transition:   all 0.7s ease-out;
+  -o-transition:   all 0.7s ease-out;
+  transition:   all 0.7s ease-out;
 }
 
 .basket-container .amount {
@@ -27,7 +27,7 @@
   color: #3f51b5;
 }
 
-.basket-container .amount span {
+.basket-container span {
   color: gray;
 }
 
@@ -38,10 +38,10 @@
 .basket-container .row {
   display: flex;
   flex-direction: row;
-  margin-top: 16px;
   flex-wrap: wrap;
   position: relative;
-  justify-content: flex-start;
+  justify-content: center;
+  margin-top: 10px;
 }
 
 .fav-product {
@@ -91,11 +91,10 @@
 }
 
 .fav-product.small {
-  min-width:  32px;
-  min-height: 32px;
-  max-width:  32px;
-  max-height: 32px;
-  margin-top: 2px;
+  min-width:  64px;
+  min-height: 64px;
+  max-width:  64px;
+  max-height: 64px;
 }
 
 .fav-product.small:hover {
@@ -128,15 +127,20 @@
 
 .myplate {
   align-self: center;
-  width: 480px !important;
-  border-bottom:0;
+  position: relative;
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-around;
+  transition: all 1.5s ease-out;
+  height: 90px;
 }
 
-.myplate .bar span {
-  width: 80px !important;
+.myplate .bar-container span {
+  width: 68px !important;
   bottom: -15px;
   font-size: 11px;
-  border-top: 1px solid #909090;
+  text-align: center;
+  border-top: 1px solid #c1c1c1;
 }
 
 .myplate .bar {
@@ -168,14 +172,15 @@
 
 
 .basket-products {
-  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 .bar-container {
   display: flex;
   flex-direction: column;
-  justify-content: flex-end;
-  align-self: baseline;
   position: relative;
 }
 
@@ -186,3 +191,32 @@
   width: 16px;
   color: #FBC02D;
 }
+
+.dot-product {
+  min-width:  12px;
+  min-height: 12px;
+  max-width:  12px;
+  max-height: 12px;
+  /*border-radius: 50%;*/
+  z-index: 1;
+  /*margin: 1px;*/
+  cursor: pointer;
+  border: 2px solid white;
+  position: relative;
+}
+
+.dot-product.water   {background: #90CAF9; border: 2px solid #90CAF9; }
+.dot-product.grains  {background: #A1887F; border: 2px solid #A1887F; }
+.dot-product.proteins{background: #FFCC80; border: 2px solid #FFCC80; }
+.dot-product.fruits  {background: #e57373; border: 2px solid #e57373; }
+.dot-product.veggies {background: #81C784; border: 2px solid #81C784; }
+.dot-product.junk    {background: #B0BEC5; border: 2px solid #B0BEC5; }
+.dot-product.dairy   {background: #9575CD; border: 2px solid #9575CD; }
+
+.dot-product.water:hover   {border: 2px solid #1976D2;}
+.dot-product.grains:hover  {border: 2px solid #4E342E;}
+.dot-product.proteins:hover{border: 2px solid #F9A825;}
+.dot-product.fruits:hover  {border: 2px solid #c62828;}
+.dot-product.veggies:hover {border: 2px solid #2E7D32;}
+.dot-product.junk:hover    {border: 2px solid #455A64;}
+.dot-product.dairy:hover   {border: 2px solid #512DA8;}

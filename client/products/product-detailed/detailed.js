@@ -5,9 +5,11 @@ Template.detailed.helpers({
     return Session.get("detailed");
   },
   ingredients_tags: function(){
-    let tags = Session.get("detailed").ingredients_tags;
+    let tags = []
+    try{tags = Session.get("detailed").ingredients_tags;} catch(e){}
     let show = true;
-    if (tags.length < 1 ) show = false;
+    if (tags == undefined) tags = [];
+    if (tags.length < 1 )  show = false;
     return {data: _.uniq(tags, false).slice(1,8), show: show};
   },
   similars: function(){
@@ -37,9 +39,9 @@ Template.detailed.helpers({
     let grade  = Session.get('detailed').nutrition_grade_fr;
     let show   = true;
     if((grade == "") || (grade == undefined)){
-       grade = ""
-       show  = false;
-     }
+      grade = ""
+      show  = false;
+    }
     grade = "nutriscore/"+grade+".svg"
     return {grade: grade, show: show};
   },
@@ -51,10 +53,20 @@ Template.detailed.helpers({
   },
   buttonText: function(){
     let text = "Add to Favorites";
+    let action = "add";
     if(Session.get("user") != "profile") {
       text = "Add to My Plate";
+      if(_.include(Session.get("basket"), Session.get("detailed")._id)) {
+        text = "Remove from My Plate";
+        action = "delete";
+      }
+    } else {
+      if(_.include(Session.get("basket"), Session.get("detailed")._id)) {
+        text = "Remove from My Favorites";
+        action = "delete";
+      }
     }
-    return text;
+    return {text:text, action:action};
   },
   userDashboard: function(){
     let dashboard = true;
@@ -104,14 +116,19 @@ Template.detailed.helpers({
 Template.detailed.events({
   'click .add-product'(event, instance){
     let basket = Session.get("basket");
-    //let calories = Session.get("calories");
-    if (basket.length <1) {
+    if ((basket.length <1) && ($('.basket-container').length == 0)) {
       Blaze.render(Template.basket, $(".top-container")[0]);
     }
-    //calories = calories + parseInt(instance.data.energy);
     basket.push(Session.get("detailed")._id);
     Session.set("basket",_.uniq(basket));
-    //Session.set("calories",calories);
+  },
+  'click .delete-product'(event, instance){
+    let basket = Session.get("basket");
+    let detail = Session.get("detailed")._id;
+    if(_.include(basket, detail)) {
+      basket = _.without(basket, _.findWhere(basket, detail));
+    }
+    Session.set("basket",_.uniq(basket));
   }
 });
 

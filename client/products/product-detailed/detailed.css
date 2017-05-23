@@ -91,6 +91,15 @@
   box-shadow: 1px 1px 10px #888888 !important;
 }
 
+.product-detailed .delete-product {
+   background: #ef5350 !important;
+   box-shadow: 1px 1px 10px #888888 !important;
+ }
+
+ .product-detailed .delete-product:hover {
+   box-shadow: 1px 1px 20px #888888 !important;
+ }
+
 .product-detailed .add-product:hover {
   box-shadow: 1px 1px 20px #888888 !important;
 }
@@ -170,6 +179,10 @@
   text-overflow: ellipsis;
   padding-left:  4px;
   padding-right: 4px;
+}
+
+.ingredient-tag:hover{
+  color: #424242;
 }
 
 .nodata-legend {

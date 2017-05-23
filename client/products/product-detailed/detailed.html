@@ -30,7 +30,7 @@
           <!-- <div class="product-category">{{data.categories}}</div> -->
         </div>
       </div>
-      <paper-button class="add-product">{{buttonText}}</paper-button>
+      <paper-button class="{{buttonText.action}}-product">{{buttonText.text}}</paper-button>
     </div>
     <div class="recommendations">
       {{#if similars.show}}
