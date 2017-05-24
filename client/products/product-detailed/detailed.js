@@ -116,9 +116,9 @@ Template.detailed.helpers({
 Template.detailed.events({
   'click .add-product'(event, instance){
     let basket = Session.get("basket");
-    if ((basket.length <1) && ($('.basket-container').length == 0)) {
-      Blaze.render(Template.basket, $(".top-container")[0]);
-    }
+    // if ((basket.length <1) && ($('.basket-container').length == 0)) {
+    //   Blaze.render(Template.basket, $(".top-container")[0]);
+    // }
     basket.push(Session.get("detailed")._id);
     Session.set("basket",_.uniq(basket));
   },

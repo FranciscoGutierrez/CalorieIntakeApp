@@ -41,7 +41,7 @@
   flex-wrap: wrap;
   position: relative;
   justify-content: center;
-  margin-top: 10px;
+  margin-top: 16px;
 }
 
 .fav-product {
@@ -141,7 +141,14 @@
   font-size: 11px;
   text-align: center;
   border-top: 1px solid #c1c1c1;
+  cursor: default;
 }
+
+.myplate .bar-container span:hover {
+  cursor: pointer;
+  color: #424242;
+}
+
 
 .myplate .bar {
   display: flex;
@@ -205,18 +212,54 @@
   position: relative;
 }
 
-.dot-product.water   {background: #90CAF9; border: 2px solid #90CAF9; }
-.dot-product.grains  {background: #A1887F; border: 2px solid #A1887F; }
-.dot-product.proteins{background: #FFCC80; border: 2px solid #FFCC80; }
-.dot-product.fruits  {background: #e57373; border: 2px solid #e57373; }
-.dot-product.veggies {background: #81C784; border: 2px solid #81C784; }
-.dot-product.junk    {background: #B0BEC5; border: 2px solid #B0BEC5; }
-.dot-product.dairy   {background: #9575CD; border: 2px solid #9575CD; }
+.dot-product.water   {background: #90CAF9;  }
+.dot-product.grains  {background: #A1887F;  }
+.dot-product.proteins{background: #FFCC80;  }
+.dot-product.fruits  {background: #e57373;  }
+.dot-product.veggies {background: #81C784;  }
+.dot-product.junk    {background: #B0BEC5;  }
+.dot-product.dairy   {background: #9575CD;  }
+/*
+border-color: #90CAF9;
+border-color: #A1887F;
+border-color: #FFCC80;
+border-color: #e57373;
+border-color: #81C784;
+border-color: #B0BEC5;
+border-color: #9575CD;*/
 
-.dot-product.water:hover   {border: 2px solid #1976D2;}
-.dot-product.grains:hover  {border: 2px solid #4E342E;}
-.dot-product.proteins:hover{border: 2px solid #F9A825;}
-.dot-product.fruits:hover  {border: 2px solid #c62828;}
-.dot-product.veggies:hover {border: 2px solid #2E7D32;}
-.dot-product.junk:hover    {border: 2px solid #455A64;}
-.dot-product.dairy:hover   {border: 2px solid #512DA8;}
+/*.dot-product.water:hover   {border-color: #1976D2;}
+.dot-product.grains:hover  {border-color: #4E342E;}
+.dot-product.proteins:hover{border-color: #F9A825;}
+.dot-product.fruits:hover  {border-color: #c62828;}
+.dot-product.veggies:hover {border-color: #2E7D32;}
+.dot-product.junk:hover    {border-color: #455A64;}
+.dot-product.dairy:hover   {border-color: #512DA8;}*/
+
+
+.basket-product .fav-image{
+  min-width:  56px;
+  min-height: 56px;
+  max-width:  56px;
+  max-height: 56px;
+  object-fit: cover;
+  background: #fcfcfc;
+  border-radius: 50%;
+}
+
+.basket-product {
+  min-width:  56px;
+  min-height: 56px;
+  max-width:  56px;
+  max-height: 56px;
+  position: relative;
+  border-radius: 50%;
+  cursor: pointer;
+  margin: 0px 4px 0px 4px;
+  border: 3px solid white;
+}
+
+.basket-product:hover {
+  border: 3px solid #B0BEC5;
+  border-radius: 50%;
+}

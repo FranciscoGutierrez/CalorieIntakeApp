@@ -36,7 +36,7 @@ Template.myplate.helpers({
     let water    = [];
     let junk     = [];
     let dairy    = [];
-    let fruits_tags   = ["en:fruits-in-syrup", "en:canned-fruits", "en:fruits-based-foods","en:fruit-preserves"];
+    let fruits_tags   = ["en:fruits-in-syrup", "en:canned-fruits", "en:fruits-based-foods","en:fruit-preserves", "en:fruit-based-beverages", "en:fruit-juices", "en:fruit-juices-and-nectars"];
     let veggies_tags  = ["en:plant-based-foods", "en:dehydrated-vegetable-soups", "en:vegetable-soups", "nl:vegetarian-meatballs",  "en:prepared-vegetables", "fr:ratatouilles"];
     let drinks_tags   = ["en:beverages","en:carbonated-drinks","en:sodas","en:sugared-beverages", "en:hot-beverages",  "en:non-sugared-beverages"];
     let proteins_tags = ["en:meats","en:seafood", "fr:salade-de-poulet-curry", "en:soupe","en:seafood","en:fishes"];
@@ -104,9 +104,9 @@ Template.basket.events({
       favorites:favorites}
       Users.insert(user, function(){
         $('.save-profile').fadeOut(function(){
-           $(".analytics").remove();
-           $(".basket-container").remove();
-           $(".product-container").remove();
+          $(".analytics").remove();
+          $(".basket-container").remove();
+          $(".product-container").remove();
           Router.go('/'+String(id));
         });
       });
@@ -125,11 +125,73 @@ Template.basket.events({
       Meteor.subscribe('products', id);
       Meteor.subscribe('images', Number(id));
       let name  = "";
+      try{name  = Products.findOne({_id: id}).product_name; } catch(e){}
+      let size = "small";
+      if(Session.get("user") == "profile") size = "normal";
+      return {name: name, image: id, size:size};
+    }
+  });
+
+  Template.basketItem.helpers({
+    data: function() {
+      let id = this.toString();
+      Meteor.subscribe('products', id);
+      Meteor.subscribe('images', Number(id));
+      let name  = "";
       let img   = "";
       try{name  = Products.findOne({_id: id}).product_name; } catch(e){}
       try{img   = Images.findOne({id: Number(id)}).url;     } catch(e){}
       let size = "small";
       if(Session.get("user") == "profile") size = "normal";
-      return {name: name, image: img, size:size};
+      return {name: name, image: img, size:size, id:id};
+    }
+  });
+
+  Template.basketItem.events({
+    'click .basket-product'(event, instance){
+      let id = this.toString();
+      Meteor.subscribe('products', id);
+      Meteor.subscribe('images', Number(id));
+      Session.set("detailed",Products.findOne({_id : id}));
+    },
+    'mouseenter .basket-product'(event, instance){
+      let id = instance.data;
+      $(".product-"+id).css({ "border-color": "#3F51B5"});
+      $(".product-"+id).addClass("animated infinite pulse");
+    },
+    'mouseleave .basket-product'(event, instance){
+      let id = instance.data;
+      $(".product-"+id).css({ "border-color": "white"})
+      $(".product-"+id).removeClass("animated infinite pulse");
+    }
+
+  });
+
+  Template.dot.events({
+    'mouseenter .dot-product'(event, instance){
+      let id = instance.data.id;
+      let name = instance.data.name;
+      $(".product-"+id).css({ "border-color": "#3F51B5"});
+      $(".product-"+id).addClass("animated infinite pulse");
+      // if(name == "veggies")  $(".product-"+id).css({ "border-color": "#2E7D32"});
+      // if(name == "fruits")   $(".product-"+id).css({ "border-color": "#c62828"});
+      // if(name == "proteins") $(".product-"+id).css({ "border-color": "#F9A825"});
+      // if(name == "grains")   $(".product-"+id).css({ "border-color": "#4E342E"});
+      // if(name == "water")    $(".product-"+id).css({ "border-color": "#1976D2"});
+      // if(name == "junk")     $(".product-"+id).css({ "border-color": "#455A64"});
+      // if(name == "dairy")    $(".product-"+id).css({ "border-color": "#512DA8"});
+    },
+    'mouseleave .dot-product'(event, instance){
+      let id = instance.data.id;
+      let name = instance.data.name;
+      $(".product-"+id).css({ "border-color": "white"})
+      $(".product-"+id).removeClass("animated infinite pulse");
+      // if(name == "veggies")  $(".product-"+id).css({ "border-color": "#81C784"});
+      // if(name == "fruits")   $(".product-"+id).css({ "border-color": "#e57373"});
+      // if(name == "proteins") $(".product-"+id).css({ "border-color": "#FFCC80"});
+      // if(name == "grains")   $(".product-"+id).css({ "border-color": "#A1887F"});
+      // if(name == "water")    $(".product-"+id).css({ "border-color": "#90CAF9"});
+      // if(name == "junk")     $(".product-"+id).css({ "border-color": "#B0BEC5"});
+      // if(name == "dairy")    $(".product-"+id).css({ "border-color": "#9575CD"});
     }
   });

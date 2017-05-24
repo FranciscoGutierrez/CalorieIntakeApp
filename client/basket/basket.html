@@ -34,7 +34,7 @@
     <div class="bar-container">
       <div class="basket-products">
         {{#each basket.veggies}}
-        {{> dot name="veggies"}}
+        {{> dot name="veggies" id=this}}
         {{/each}}
       </div>
       <span>Vegetables</span>
@@ -43,7 +43,7 @@
     <div class="bar-container">
       <div class="basket-products">
         {{#each basket.fruits}}
-        {{> dot name="fruits"}}
+        {{> dot name="fruits" id=this}}
         {{/each}}
       </div>
       <span>Fruits</span>
@@ -52,7 +52,7 @@
     <div class="bar-container">
       <div class="basket-products">
         {{#each basket.proteins}}
-        {{> dot name="proteins"}}
+        {{> dot name="proteins" id=this}}
         {{/each}}
       </div>
       <span>Proteins</span>
@@ -61,7 +61,7 @@
     <div class="bar-container">
       <div class="basket-products">
         {{#each basket.grains}}
-        {{> dot name="grains"}}
+        {{> dot name="grains" id=this}}
         {{/each}}
       </div>
       <span>Whole Grains</span>
@@ -70,7 +70,7 @@
     <div class="bar-container">
       <div class="basket-products">
         {{#each basket.water}}
-        {{> dot name="water"}}
+        {{> dot name="water" id=this}}
         {{/each}}
       </div>
       <span>Water</span>
@@ -79,7 +79,7 @@
     <div class="bar-container">
       <div class="basket-products">
         {{#each basket.dairy}}
-        {{> dot name="dairy"}}
+        {{> dot name="dairy" id=this}}
         {{/each}}
       </div>
       <span>Dairy</span>
@@ -89,7 +89,7 @@
     <div class="bar-container">
       <div class="basket-products">
         {{#each basket.junk}}
-        {{> dot name="junk"}}
+          {{> dot name="junk" id=this }}
         {{/each}}
       </div>
       <span>Others</span>
@@ -99,15 +99,15 @@
 </template>
 
 <template name="dot">
-  <div class="dot-product {{name}}">
+  <div class="dot-product {{name}} product-{{id}}">
     <paper-ripple></paper-ripple>
   </div>
 </template>
 
 
 <template name="basketItem">
-  <div class="fav-product">
-    <img class="fav-image animated fadeIn" src="{{data.image}}"/>
+  <div class="basket-product product-{{data.id}}">
+    <img class="fav-image animated fadeIn" src="products/{{data.id}}.jpg"/>
     <paper-ripple></paper-ripple>
   </div>
 </template>
