@@ -8,6 +8,7 @@ Products = new Meteor.Collection('products');
 Images   = new Meteor.Collection('images');
 Similar  = new Meteor.Collection('similar');
 Users    = new Meteor.Collection('users');
+Logs     = new Meteor.Collection('logs');
 
 Template.body.events({
   'click .bottom-container': function() {

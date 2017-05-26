@@ -1,5 +1,9 @@
 <template name="detailed">
   <div class="product-detailed animated fadeIn">
+    <div class="data-quality">
+      <img src="quality/{{dataQuality}}.svg"/>
+      <div class="tooltiptext">data quality is {{dataQuality}}</div>
+    </div>
     <div class="details">
       <div class="top-details">
         <div class="product-image-container column">
@@ -12,7 +16,7 @@
           <div class="ingredients-nutriscore">
             <div class="ingredients-text">
               {{#each ingredients_tags.data}}
-              {{> ingredienttag}}
+                {{> ingredienttag}}
               {{/each}}
             </div>
           </div>
@@ -99,6 +103,9 @@
   {{#if ingredients.show}}
   <div class="ingredient-tag">
     {{ingredients.text}}
+    {{#if allergy}}
+    <iron-icon icon="warning"></iron-icon>
+    {{/if}}
     <paper-ripple></paper-ripple>
   </div>
   {{/if}}

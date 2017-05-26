@@ -129,9 +129,9 @@ paper-fab {
   display: none;
 }
 
-img {
+/*img {
   pointer-events: none;
-}
+}*/
 
 .paper-button-0 {
   margin: 0;

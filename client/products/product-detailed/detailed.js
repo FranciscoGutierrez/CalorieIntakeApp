@@ -5,12 +5,16 @@ Template.detailed.helpers({
     return Session.get("detailed");
   },
   ingredients_tags: function(){
-    let tags = []
+    let tags = [];
+    let allergens = [];
     try{tags = Session.get("detailed").ingredients_tags;} catch(e){}
+    try{allergens = Session.get("detailed").allergens_tags;} catch(e){}
     let show = true;
     if (tags == undefined) tags = [];
+    if (allergens == undefined) allergens = [];
     if (tags.length < 1 )  show = false;
-    return {data: _.uniq(tags, false).slice(1,8), show: show};
+    if (allergens.length < 1 )  show = false;
+    return {data: _.uniq(allergens, false).slice(1,6), show: show};
   },
   similars: function(){
     let product  = Session.get('detailed');
@@ -97,7 +101,7 @@ Template.detailed.helpers({
     let product  = Session.get('detailed');
     let category = product.categories_tags;
     let drinks   = ["en:beverages","en:carbonated-drinks","en:sodas","en:sugared-beverages"]
-    let veggies  = ["en:plant-based-foods"];
+    let veggies  = ["en:vegetables-based-foods", "en:canned-vegetables"];
     let proteins = ["en:meals", "en:meats","en:seafood","en:dairies","en:cheeses", "fr:salade-de-poulet-curry", "en:soupe","en:seafood","en:fishes"]
     let snacks   = ["en:desserts","en:salty-snacks", "en:waffles", "en:sugary-snacks", "en:chocolates"]
     let id = "";
@@ -111,16 +115,37 @@ Template.detailed.helpers({
     if(sliced.length > 0) show = true;
     return {array: sliced, show: show};
   },
+  dataQuality: function(){
+    let product  = Session.get('detailed');
+    let category = undefined;
+    try {category= product.categories_tags.length;} catch(e){};
+    let grade    = undefined;
+    try {grade   = product.nutrition_grade_fr;} catch(e){};
+    let levels   = undefined;
+    try {levels  = product.nutrient_levels;} catch(e){};
+    let quality  = 3;
+    if(category < 5) quality -=1;
+    if(grade == undefined)  quality -=1;
+    if(levels == undefined) quality -=1;
+    if(quality == 3) quality ="excellent";
+    if(quality == 2) quality ="good";
+    if(quality == 1) quality ="poor";
+    return quality;
+  }
 });
 
 Template.detailed.events({
   'click .add-product'(event, instance){
     let basket = Session.get("basket");
+    let id   = Session.get("detailed")._id;
+    let user = Session.get("user")._id;
+    let time = new Date().getTime();
     // if ((basket.length <1) && ($('.basket-container').length == 0)) {
     //   Blaze.render(Template.basket, $(".top-container")[0]);
     // }
-    basket.push(Session.get("detailed")._id);
+    basket.push(id);
     Session.set("basket",_.uniq(basket));
+    //Logs.insert({ user:user, product : id, time: time, action:"added-product"});
   },
   'click .delete-product'(event, instance){
     let basket = Session.get("basket");
@@ -129,6 +154,7 @@ Template.detailed.events({
       basket = _.without(basket, _.findWhere(basket, detail));
     }
     Session.set("basket",_.uniq(basket));
+    //Logs.insert({ user:user, product : id, time: time, action:"deleted-product"});
   }
 });
 
@@ -215,6 +241,13 @@ Template.ingredienttag.helpers({
     let text = this.valueOf().replace(/-/g, "");
     let show = true;
     if(text == "") show = false;
-    return {text:text, show:show};
+    return {text:text.substring(3), show:show};
   },
+  allergy: function() {
+    let allergens = this.valueOf().substring(3);
+    //["milk", "eggs", "wheat", "soy", "peanuts", "treenuts", "fish", "shellfish"]
+    let user = Session.get("user").allergies;
+    let show = false;
+    return show;
+  }
 });

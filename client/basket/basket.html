@@ -5,6 +5,11 @@
     {{else}}
     <h2>Favorites <span>{{size}}/20</span></h2>
     {{/if}}
+    <!-- <div class="avg-nutriscore">
+      {{#if avgNutriscore}}
+      <img class="product-grade" src="nutriscore/{{avgNutriscore}}.svg"/>
+      {{/if}}
+    </div> -->
     {{#if dashboard}}
     {{> myplate}}
     {{/if}}
@@ -33,6 +38,11 @@
 
     <div class="bar-container">
       <div class="basket-products">
+        <div class="basket-placeholder">
+          <div class="dot-product placeholder"></div>
+          <div class="dot-product placeholder"></div>
+          <div class="dot-product placeholder"></div>
+        </div>
         {{#each basket.veggies}}
         {{> dot name="veggies" id=this}}
         {{/each}}
@@ -42,6 +52,10 @@
 
     <div class="bar-container">
       <div class="basket-products">
+        <div class="basket-placeholder">
+          <div class="dot-product placeholder"></div>
+          <div class="dot-product placeholder"></div>
+        </div>
         {{#each basket.fruits}}
         {{> dot name="fruits" id=this}}
         {{/each}}
@@ -51,6 +65,12 @@
 
     <div class="bar-container">
       <div class="basket-products">
+        <div class="basket-placeholder">
+          <div class="dot-product placeholder"></div>
+        </div>
+        {{#if warn.proteins}}
+        <iron-icon icon="warning"><div class="tooltiptext">limit red meat</div></iron-icon>
+        {{/if}}
         {{#each basket.proteins}}
         {{> dot name="proteins" id=this}}
         {{/each}}
@@ -60,6 +80,12 @@
 
     <div class="bar-container">
       <div class="basket-products">
+        <div class="basket-placeholder">
+          <div class="dot-product placeholder"></div>
+        </div>
+        {{#if warn.grains}}
+        <iron-icon icon="warning"><div class="tooltiptext">avoid refined grains</div></iron-icon>
+        {{/if}}
         {{#each basket.grains}}
         {{> dot name="grains" id=this}}
         {{/each}}
@@ -78,6 +104,9 @@
 
     <div class="bar-container">
       <div class="basket-products">
+        {{#if warn.dairy}}
+        <iron-icon icon="warning"><div class="tooltiptext">avoid high intakes</div></iron-icon>
+        {{/if}}
         {{#each basket.dairy}}
         {{> dot name="dairy" id=this}}
         {{/each}}
@@ -88,6 +117,9 @@
 
     <div class="bar-container">
       <div class="basket-products">
+        {{#if warn.junk}}
+        <iron-icon icon="warning"><div class="tooltiptext">try to avoid</div></iron-icon>
+        {{/if}}
         {{#each basket.junk}}
           {{> dot name="junk" id=this }}
         {{/each}}
