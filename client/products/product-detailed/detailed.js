@@ -125,11 +125,15 @@ Template.detailed.helpers({
     try {levels  = product.nutrient_levels;} catch(e){};
     let quality  = 3;
     if(category < 5) quality -=1;
+    if(category == undefined)  quality -=1;
     if(grade == undefined)  quality -=1;
     if(levels == undefined) quality -=1;
-    if(quality == 3) quality ="excellent";
-    if(quality == 2) quality ="good";
-    if(quality == 1) quality ="poor";
+    if(quality == 3) quality ="good";
+    if(quality == 2) quality ="poor";
+    if(quality == 1) quality ="bad";
+    console.log(category);
+    console.log(grade);
+    console.log(levels);
     return quality;
   }
 });
@@ -245,9 +249,8 @@ Template.ingredienttag.helpers({
   },
   allergy: function() {
     let allergens = this.valueOf().substring(3);
-    //["milk", "eggs", "wheat", "soy", "peanuts", "treenuts", "fish", "shellfish"]
+    //["milk", "eggs", "wheat", "soybeans", "peanuts", "treenuts", "fish", "shellfish"]
     let user = Session.get("user").allergies;
-    let show = false;
-    return show;
+    return _.contains(user, allergens);
   }
 });
