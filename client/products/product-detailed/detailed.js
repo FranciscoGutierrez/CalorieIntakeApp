@@ -14,7 +14,9 @@ Template.detailed.helpers({
     if (allergens == undefined) allergens = [];
     if (tags.length < 1 )  show = false;
     if (allergens.length < 1 )  show = false;
-    return {data: _.uniq(allergens, false).slice(1,6), show: show};
+    allergens = _.uniq(allergens, false).slice(1,6);
+    tags = _.uniq(tags, false).slice(1,6);
+    return {allergens: allergens, tags: tags, show: show};
   },
   similars: function(){
     let product  = Session.get('detailed');
@@ -131,34 +133,7 @@ Template.detailed.helpers({
     if(quality == 3) quality ="good";
     if(quality == 2) quality ="poor";
     if(quality == 1) quality ="bad";
-    console.log(category);
-    console.log(grade);
-    console.log(levels);
     return quality;
-  }
-});
-
-Template.detailed.events({
-  'click .add-product'(event, instance){
-    let basket = Session.get("basket");
-    let id   = Session.get("detailed")._id;
-    let user = Session.get("user")._id;
-    let time = new Date().getTime();
-    // if ((basket.length <1) && ($('.basket-container').length == 0)) {
-    //   Blaze.render(Template.basket, $(".top-container")[0]);
-    // }
-    basket.push(id);
-    Session.set("basket",_.uniq(basket));
-    //Logs.insert({ user:user, product : id, time: time, action:"added-product"});
-  },
-  'click .delete-product'(event, instance){
-    let basket = Session.get("basket");
-    let detail = Session.get("detailed")._id;
-    if(_.include(basket, detail)) {
-      basket = _.without(basket, _.findWhere(basket, detail));
-    }
-    Session.set("basket",_.uniq(basket));
-    //Logs.insert({ user:user, product : id, time: time, action:"deleted-product"});
   }
 });
 
@@ -174,16 +149,29 @@ Template.similarProducts.helpers({
   }
 });
 
-
-Template.similarProducts.events({
-  'click .similar-product'(event, instance){
-    let id = instance.data.pid.toString();
+Template.profileProducts.helpers({
+  data: function(){
+    let id = this.pid;
     Meteor.subscribe('products', id);
     Meteor.subscribe('images', Number(id));
-    Session.set("detailed",Products.findOne({_id : id}));
+    let name  = "";
+    let img   = "";
+    try{name  = Products.findOne({_id: id}).product_name; } catch(e){}
+    return {name: name, id: id};
   }
 });
 
+Template.healthyProducts.helpers({
+  data: function(){
+    let id = this.pid;
+    Meteor.subscribe('products', id);
+    Meteor.subscribe('images', Number(id));
+    let name  = "";
+    let img   = "";
+    try{name  = Products.findOne({_id: id}).product_name; } catch(e){}
+    return {name: name, id: id};
+  }
+});
 
 Template.barchart.helpers({
   data: function(){
@@ -245,12 +233,73 @@ Template.ingredienttag.helpers({
     let text = this.valueOf().replace(/-/g, "");
     let show = true;
     if(text == "") show = false;
-    return {text:text.substring(3), show:show};
+    return {text:text, show:show};
   },
   allergy: function() {
     let allergens = this.valueOf().substring(3);
     //["milk", "eggs", "wheat", "soybeans", "peanuts", "treenuts", "fish", "shellfish"]
     let user = Session.get("user").allergies;
     return _.contains(user, allergens);
+  }
+});
+
+Template.allergentag.helpers({
+  ingredients: function(){
+    let text = this.valueOf().replace(/-/g, "");
+    let show = true;
+    if(text == "") show = false;
+    return {text:text.substring(3), show:show};
+  }
+});
+
+
+Template.similarProducts.events({
+  'click .similar-product'(event, instance){
+    let id = instance.data.pid.toString();
+    Meteor.subscribe('products', id);
+    Meteor.subscribe('images', Number(id));
+    Session.set("detailed",Products.findOne({_id : id}));
+    Logs.insert({user:Session.get("user")._id, product : Session.get("detailed")._id, plate: Session.get("basket"), time: new Date().getTime(), action:"click-similar-product"});
+  }
+});
+
+Template.healthyProducts.events({
+  'click .similar-product'(event, instance){
+    let id = instance.data.pid.toString();
+    Meteor.subscribe('products', id);
+    Meteor.subscribe('images', Number(id));
+    Session.set("detailed",Products.findOne({_id : id}));
+    Logs.insert({user:Session.get("user")._id, product : Session.get("detailed")._id, plate: Session.get("basket"), time: new Date().getTime(), action:"click-healthy-product"});
+  }
+});
+
+Template.profileProducts.events({
+  'click .similar-product'(event, instance){
+    let id = instance.data.pid.toString();
+    Meteor.subscribe('products', id);
+    Meteor.subscribe('images', Number(id));
+    Session.set("detailed",Products.findOne({_id : id}));
+    Logs.insert({user:Session.get("user")._id, product : Session.get("detailed")._id, plate: Session.get("basket"), time: new Date().getTime(), action:"click-profile-product"});
+  }
+});
+
+Template.detailed.events({
+  'click .add-product'(event, instance){
+    let basket = Session.get("basket");
+    let id   = Session.get("detailed")._id;
+    let user = Session.get("user")._id;
+    let time = new Date().getTime();
+    basket.push(id);
+    Session.set("basket",_.uniq(basket));
+    Logs.insert({ user:Session.get("user")._id, product : Session.get("detailed")._id, plate: Session.get("basket"), time: new Date().getTime(), action:"click-add-product"});
+  },
+  'click .delete-product'(event, instance){
+    let basket = Session.get("basket");
+    let detail = Session.get("detailed")._id;
+    if(_.include(basket, detail)) {
+      basket = _.without(basket, _.findWhere(basket, detail));
+    }
+    Session.set("basket",_.uniq(basket));
+    Logs.insert({user:Session.get("user")._id, product : Session.get("detailed")._id, plate: Session.get("basket"), time: new Date().getTime(), action:"click-delete-product"});
   }
 });

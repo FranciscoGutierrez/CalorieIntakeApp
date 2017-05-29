@@ -15,7 +15,11 @@
           <div class="product-description">{{data.generic_name}}</div>
           <div class="ingredients-nutriscore">
             <div class="ingredients-text">
-              {{#each ingredients_tags.data}}
+              {{#each ingredients_tags.allergens}}
+                {{> allergentag}}
+              {{/each}}
+
+              {{#each ingredients_tags.tags}}
                 {{> ingredienttag}}
               {{/each}}
             </div>
@@ -37,7 +41,7 @@
       <paper-button class="{{buttonText.action}}-product">{{buttonText.text}}</paper-button>
     </div>
     <div class="recommendations">
-      {{#if similars.show}}
+      {{#if similars.array}}
       <div class="others rs-container">
         <h2 style="margin-top: 16px;">Similar Products</h2>
         <div class="row">
@@ -49,20 +53,24 @@
       {{/if}}
       {{#if userDashboard}}
       <div class="healthy-based rs-container">
+        {{#if healthysimilars.array}}
         <h2 style="margin-top: 16px;">Healthy Alternatives</h2>
         <div class="row">
           {{#each healthysimilars.array}}
-          {{> similarProducts}}
+          {{> healthyProducts}}
           {{/each}}
         </div>
+        {{/if}}
       </div>
       <div class="favorites-based rs-container">
+        {{#if usersimilars.array}}
         <h2 style="margin-top: 16px;">Based in your Profile</h2>
         <div class="row">
           {{#each usersimilars.array}}
-          {{> similarProducts}}
+          {{> profileProducts}}
           {{/each}}
         </div>
+        {{/if}}
       </div>
       {{/if}}
     </div>
@@ -70,6 +78,26 @@
 </template>
 
 <template name="similarProducts">
+  <div class="similar-product">
+    <div class="similar-image-container">
+      <img class="similar-image animated fadeIn" src="products/{{data.id}}.jpg">
+    </div>
+    <div class="similar-name" score="{{score}}">{{data.name}}</div>
+    <paper-ripple></paper-ripple>
+  </div>
+</template>
+
+<template name="healthyProducts">
+  <div class="similar-product">
+    <div class="similar-image-container">
+      <img class="similar-image animated fadeIn" src="products/{{data.id}}.jpg">
+    </div>
+    <div class="similar-name" score="{{score}}">{{data.name}}</div>
+    <paper-ripple></paper-ripple>
+  </div>
+</template>
+
+<template name="profileProducts">
   <div class="similar-product">
     <div class="similar-image-container">
       <img class="similar-image animated fadeIn" src="products/{{data.id}}.jpg">
@@ -95,6 +123,18 @@
     {{#unless isDrink}}
     <div class="bar-footnote">*Based on 100g portions.</div>
     {{/unless}}
+  </div>
+  {{/if}}
+</template>
+
+<template name="allergentag">
+  {{#if ingredients.show}}
+  <div class="ingredient-tag">
+    {{ingredients.text}}
+    {{#if allergy}}
+    <iron-icon icon="warning"></iron-icon>
+    {{/if}}
+    <paper-ripple></paper-ripple>
   </div>
   {{/if}}
 </template>

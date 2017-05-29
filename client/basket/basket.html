@@ -95,6 +95,9 @@
 
     <div class="bar-container">
       <div class="basket-products">
+        <div class="basket-placeholder" style="border: 0;">
+          <div class="dot-product placeholder"></div>
+        </div>
         {{#each basket.water}}
         {{> dot name="water" id=this}}
         {{/each}}

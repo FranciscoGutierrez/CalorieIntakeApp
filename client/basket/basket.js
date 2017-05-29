@@ -187,6 +187,7 @@ Template.basket.events({
       Meteor.subscribe('products', id);
       Meteor.subscribe('images', Number(id));
       Session.set("detailed",Products.findOne({_id : id}));
+      Logs.insert({user:Session.get("user")._id, product : Session.get("detailed")._id, plate: Session.get("basket"), time: new Date().getTime(), action:"click-basket-product"});
     },
     'mouseenter .basket-product'(event, instance){
       let id = instance.data;
@@ -207,25 +208,11 @@ Template.basket.events({
       let name = instance.data.name;
       $(".product-"+id).css({ "border-color": "#3F51B5"});
       $(".product-"+id).addClass("animated infinite pulse");
-      // if(name == "veggies")  $(".product-"+id).css({ "border-color": "#2E7D32"});
-      // if(name == "fruits")   $(".product-"+id).css({ "border-color": "#c62828"});
-      // if(name == "proteins") $(".product-"+id).css({ "border-color": "#F9A825"});
-      // if(name == "grains")   $(".product-"+id).css({ "border-color": "#4E342E"});
-      // if(name == "water")    $(".product-"+id).css({ "border-color": "#1976D2"});
-      // if(name == "junk")     $(".product-"+id).css({ "border-color": "#455A64"});
-      // if(name == "dairy")    $(".product-"+id).css({ "border-color": "#512DA8"});
     },
     'mouseleave .dot-product'(event, instance){
       let id = instance.data.id;
       let name = instance.data.name;
       $(".product-"+id).css({ "border-color": "white"})
       $(".product-"+id).removeClass("animated infinite pulse");
-      // if(name == "veggies")  $(".product-"+id).css({ "border-color": "#81C784"});
-      // if(name == "fruits")   $(".product-"+id).css({ "border-color": "#e57373"});
-      // if(name == "proteins") $(".product-"+id).css({ "border-color": "#FFCC80"});
-      // if(name == "grains")   $(".product-"+id).css({ "border-color": "#A1887F"});
-      // if(name == "water")    $(".product-"+id).css({ "border-color": "#90CAF9"});
-      // if(name == "junk")     $(".product-"+id).css({ "border-color": "#B0BEC5"});
-      // if(name == "dairy")    $(".product-"+id).css({ "border-color": "#9575CD"});
     }
   });

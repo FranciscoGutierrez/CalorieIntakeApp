@@ -12,7 +12,9 @@ Router.route('/', {
   action: function () {
     // this.ready() is true if all items in the wait list are ready
     Session.set("user", "profile");
-    if (this.ready()) this.render('profile');
+    if (this.ready()) {
+    this.render('profile');
+    }
   }
 });
 

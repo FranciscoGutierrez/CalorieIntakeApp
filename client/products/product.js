@@ -47,6 +47,7 @@ Template.product.events({
     } else {
       Session.set("detailed",instance.data);
     }
+    Logs.insert({user:Session.get("user")._id, product : Session.get("detailed")._id, plate: Session.get("basket"), time: new Date().getTime(), action:"click-search-product"});
   }
 });
 
