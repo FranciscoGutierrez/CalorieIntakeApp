@@ -68,9 +68,9 @@
         <div class="basket-placeholder">
           <div class="dot-product placeholder"></div>
         </div>
-        {{#if warn.proteins}}
+        <!-- {{#if warn.proteins}}
         <iron-icon icon="warning"><div class="tooltiptext">limit red meat</div></iron-icon>
-        {{/if}}
+        {{/if}} -->
         {{#each basket.proteins}}
         {{> dot name="proteins" id=this}}
         {{/each}}
@@ -83,9 +83,9 @@
         <div class="basket-placeholder">
           <div class="dot-product placeholder"></div>
         </div>
-        {{#if warn.grains}}
+        <!-- {{#if warn.grains}}
         <iron-icon icon="warning"><div class="tooltiptext">avoid refined grains</div></iron-icon>
-        {{/if}}
+        {{/if}} -->
         {{#each basket.grains}}
         {{> dot name="grains" id=this}}
         {{/each}}
@@ -107,9 +107,9 @@
 
     <div class="bar-container">
       <div class="basket-products">
-        {{#if warn.dairy}}
+        <!-- {{#if warn.dairy}}
         <iron-icon icon="warning"><div class="tooltiptext">avoid high intakes</div></iron-icon>
-        {{/if}}
+        {{/if}} -->
         {{#each basket.dairy}}
         {{> dot name="dairy" id=this}}
         {{/each}}
@@ -120,9 +120,9 @@
 
     <div class="bar-container">
       <div class="basket-products">
-        {{#if warn.junk}}
+        <!-- {{#if warn.junk}}
         <iron-icon icon="warning"><div class="tooltiptext">try to avoid</div></iron-icon>
-        {{/if}}
+        {{/if}} -->
         {{#each basket.junk}}
           {{> dot name="junk" id=this }}
         {{/each}}
