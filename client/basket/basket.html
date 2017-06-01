@@ -120,9 +120,9 @@
 
     <div class="bar-container">
       <div class="basket-products">
-        <!-- {{#if warn.junk}}
+        {{#if warn.junk}}
         <iron-icon icon="warning"><div class="tooltiptext">try to avoid</div></iron-icon>
-        {{/if}} -->
+        {{/if}}
         {{#each basket.junk}}
           {{> dot name="junk" id=this }}
         {{/each}}

@@ -1,16 +1,15 @@
 .similar-product {
   display: flex;
-  flex-direction: column;
-  justify-content: center;
+  /*justify-content: center;*/
   align-items: center;
   /*margin: 2px;
   padding: 2px;*/
   cursor: pointer;
   position: relative;
-  min-width:  88px;
-  min-height: 88px;
-  max-width:  88px;
-  max-height: 88px;
+  min-width:  300px;
+  max-width:  300px;
+  min-height: 64px;
+  max-height: 64px;
 }
 
 .similar-product:hover {
@@ -35,7 +34,8 @@
   font-variant: small-caps;
   white-space: nowrap;
   overflow: hidden;
-  width: 80px;
+  margin-left: 8px;
+  /*width: 80px;*/
   min-height: 16px;
   max-height: 16px;
   text-overflow: ellipsis;
@@ -45,6 +45,7 @@
 
 
 .similar-image-container {
+  margin-left: 8px;
   min-width: 40px;
   min-height: 40px;
   max-width: 40px;

@@ -1,27 +1,40 @@
 <template name="products">
   <div class="product-container animated fadeIn">
     <div class="top-content">
-      <h1 style="margin-bottom: 24px;">{{title}}</h1>
+      <h1>{{title}}</h1>
       <!-- <h2>Amount of calories: {{basket}}<span>cal</span></h2> -->
-      {{#if isLoading}}
+      <!-- {{#if isLoading}}
       <paper-spinner class="spinner-search" active></paper-spinner>
-      {{/if}}
-      <paper-input label="Find Products of your Interest..." type="text" class="searchProduct"></paper-input>
-      <div class="legends">
+      {{/if}} -->
+      <div class="selective-bar">
+        <div class="bar-element vegetables selected">Vegetables <paper-ripple></paper-ripple></div>
+        <div class="bar-element fruits    ">Fruits     <paper-ripple></paper-ripple></div>
+        <div class="bar-element proteins  ">Proteins   <paper-ripple></paper-ripple></div>
+        <div class="bar-element grains    ">Grains     <paper-ripple></paper-ripple></div>
+        <div class="bar-element drinks    ">Drinks     <paper-ripple></paper-ripple></div>
+        <div class="bar-element dairy     ">Dairy      <paper-ripple></paper-ripple></div>
+        <div class="bar-element snacks    ">Snacks     <paper-ripple></paper-ripple></div>
+      </div>
+      <!-- {{#if getProducts}} -->
+      <div class="results">
+        {{#each getProducts}}
+        {{> product}}
+        {{/each}}
+      </div>
+      <div class="navigation">
+        <iron-icon class="nav-left"  icon="chevron-left"><paper-ripple></paper-ripple></iron-icon>
+        <iron-icon class="nav-right" icon="chevron-right"><paper-ripple></paper-ripple></iron-icon>
+      </div>
+      <!-- {{/if}} -->
+      <div class="legends" style="margin-top: 10px;">
         <div class="calories lg"><div class="dot"></div> Calories</div>
         <div class="sodium   lg"><div class="dot"></div> Salt</div>
         <div class="sugars   lg"><div class="dot"></div> Sugars</div>
         <div class="fat      lg"><div class="dot"></div> Saturated Fat</div>
-        *Portions per 100g.
+        <!-- *Portions per 100g. -->
       </div>
+      <!-- <paper-input label="Find Products of your Interest..." type="text" class="searchProduct"></paper-input> -->
     </div>
-    {{#if getProducts}}
-    <div class="results">
-      {{#each getProducts}}
-      {{> product}}
-      {{/each}}
-    </div>
-    {{/if}}
   </div>
 </template>
 

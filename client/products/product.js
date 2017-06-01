@@ -53,10 +53,63 @@ Template.product.events({
 
 Template.products.events({
   'click .results'(event, instance) {
-    $(".results").fadeOut();
+    //$(".results").fadeOut();
   },
   'click paper-input'(event, instance) {
-    $(".results").fadeIn(500);
+    //$(".results").fadeIn(500);
+  },
+  'click .bar-element'(event, instance) {
+    $(".bar-element").css({"border-bottom": "none"});
+    $(event.target).css({"border-bottom": "4px solid #3F51B5"});
+  },
+  'click .vegetables'(event, instance){
+    $(event.target).addClass("selected");
+    Session.set("navbar","vegetables");
+    Session.set("nav", 0);
+  },
+  'click .fruits'(event, instance){
+    $(event.target).addClass("selected");
+    Session.set("navbar","fruits");
+    Session.set("nav", 0);
+  },
+  'click .proteins'(event, instance){
+    $(event.target).addClass("selected");
+    Session.set("navbar","proteins");
+    Session.set("nav", 0);
+  },
+  'click .grains'(event, instance){
+    $(event.target).addClass("selected");
+    Session.set("navbar","grains");
+    Session.set("nav", 0);
+  },
+  'click .drinks'(event, instance){
+    $(event.target).addClass("selected");
+    Session.set("navbar","drinks");
+    Session.set("nav", 0);
+  },
+  'click .dairy'(event, instance){
+    $(event.target).addClass("selected");
+    Session.set("navbar","dairy");
+    Session.set("nav", 0);
+  },
+  'click .snacks'(event, instance){
+    $(event.target).addClass("selected");
+    Session.set("navbar","snacks");
+    Session.set("nav", 0);
+  },
+  'click .nav-left'(event, instance){
+    let nav = Session.get("nav");
+    nav = nav - 1;
+    if (nav <= 0) nav = 0;
+    Session.set("nav", nav);
+    Logs.insert({user:Session.get("user")._id, product : Session.get("detailed")._id, plate: Session.get("basket"), time: new Date().getTime(), action:"click-nav-left"});
+  },
+  'click .nav-right'(event, instance){
+    let nav = Session.get("nav");
+    nav = nav + 1;
+    if (nav <= 0) nav = 0;
+    Session.set("nav", nav);
+    Logs.insert({user:Session.get("user")._id, product : Session.get("detailed")._id, plate: Session.get("basket"), time: new Date().getTime(), action:"click-nav-right"});
   }
 });
 

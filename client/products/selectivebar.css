@@ -1,0 +1,46 @@
+.selective-bar {
+  display: flex;
+  width: 100%;
+  position: relative;
+}
+
+.bar-element {
+  color: #424242;
+  text-align: center;
+  font-size: 12px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  cursor: pointer;
+  height: 32px;
+  position: relative;
+}
+
+.bar-element:hover {
+  background: #f1f1f1;
+}
+
+.bar-element.selected {
+  border-bottom: 4px solid #3F51B5;
+}
+
+.navigation {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.navigation iron-icon {
+  cursor: pointer;
+  color: #a1a1a1;
+  border-radius: 50%;
+  width:  32px;
+  height: 32px;
+}
+
+.navigation iron-icon:hover {
+  cursor: pointer;
+  color: #3F51B5;
+  background: #f1f1f1;
+  border-radius: 50%;
+}

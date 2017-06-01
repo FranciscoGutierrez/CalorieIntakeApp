@@ -25,6 +25,8 @@ Router.route('/:_id', function () {
     Session.set("detailed", "");
     Session.set("user", Users.findOne({_id: id}));
     Session.set("basket", []);
+    Session.set("nav", 0);
+    Session.set("navbar","vegetables");
     Blaze.render(Template.dashboard, $(".top-container")[0]);
     Blaze.render(Template.basket, $(".top-container")[0]);
 

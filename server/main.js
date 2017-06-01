@@ -42,6 +42,10 @@ Meteor.publish('products', function(productid) {
   return Products.find({_id: productid});
 });
 
+Meteor.publish('tags', function(tags) {
+  return Products.find({"categories_tags": { $in:  tags}});
+});
+
 Meteor.publish('similar', function (productid) {
   return Similar.find({"pid": productid});
 });

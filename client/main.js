@@ -12,7 +12,7 @@ Logs     = new Meteor.Collection('logs');
 
 Template.body.events({
   'click .bottom-container': function() {
-      $(".results").fadeOut();
+      // $(".results").fadeOut();
   }
 });
 
@@ -20,6 +20,8 @@ Template.profile.onCreated(function() {
   Session.set("activity",2.00);
   Session.set("prediction",100);
   Session.set("detailed", "");
+  Session.set("nav", 0);
+  Session.set("navbar","vegetables");
   Session.set("basket", []);
   Session.set("calories", 0);
   Session.set("time_start", new Date().getTime());
