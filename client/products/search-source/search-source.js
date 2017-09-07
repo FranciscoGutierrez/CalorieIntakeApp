@@ -26,7 +26,7 @@ Template.products.helpers({
     let dairy_tags    = ["fr:fromages-blancs", "en:dairies", "en:cheeses", "en:cow-cheeses", "en:uncooked-pressed-cheeses", "fr:fromage-a-pate-dure", "en:yogurts", "en:fruit-yogurts", "fr:yaourts-sur-lit-de-fruits"];
     let results = [];
     let nav = Session.get("nav");
-    let lim = 4;
+    let lim = 15;
     if (navbar == "vegetables") {
       Meteor.subscribe("tags",veggies_tags);
       results = Products.find({"categories_tags": { $in:  veggies_tags}}, {limit: lim, skip: lim*nav});

@@ -4,10 +4,10 @@
   border-radius: 10px;
   padding: 16px;
   cursor: default;
-  width: 1035px;
+  width: 533px;
   margin-top: 10px;
   transition: all 2s ease;
-  min-height: 50px;
+  min-height: 725px;
   margin-left: 16px;
   position: relative;
 }
@@ -39,7 +39,7 @@
 
 .product-detailed .product-name {
   font-weight: 100;
-  font-size: 32px;
+  font-size: 24px;
   font-variant: small-caps;
   white-space: nowrap;
   overflow: hidden;
@@ -88,11 +88,13 @@
 }
 
 .product-detailed .add-product {
+  margin-top: 40px !important;
   align-self: flex-end;
   box-shadow: 1px 1px 10px #888888 !important;
 }
 
 .product-detailed .delete-product {
+   margin-top: 40px !important;
    background: #ef5350 !important;
    box-shadow: 1px 1px 10px #888888 !important;
  }

@@ -8,8 +8,8 @@
   position: relative;
   min-width:  300px;
   max-width:  300px;
-  min-height: 64px;
-  max-height: 64px;
+  min-height: 52px;
+  max-height: 52px;
 }
 
 .similar-product:hover {

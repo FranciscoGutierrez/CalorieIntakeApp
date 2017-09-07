@@ -181,8 +181,8 @@ Template.profile.events({
     $(".user-profile").removeClass('animated fadeIn');
     $(".user-profile").addClass('animated fadeOut').one(animationEnd, function() {
       $(this).remove();
-      Blaze.renderWithData(Template.products, {title: "What do you like?"}, $(".top-container")[0]);
-      Blaze.render(Template.basket, $(".top-container")[0]);
+      Blaze.renderWithData(Template.products, {title: "What do you like?"}, $(".left-container")[0]);
+      Blaze.render(Template.basket, $(".right-container")[0]);
     });
   }
 });

@@ -138,10 +138,14 @@ Template.basket.events({
       favorites:favorites}
       Users.insert(user, function(){
         $('.save-profile').fadeOut(function(){
-          $(".analytics").remove();
-          $(".basket-container").remove();
-          $(".product-container").remove();
-          Router.go('/'+String(id));
+          //$(".analytics").remove();
+          //$(".basket-container").remove();
+          //$(".product-container").remove();
+          $(".left-container").fadeOut();
+          $(".right-container").fadeOut(function(){
+            $(".thanks").css("display", "flex");
+          });
+          //Router.go('/'+String(id));
         });
       });
     },

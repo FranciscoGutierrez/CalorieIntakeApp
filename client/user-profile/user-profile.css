@@ -75,7 +75,7 @@
 .text-inputs  .input {width: 200px;}
 
 .next-profile {
-  margin-top: 50px;
+  margin-top: 50px !important;
   align-self: flex-end;
   box-shadow: 1px 1px 10px #888888 !important;
 }
