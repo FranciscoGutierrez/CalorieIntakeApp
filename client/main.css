@@ -154,6 +154,7 @@ paper-fab {
   height: 500px;
   justify-content: center;
   align-items: center;
+  cursor: default;
 }
 
 .thanks h1 {
@@ -163,4 +164,5 @@ paper-fab {
   color: #525252;
   width: auto;
   align-self: center;
+  cursor: default;
 }

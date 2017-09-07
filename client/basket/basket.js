@@ -115,27 +115,40 @@ Template.myplate.helpers({
 Template.basket.events({
   'click .save-profile'(event, instance){
     let id        = Session.get("userID");
-    let age       = Session.get("age");
+    let age       = parseInt(Session.get("age"));
     let gender    = Session.get("gender");
-    let weight    = Session.get("weight");
-    let height    = Session.get("height");
-    let activity  = Session.get("activity");
+    let weight    = parseInt(Session.get("weight"));
+    let height    = parseInt(Session.get("height"));
+    let activity  = parseInt(Session.get("activity"));
     let allergies = Session.get("allergies");
     let time_start= Session.get("time_start");
     let time_end  = new Date().getTime();
     let favorites = Session.get("basket");
+    let bmr = 0;
+    if(activity == 0)  bmr = bmr * 1;
+    if(activity == 2)  bmr = bmr * 1.2;
+    if(activity == 4)  bmr = bmr * 1.375;
+    if(activity == 6)  bmr = bmr * 1.55;
+    if(activity == 8)  bmr = bmr * 1.725;
+    if(activity == 10) bmr = bmr * 1.95;
     $(".save-profile").prop("disabled", true);
     $('.save-profile').css('background', "gray");
+    if(gender == "male")
+    bmr = (10 * weight) + (6.25 * height) - (5 * age) + 5;
+    if(gender == "female")
+    bmr = (10 * weight) + (6.25 * height) - (5 * age) - 161;
     let user = {_id:id,
       age:age,
       gender:gender,
       weight:weight,
       height:height,
       activity :activity,
-      allergies:allergies,
+      bmr: bmr,
+      //allergies:allergies,
       time_start:time_start,
       time_end:time_end,
       favorites:favorites}
+      console.log(user);
       Users.insert(user, function(){
         $('.save-profile').fadeOut(function(){
           //$(".analytics").remove();
